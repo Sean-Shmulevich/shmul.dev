@@ -11,7 +11,6 @@
     export let zIdx = 0;
 
     import {createEventDispatcher, afterUpdate} from 'svelte';
-    import {writableArray} from "../stores/minimized.js";
     const dispatch = createEventDispatcher();
 
     function forward(event) {
@@ -59,7 +58,8 @@
     let animation = {fn: fly, delay: 250, duration: 300, x: 100, y: 500, opacity: 0.5, easing: quintOut};
 </script>
 
-{#if !hide}
+{#if hide}
+{:else}
 <div class="vscode" style="
     position:fixed;
     left:{BoxX}px; top:{BoxY}px;
