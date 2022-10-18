@@ -1,0 +1,198 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(JetBrainsMono-Regular.woff2);
+}
+
+.vscode{
+    /* background-color: #ffed00; */
+    width: 700px;
+    height: 525px;
+    display: inline-block;
+    /* border-radius: 8px; */
+    /* padding: 4px; */
+}
+
+.vsAppBar{
+    background-color: rgb(30,31,61);
+    width: 100%;
+    height: calc(5% + 4px);
+    /* margin: 20px; */
+    /* margin-top: 100px; */
+    /* padding: 0px 0px 0px 0px; */
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    /* border-color: red; */
+    /* border: 10px; */
+    border-top: 1px solid rgb(187,187,207);
+}
+.vsWindowContent{
+    height: 100%;
+    background-color: rgb(49,49,84);
+}
+.vsCodeWindow{
+    background-color: rgb(49,49,84);
+    width: 100%;
+}
+.vsBottomBar {
+    height: 18px;
+    background: rgb(36,36,64);
+    border-radius: 0px 0px 8px 8px;
+    display: flex;
+    /* border-bottom: 1px solid rgb(133,119,62); */
+    border-bottom: 1px solid rgb(187,187,207);
+}
+.vsText{width: 100%;height: 99%;margin-top: 2.5px;}
+.barSearch{
+    width: 258px;
+    margin-left: auto;
+    /* margin-right: auto; */
+    margin-top: auto;
+    margin-bottom: auto;
+    /* background-color: rgb(36,36,64); */
+}
+.vsBarText{
+    color: rgb(160,151,229);
+    margin-right: 9px;
+    
+    margin-top: -2px;
+    font-size: 10px;
+}
+#searchLeft{
+    color: white;
+    margin-right: 6px;
+    /* padding-right: 20px; */
+    margin-top: 2px;
+}
+#searchRight{
+    color: rgb(88,88,107);
+    /* margin-right: 20px; */
+    /* padding-right: 20px; */
+    margin-top: 2px;
+}
+#yellowCorner{
+    width: 25px;
+    margin-left: 0px;
+    background-color: rgb(238,207,48);
+    border-radius: 0px 0px 0px 6px;
+    border-right: 0.5px solid rgb(133,119,62);
+    border-top: 0.5px solid rgb(133,119,62);
+    /* border-left: 0.5px solid rgb(187 187 207); */
+    /* border-bottom: 0.5px solid rgb(187 187 207); */
+}
+#teeneyRemote{
+    margin-top: 1px;
+    transform: scale(0.9);
+    margin-left: 4px;
+    /* color: rgb(160,151,229); */
+}
+#teenyClose{
+    color: rgb(160,151,229);
+    margin-left: 4px;
+    margin-top: 1px;
+    transform: scale(0.9);
+}
+#myTextArea{
+    overflow:
+    scroll;
+    width: inherit;
+    height: inherit;
+    resize: none;
+    width: calc(100% - 4px);
+    border: unset;
+    font-size: 0.96rem;
+    outline: unset;
+    box-shadow: unset;
+    background-color: rgb(49,49,84);
+    color: white;
+    rows: 50;
+    cols: 50;
+}
+#searchInBox{
+    position: absolute;
+    color: #c1c1c1;
+    left: 340px;
+    /* top: auto; */
+    margin-top: 3px;
+    transform: scale(0.9);
+}
+.barSearchInput{
+    box-shadow: unset;
+    border-radius: 5px;
+    text-align: center;
+    width: inherit;
+    color: white;
+    margin-left: 10px;
+    /* background-color: rgb(36,36,64); */
+}
+.layoutBox{
+    display: flex;
+    margin-left: auto;
+    flex-direction: row-reverse;
+}
+.codeNumber{
+    margin-right: 9%;
+    color: rgb(160,151,229);
+    text-align: right;
+}
+.vsIcon{
+    color: rgb(160,151,229);
+    margin-left: 8px;
+    margin-top: 9px;
+    /* background: aliceblue; */
+}
+.vsIconBottom{
+    color: rgb(160,151,229);
+    margin-left: 7px;
+    /* margin-top: 9px; */
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+}
+.vsSnapIcon {
+    /* color: white; */
+    color: rgb(160,151,229);
+    /* float: right; */
+    /* flex-basis: 20px; */
+    /* margin-left: auto; */
+    margin-top: 7px;
+    margin-right: 8px;
+}
+.vsControlButtons{
+    border: unset;
+    width: 12px;
+    height: 12px;
+    top: 9px;
+}
+.codeAndNumbers {
+    width: 100%;
+    display:
+    inline-flex;
+    margin-left: 0px;
+    width: calc(100% - 30px);
+}
+.vsAppCol {
+    background-color: rgb(40,40,77);
+    width: 31px;
+    margin-right: 0px;
+    height: auto;
+    /*border-right: 1px solid rgb(44,42,73);*/
+    min-width: 30px;
+    /* display: flex; */
+    flex-direction: column;
+    position: relative;
+    box-shadow: -1px 0px 0px 0px rgb(187 187 207);
+}
+.vsLineNumbers {
+    background-color: rgb(43,43,74);
+    width: 44px;
+    height: auto;
+    /* margin-left: 3px; */
+    border-right: 1px solid rgb(46,45,80);
+    font-size: 0.7rem;
+    display: inline-grid;
+    color: white;
+    padding-top: 7px;
+    /* justify-items: stretch; */
+    align-content: space-between;
+    justify-content: center;
+}
