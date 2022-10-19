@@ -1,10 +1,3 @@
-<style>
-    :global([draggable]) {
-      -webkit-touch-callout:none;
-      -ms-touch-action:none; touch-action:none;
-      -moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;
-    }
-</style>
 <script context="module">
     import  DragDropTouch  from 'svelte-drag-drop-touch'
     import { asDraggable } from 'svelte-drag-and-drop-actions'
@@ -75,7 +68,7 @@
                 <div style="display: flex;flex-direction: row;">
                     <div style="width: 100%;padding: 20px;line-height: 1.5;">
                         <h2>Tech I've Built With</h2>
-                        <div>
+                        <div style="font-family: 'Apple Garamond bold'">
                             Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask, django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
                         </div>
                     </div>
@@ -83,10 +76,37 @@
             </div>
         </div>
   
-        <button class="CloseButton" style="font-family: Microsoft;cursor: pointer;width: 75px;height: 23px;float: right;border-width: 1px;border-style: solid;border-color: white black black white;margin-top: 5px;background: none;">Cancel</button>
-        <button class="CloseButton" style="font-family: Microsoft;cursor: pointer;width: 75px;height: 23px;float: right;border-width: 1px;border-style: solid;border-color: white black black white;margin-top: 5px;background: none;">OK</button>
+        <button class="CloseButton submit">Cancel</button>
+        <button class="CloseButton submit">OK</button>
     </div>
   
   
   </div>
+<style>
+    :global([draggable]) {
+        -webkit-touch-callout:none;
+        -ms-touch-action:none; touch-action:none;
+        -moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none;
+    }
+    h2{
+        font-family: 'Apple Garamond bold';
+    }
+    .SubMenuTab{
+        font-family: 'Apple Garamond bold';
+    }
+    .submit {
+        color:black;
+        font-family: "Apple Garamond bold italic";
+        font-size: 1rem;
+        cursor: pointer;
+        width: 75px;
+        height: 23px;
+        float: right;
+        border-width: 1px;
+        border-style: solid;
+        border-color: white black black white;
+        margin-top: 5px;
+        background: none;
+    }
+</style>
   

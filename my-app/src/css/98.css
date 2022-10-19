@@ -521,41 +521,12 @@ summary:focus {
   outline: 1px dotted #000000;
 }
 
-html::-webkit-scrollbar {
-  width: 16px;
-}
-html::-webkit-scrollbar:horizontal {
-  height: 17px;
-}
-
-html::-webkit-scrollbar-corner {
-  background: #dfdfdf;
-}
-
 html::-webkit-scrollbar-track {
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='2' height='2' viewBox='0 0 2 2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M1 0H0V1H1V2H2V1H1V0Z' fill='%23C0C0C0'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 0H1V1H0V2H1V1H2V0Z' fill='white'/%3E %3C/svg%3E");
+  background: transparent;
+  z-index: -5;
 }
 
 html::-webkit-scrollbar-thumb {
-  background-color: #dfdfdf;
-  box-shadow: inset -1px -1px #0a0a0a,
-    inset 1px 1px #ffffff, inset -2px -2px #808080,
-    inset 2px 2px #dfdfdf;
-}
-
-html::-webkit-scrollbar-button:vertical:start {
-  height: 17px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0V1V16H1V1H15V0Z' fill='%23DFDFDF'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1V15H2V2H14V1H2Z' fill='white'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H15H0V16H15V0H16V17Z' fill='black'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1H14V15H1V16H14H15V1Z' fill='%23808080'/%3E %3Crect x='2' y='2' width='12' height='13' fill='%23C0C0C0'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8 6H7V7H6V8H5V9H4V10H11V9H10V8H9V7H8V6Z' fill='black'/%3E %3C/svg%3E");
-}
-html::-webkit-scrollbar-button:vertical:end {
-  height: 17px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0V1V16H1V1H15V0Z' fill='%23DFDFDF'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1V15H2V2H14V1H2Z' fill='white'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H15H0V16H15V0H16V17Z' fill='black'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1H14V15H1V16H14H15V1Z' fill='%23808080'/%3E %3Crect x='2' y='2' width='12' height='13' fill='%23C0C0C0'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 6H4V7H5V8H6V9H7V10H8V9H9V8H10V7H11V6Z' fill='black'/%3E %3C/svg%3E");
-}
-html::-webkit-scrollbar-button:horizontal:start {
-  width: 16px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0V1V16H1V1H15V0Z' fill='%23DFDFDF'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1V15H2V2H14V1H2Z' fill='white'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H15H0V16H15V0H16V17Z' fill='black'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1H14V15H1V16H14H15V1Z' fill='%23808080'/%3E %3Crect x='2' y='2' width='12' height='13' fill='%23C0C0C0'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 4H8V5H7V6H6V7H5V8H6V9H7V10H8V11H9V4Z' fill='black'/%3E %3C/svg%3E");
-}
-html::-webkit-scrollbar-button:horizontal:end {
-  width: 16px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0V1V16H1V1H15V0Z' fill='%23DFDFDF'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1V15H2V2H14V1H2Z' fill='white'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H15H0V16H15V0H16V17Z' fill='black'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1H14V15H1V16H14H15V1Z' fill='%23808080'/%3E %3Crect x='2' y='2' width='12' height='13' fill='%23C0C0C0'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7 4H6V11H7V10H8V9H9V8H10V7H9V6H8V5H7V4Z' fill='black'/%3E %3C/svg%3E");
+  background-color: transparent;
+  z-index: -5;
 }

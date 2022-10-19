@@ -102,7 +102,7 @@ button {
     margin: 7px 0px 1px -5px;
     float: left;
     background: rgb(174, 168, 217);
-    width: 86px;
+    width: 90px;
 }
 
 .myWindow {
@@ -303,12 +303,14 @@ button {
 }
 
 .timeBox {
-    margin: 7px 8px 0px 0px;
+    margin: 5px 3px 0px 0px;
     background: rgb(174, 168, 217);
     box-shadow: inset -1px -1px #ffffff, inset 2px 1px #0a0a0a, inset 1px 1px #dfdfdf, inset 2px 2px #808080;
     width: fit-content;
     text-shadow: unset;
     color: #000000;
+    font-family: unset;
+    height: 29px;
 }
 
 #windowOutter {
@@ -356,12 +358,7 @@ button {
 }
 
 
-@media (max-width: 1100px) { 
-    
-    .term_styles{width: 300px;}
-    .linksBox{width: 250px}
-    .imageField{margin-left:auto;margin-right:auto;margin-top:auto;box-shadow: unset;}
-}
+
 @media (max-width: 885px) { 
     .aboutMe{width: 500px}
 }

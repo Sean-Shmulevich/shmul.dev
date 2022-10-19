@@ -7,11 +7,61 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: transparent;
+
+  /*hello*/
+  overflow: hidden;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'Apple Garamond';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond'), url('./assets/fonts/AppleGaramond.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apple Garamond Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond Italic'), url('./assets/fonts/AppleGaramond-Italic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apple Garamond Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond Bold'), url('./assets/fonts/AppleGaramond-Bold.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apple Garamond Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond Bold Italic'), url('./assets/fonts/AppleGaramond-BoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apple Garamond Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond Light'), url('./assets/fonts/AppleGaramond-Light.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apple Garamond Light Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apple Garamond Light Italic'), url('./assets/fonts/AppleGaramond-LightItalic.woff') format('woff');
 }
