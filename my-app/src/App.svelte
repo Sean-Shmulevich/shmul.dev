@@ -2,14 +2,18 @@
     import svelteLogo from './assets/windowicons/aim_fldr.ico';
     import vsLogo from './assets/windowicons/vb-bas.ico';
     import listLogo from './assets/windowicons/doc_panda1.ico';
+
     import AboutMe from './lib/AboutMe.svelte'
     import TopBar from './lib/TopBar.svelte'
     import BottomBar from './lib/BottomBar.svelte'
     import FilePage from './lib/FilePage.svelte'
     import VsCode from './lib/VsCode.svelte'
     import FileList from './lib/FileList.svelte'
+    import SysWindow from "./lib/SysWindow.svelte";
+
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
+
 
     let current = '';
     let doubleClick = '';
@@ -47,7 +51,7 @@
     function updateWindows() {
         doubleClick = current;
         current = '';//unbluing
-        if (windows.indexOf(doubleClick) === -1) {//element does not yet exist
+        if (windows.indexOf(doubleClick) === -1) {//setting this to true just makes more closes necessary.
             windows.push(doubleClick);
             windows = windows;
 
@@ -98,7 +102,7 @@
         </div>
     {/each}
     {#if windows.indexOf('Files Grid') !== -1}
-        <FilePage bind:hide="{isMinimized['Files Grid']}"  bind:zIdx="{zMap['Files Grid']}" on:close={() => removeWindow('Files Grid')}/>
+        <SysWindow bind:hide="{isMinimized['Files Grid']}"  bind:zIdx="{zMap['Files Grid']}" on:close={() => removeWindow('Files Grid')}/>
     {/if}
     {#if windows.indexOf('Files List') !== -1}
         <FileList bind:hide="{isMinimized['Files List']}" bind:zIdx="{zMap['Files List']}" on:close={() => removeWindow('Files List')}/>

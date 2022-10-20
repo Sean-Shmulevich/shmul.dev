@@ -4,10 +4,9 @@
 
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
-    import fileListLogo from '../assets/windowicons/doc_panda1.ico';
 </script>
 <div class="notAButton notMyToolBar topBar">
-    <img src="https://win98icons.alexmeub.com/icons/png/windows_title-1.png" class="leftIcon" alt="hello alt">
+    <img src="./favicon.svg" class="leftIcon" alt="hello alt">
     <h1 class="street">Sean Shmulevich</h1>
     <div class="rightBox">
         <img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost">
@@ -20,10 +19,11 @@
 </div>
 <style>
     .leftIcon {
-        width:22px;
-        max-height: 23px;
+        width: 54px;
+        max-height: 50px;
         vertical-align: middle;
-        margin-left:-6px;
+        margin-left: -12px;
+        margin-right: -19px;
     }
   .street {
         position: relative;

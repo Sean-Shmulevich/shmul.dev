@@ -51,12 +51,15 @@
             if (hours < 10) {
                 hours = "0" + a.getHours();
             }
-            time = hours + ':' + minutes+" PM";
+            time = hours + ':' + minutes + " PM";
             timeText = document.createTextNode(time);
             document.getElementById('time').innerText = '';
             document.getElementById('time').appendChild(timeText);
         }, 1000);
     </script>
+
+    <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
+
     <button disabled="true" class="timeBox">
         <img src="https://win98icons.alexmeub.com/icons/png/users-0.png" alt="hello alt"
              style="width:20px;margin-right:6px;margin-bottom: -3px;margin-left:3px">
@@ -66,32 +69,36 @@
              style="width:22px;margin-right:2px;margin-bottom: -3px">
 
 
-        <b id="time" class="timeText"> PM</b></button>
+        <b id="time" class="timeText"> PM</b>
+    </button>
+
 </div>
 <style>
     button {
         background: rgb(174, 168, 217);
 
     }
+
     .timeText {
-        font-size:1.25rem;
+        font-size: 1.25rem;
         margin-right: 3px;
         font-family: AppleSystemUIFont;
         display: inline-block;
     }
-    .vl{
+
+    .vl {
         /*remove it when theres no apps anymore*/
-        border-left: 2px double rgb(49 49 84);
+        border-right: 1px solid rgb(255 255 255);
+        border-left: 1px solid rgb(49 49 84);
         margin-left: 6px;
         margin-top: 8px;
         height: 24px;
-        background-color: rgb(49 49 84);
-        outline: 1px solid rgb(49 49 84);
     }
+
     .appMinimized:focus {
         outline: 2px solid #000000;
         outline-offset: -2px;
-        background: rgb(154 143 233);
+        background: rgb(208 202 249);
     }
 
     .appMinimized:not(:disabled):active {

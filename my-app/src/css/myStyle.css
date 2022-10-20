@@ -27,7 +27,6 @@ body {
 button {
     width: 25%;
     display: inline-block;
-    background: #c9a0ff;
     padding-left: 2px;
     padding-right: 2px;
 }
@@ -169,6 +168,7 @@ button {
     display: flex;
     margin: 0 1px;
     background: #c0c0c0;
+    height: inherit;
 }
 
 .status-bar-field {
@@ -182,17 +182,21 @@ button {
     background: #c0c0c0;
     padding: 3px;
     /* margin: -10px; */
+    margin-bottom: -4px;
+    height: 16px;
     margin-left: -2px;
-    margin-bottom: -3px;
     margin-right: -3px;
-    transform: translateY(32px);
     box-shadow: inset -1px -1px #000000, inset 1px 1px #0a0a0a, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
 
 }
 
 .menuItem {
     justify-content: space-evenly;
-    display: flex;
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-rows: 80px auto 80px;
+    column-gap: 10px;
+    row-gap: 15px;
 }
 
 .fileMenuItem{
@@ -268,7 +272,7 @@ button {
     height: 20px;
     display: block;
     margin-left: 0px;
-    background: linear-gradient( 90deg, #ff0000, #3010ffe6 );
+    background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );
 }
 .linksBar {
     height: 21px;
@@ -303,7 +307,7 @@ button {
 }
 
 .timeBox {
-    margin: 5px 3px 0px 0px;
+    margin: 5px 0.25vw 0px 0px;
     background: rgb(174, 168, 217);
     box-shadow: inset -1px -1px #ffffff, inset 2px 1px #0a0a0a, inset 1px 1px #dfdfdf, inset 2px 2px #808080;
     width: fit-content;
@@ -326,7 +330,7 @@ button {
     margin-top: 2px;
     margin-left: 2px;
 }
-#filetext {
+.filetext {
     transform: translate(-2px,-18px);
     margin-bottom: -3px;
 }
@@ -352,7 +356,7 @@ button {
     width: 30px;
     height: 30px;
 }
-#menuFileIcon {
+.menuFileIcon {
     width: 50px;
     height: 60px;
 }
