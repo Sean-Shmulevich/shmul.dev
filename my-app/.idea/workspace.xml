@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0007a0f1-e1cf-412e-8ada-7be65d8b27d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond-Bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond-BoldItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond-Italic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond-Light.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond-LightItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/AppleGaramond.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fonts/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/slimeLogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/svelte.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/Kup Green.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/aiff_snowy.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/aim_fldr.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/aimblt2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/astrology folder 4.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/astrology folder1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/corel photo paint sable.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/doc_panda1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/earthie folder.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/gumbyfolder.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/htm_earthie.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/html folder1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/jpg4.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/recipie folder.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/seethru5.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/seethru7.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/sys_monster.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/txt_seamonster.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/vb-bas.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/win_seethru.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/windowicons/yellowguy folder.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/98.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/JetBrainsMono-Regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/codicon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/codicon.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/4335.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/Kup Red.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/Kup.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/LiteHaus.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/Mail 2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/RACCOON1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/ai_croc.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/aim buddy list.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/assembly.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/batch_dino.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/bugfile.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/c4.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/class_amazon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cnt2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/codewarriorfile.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/core_Worm.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cpp.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cpp2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cpp3.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cprog2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/cprog3.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/csv1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dash3x_dino.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dash3x_winter.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dll_snoopi.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dll_sunflower.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/doc_panda4.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dos_dino.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/dos_winter.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/gif_scis.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/h.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/html_earthie.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/inf_woodstok.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/ini_dino.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/ini_snoopi.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/jar_gnfish.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/jar_seamonster.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/java_croc.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/jess_winamp2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/m3u_Isle.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/pdf_Newt.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/powerpoint_grey.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/preserver3.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/preserver3b.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/ps_Fish.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/tif_art.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/tiff_swan.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/txt_eraser.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/unknown file.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb proj folder2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb proj folder2alt.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb proj folder3.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb project folder.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb-dsr.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb-frm.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb-frx.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vb-vbw.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vbp-proj.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vbs1.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vbs2.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vbs5.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/vbs6.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/cute_filetypes/zip_Fred.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/editor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/myStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/terminal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/work.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/AboutMe.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/BottomBar.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/FileList.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/FilePage.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/SysWindow.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/SysWindowContent.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/TopBar.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/VsCode.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/minimized.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/zIndex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vite-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GHneUf6OEWcVcdrgltekoCyCBC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/seanshmulevich/Desktop/personalWebsiteSvelte/my-app&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/assets/fonts" />
+      <recent name="$PROJECT_DIR$/src/css" />
+      <recent name="$PROJECT_DIR$/src/css/windowicons" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0007a0f1-e1cf-412e-8ada-7be65d8b27d2" name="Changes" comment="" />
+      <created>1666054472109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666054472109</updated>
+      <workItem from="1666054473294" duration="22842000" />
+      <workItem from="1666124298080" duration="27050000" />
+      <workItem from="1666198364127" duration="51781000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,23 @@
+{
+  "name": "personalWebsiteSvelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.2",
+    "node-sass": "^7.0.3",
+    "svelte": "^3.49.0",
+    "vite": "^3.1.8"
+  },
+  "dependencies": {
+    "gh-pages": "^4.0.0",
+    "svelte-device-info": "^1.0.0",
+    "svelte-drag-and-drop-actions": "^1.0.0",
+    "svelte-drag-drop-touch": "^0.1.9"
+  }
+}
