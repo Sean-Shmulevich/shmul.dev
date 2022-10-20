@@ -76,11 +76,10 @@
         filesList = currObj.files;
         foldersList = Object.keys((currObj.folders));
         path += `${name}`;
-        console.log(path);
     }
 
     //need to search from the start.
-    function goUp() {
+    export function goUp() {
         pathArr = path.split("/").filter(Boolean);
         if (pathArr.length === 1) return;
         pathArr.pop();//do not count the last one
@@ -90,6 +89,13 @@
             currPath += `/${pathArr[i]}`;
             currObj = currObj.folders[`/${pathArr[i]}`];
         }
+        path = currPath;
+        filesList = currObj.files;
+        foldersList = Object.keys((currObj.folders));
+    }
+    export function goHome() {
+        currObj = fileSystem[`/${pathArr[0]}`];
+        let currPath = '/Home';
         path = currPath;
         filesList = currObj.files;
         foldersList = Object.keys((currObj.folders));

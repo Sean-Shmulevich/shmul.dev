@@ -39,7 +39,6 @@
     export const incrementCount = () => {
         if (zIdx > $count) {
             count.set(zIdx);
-            console.log($count);
         } else if (zIdx == $count) {
             zIdx += 2;
             count.set(zIdx);
@@ -62,8 +61,10 @@
     }
 
     let currentPath;
+    let thisWindow;
 
     let animation = {fn: fly, delay: 250, duration: 300, x: 100, y: 500, opacity: 0.5, easing: quintOut};
+
 </script>
 {#if !hide}
     <div class="remBoxMobile" style="
@@ -90,28 +91,27 @@
         <div style="border: 1px solid #000000;display: inline-block;width: 414px;margin-top: -6px">
 
             <fieldset class="fileMenuTop" style="margin-bottom: 0px;display: flex;align-items: center">
-                <button class="backButton" style="margin-left:1px;width:fit-content">
+                <button class="backButton" style="margin-left:1px;width:fit-content" on:click={thisWindow.goUp}>
                     <img src="https://win98icons.alexmeub.com/icons/png/unplug_storage-0.png" class="pathIcon"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:-2px"/>
                     <span class="moveText" style="margin-right: 0px">Back</span>
                 </button>
 
 
-                <button class="backButton" style="margin-right: 0px;width:fit-content">
+                <button class="backButton" style="margin-right: 0px;width:fit-content" on:click={thisWindow.goUp}>
                     <img src="https://win98icons.alexmeub.com/icons/png/tree-0.png" class="pathIcon"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:0px"/>
                     <span class="moveText" style="margin-right: 6px">Other</span>
                 </button>
 
-
-                <button class="backButton" style=";margin-right: 0px;width:fit-content">
+                <button class="backButton" style=";margin-right: 0px;width:fit-content" on:click={thisWindow.goHome}>
                     <img src="https://win98icons.alexmeub.com/icons/png/address_book_home.png" class="pathIcon"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:0px"/>
                     <span class="moveText" style="margin-right: 6px">Home</span>
                 </button>
                 <button class="backButton" style="margin-right: 0px;width:fit-content;flex: 0 0 auto;">
                     <img src="https://win98icons.alexmeub.com/icons/png/web_file_set-0.png" class="pathIcon"
-                         style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px"/>
+                         style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px;margin-right:-4px"/>
                     <span class="moveText" style="margin-right: 6px">New Window</span>
                 </button>
                 <button class="backButton" style="margin-right:1px;">
@@ -128,7 +128,7 @@
 
                 <div class="window-body">
 
-                    <SysWindowContent bind:path={currentPath}/>
+                    <SysWindowContent bind:path={currentPath} bind:this={thisWindow}/>
 
                 </div>
 

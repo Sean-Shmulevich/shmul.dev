@@ -30,7 +30,6 @@
         }
 	}
     let value = "Hello";
-    $: console.log(value);
 </script>
 
 <!-- svelte-ignore missing-declaration -->

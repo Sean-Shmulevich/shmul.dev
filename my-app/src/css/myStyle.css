@@ -307,7 +307,7 @@ button {
 }
 
 .timeBox {
-    margin: 5px 0.25vw 0px 0px;
+    margin: 5px 3mm 0px 0px;
     background: rgb(174, 168, 217);
     box-shadow: inset -1px -1px #ffffff, inset 2px 1px #0a0a0a, inset 1px 1px #dfdfdf, inset 2px 2px #808080;
     width: fit-content;

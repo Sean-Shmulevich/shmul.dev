@@ -9,21 +9,21 @@
     <img src="./favicon.svg" class="leftIcon" alt="hello alt">
     <h1 class="street">Sean Shmulevich</h1>
     <div class="rightBox">
-        <img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost">
+        <img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">
         <span class="dateText">Tue Oct 18</span>
-        <img src="https://win98icons.alexmeub.com/icons/png/entire_network_globe-5.png" alt="hello alt" class="rightmost">
+        <img src="https://win98icons.alexmeub.com/icons/png/entire_network_globe-5.png" alt="hello alt" class="rightmost" style="margin-left:-3px">
         <img src="https://win98icons.alexmeub.com/icons/png/clean_drive-1.png" alt="hello alt" class="rightmost">
         <img src="https://win98icons.alexmeub.com/icons/png/help_book_big-0.png" alt="hello alt" class="rightmost">
-        <img src="https://win98icons.alexmeub.com/icons/png/key_win_alt-2.png" alt="hello alt" class="rightmost">
     </div>
 </div>
 <style>
     .leftIcon {
         width: 54px;
-        max-height: 50px;
+        max-height: 45px;
+        margin-top: -1px;
         vertical-align: middle;
-        margin-left: -12px;
-        margin-right: -19px;
+        margin-left: -21px;
+        margin-right: -10px;
     }
   .street {
         position: relative;
@@ -41,8 +41,8 @@
         color: black;
         font-family: 'Apple Garamond bold';
         font-size: 1.5rem;
-        margin-right: 12px;
-        margin-left: 12px;
+        margin-right: 20px;
+        margin-left: -3px;
     }
     .rightBox{
         display: inline-flex;
@@ -58,7 +58,7 @@
         max-height: 23px;
         vertical-align: middle;
         margin-left:auto;
-        margin-right: 5px;
+        margin-right: 20px;
         margin-top: 2px;
     }
 </style>

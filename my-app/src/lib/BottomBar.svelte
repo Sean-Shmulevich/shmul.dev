@@ -81,7 +81,7 @@
 
     .timeText {
         font-size: 1.25rem;
-        margin-right: 3px;
+        margin-right: 6px;
         font-family: AppleSystemUIFont;
         display: inline-block;
     }
