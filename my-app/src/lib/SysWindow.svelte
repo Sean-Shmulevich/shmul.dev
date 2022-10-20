@@ -114,7 +114,7 @@
                          style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px"/>
                     <span class="moveText" style="margin-right: 6px">New Window</span>
                 </button>
-                <button class="backButton" style="margin-right:2px;">
+                <button class="backButton" style="margin-right:1px;">
                     <img src="https://win98icons.alexmeub.com/icons/png/file_lines-1.png" alt="small file icon"
                          class="pathIcon" style="width:20px;height:20px;margin-bottom:6px;margin-left:-6px"/>
                     <span class="moveText">List view</span>
