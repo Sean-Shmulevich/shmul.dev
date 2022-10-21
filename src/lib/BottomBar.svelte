@@ -5,9 +5,9 @@
 
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
-    import fileListLogo from '../assets/windowicons/doc_panda1.ico';
+    import shmulSys from '../assets/windowicons/doc_panda1.ico';
 
-    let iconMap = {'Files Grid': fileLogo, 'Files List': fileListLogo, 'VS Code': vsLogo};
+    let iconMap = {'File System': fileLogo,'Shmul Sys': shmulSys, 'VS Code': vsLogo};
 
     import {createEventDispatcher} from "svelte";
 
@@ -19,7 +19,7 @@
         dispatch('min', {text: text});
     }
 </script>
-<div class="notAButton notMyButtonStyles">
+<div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px">
     <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="hello alt"
              style="width:28px;vertical-align: middle;margin-right:-2px;">
@@ -58,11 +58,9 @@
         }, 1000);
     </script>
 
-    <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
 
-    <button disabled="true" class="timeBox">
-        <img src="https://win98icons.alexmeub.com/icons/png/users-0.png" alt="hello alt"
-             style="width:20px;margin-right:6px;margin-bottom: -3px;margin-left:3px">
+    <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
+    <div class="timeBox" style="margin-right: -6px">
         <img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt"
              style="width:24px;margin-right:2px;margin-bottom: -5px;">
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
@@ -70,7 +68,7 @@
 
 
         <b id="time" class="timeText"> PM</b>
-    </button>
+    </div>
 
 </div>
 <style>

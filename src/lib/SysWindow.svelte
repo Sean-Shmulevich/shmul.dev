@@ -11,7 +11,7 @@
     import {count} from '../stores/zIndex.js';
     import {writableArray} from '../stores/minimized.js';
     import {fly} from "svelte/transition";
-    import {quintOut} from "svelte/easing";
+    import {quartOut} from "svelte/easing";
 
     export let zIdx = 0;
 
@@ -50,6 +50,38 @@
     };
     export let hide = false;
 
+    function fade(node, {
+        delay = 80,
+        duration = 1000,
+        easing = quartOut,
+    }) {
+        const o = +getComputedStyle(node).opacity;
+        const w = getComputedStyle(node).width;
+        const h = getComputedStyle(node).height;
+        console.log(getComputedStyle(node).top);
+        console.log(getComputedStyle(node).left);
+
+        //check the store to find what order the array is in to find the exact position to go into.
+        //the data may only be available in app. make a store that gets sent then wiped with this data.
+
+        const aboutTheLengthToTheBottom = parseInt(getComputedStyle(node).bottom) + parseInt(h);
+        const aboutTheLengthToTheLeft = parseInt(getComputedStyle(node).left) + parseInt(w)/2;
+        const xTranslate = (u) => u*aboutTheLengthToTheLeft;
+        const yTranslate = (u) => {
+            return u * aboutTheLengthToTheBottom;
+        };
+        console.log(`transform: translate(${xTranslate}, ${yTranslate})`);
+        return {
+            delay,
+            duration,
+            easing,
+            //scale y down faster then your are scaling x this will allow you to squash the object
+            //or use rotateX .2 also to squash the y values.rotateX(.2turn)
+            //skew(${u*80}deg)
+            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t/1.4},${t/1.4})`
+        };
+    }
+
     //function wrapper so cool and solid im glad I found this
     function maybe(node, options) {
         if (hide) {
@@ -59,11 +91,11 @@
             //but if i just check that its in the store then i can just flip hide?
         }
     }
+    let animation = {fn: fade};
 
     let currentPath;
     let thisWindow;
 
-    let animation = {fn: fly, delay: 250, duration: 300, x: 100, y: 500, opacity: 0.5, easing: quintOut};
 
 </script>
 {#if !hide}
@@ -71,7 +103,7 @@
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         z-index: {zIdx};
-    " on:mousedown={incrementCount} out:maybe={animation}>
+    " on:mousedown={incrementCount} out:maybe={animation} in:maybe={animation}>
         <div class="title-bar fileGridBar windowBar " style="cursor:move"
              use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
             <div class="title-bar-text"
@@ -80,11 +112,11 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:click={() => hide=true}></button>
+                        on:click={() => hide=true} on:touchstart={() => hide=true}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"
-                        on:mousedown={forward}></button>
+                        on:mousedown={forward} on:touchstart={forward}></button>
             </div>
         </div>
 

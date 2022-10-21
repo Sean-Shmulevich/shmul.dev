@@ -5,7 +5,7 @@
     import '../css/terminal.css';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
     import { fly } from 'svelte/transition';
-    import { quintOut } from 'svelte/easing';
+    import {quartOut, quintOut} from 'svelte/easing';
 
     import {count} from '../stores/zIndex.js';
     export let zIdx = 0;
@@ -55,7 +55,39 @@
             //but if i just check that its in the store then i can just flip hide?
         }
     }
-    let animation = {fn: fly, delay: 250, duration: 300, x: 100, y: 500, opacity: 0.5, easing: quintOut};
+    function fade(node, {
+        delay = 80,
+        duration = 1000,
+        easing = quartOut,
+    }) {
+        const o = +getComputedStyle(node).opacity;
+        const w = getComputedStyle(node).width;
+        const h = getComputedStyle(node).height;
+        console.log(getComputedStyle(node).top);
+        console.log(getComputedStyle(node).left);
+
+        //check the store to find what order the array is in to find the exact position to go into.
+        //the data may only be available in app. make a store that gets sent then wiped with this data.
+
+        const aboutTheLengthToTheBottom = parseInt(getComputedStyle(node).bottom) + parseInt(h);
+        const aboutTheLengthToTheLeft = parseInt(getComputedStyle(node).left) + parseInt(w)/2;
+        const xTranslate = (u) => u*aboutTheLengthToTheLeft;
+        const yTranslate = (u) => {
+            return u * aboutTheLengthToTheBottom;
+        };
+        console.log(`transform: translate(${xTranslate}, ${yTranslate})`);
+        return {
+            delay,
+            duration,
+            easing,
+            //scale y down faster then your are scaling x this will allow you to squash the object
+            //or use rotateX .2 also to squash the y values.rotateX(.2turn)
+            //skew(${u*80}deg)
+            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t/1.4},${t/1.4})`
+        };
+    }
+
+    let animation = {fn: fade};
 </script>
 
 {#if hide}

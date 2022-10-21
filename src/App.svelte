@@ -1,7 +1,7 @@
 <script>
     import svelteLogo from './assets/windowicons/aim_fldr.ico';
     import vsLogo from './assets/windowicons/vb-bas.ico';
-    import listLogo from './assets/windowicons/doc_panda1.ico';
+    import shmulSys from './assets/windowicons/doc_panda1.ico';
 
     import AboutMe from './lib/AboutMe.svelte'
     import TopBar from './lib/TopBar.svelte'
@@ -21,12 +21,12 @@
         {
             pos: 45,
             src: svelteLogo,
-            text: "Files Grid"
+            text: "File System"
         },
         {
-            pos: 148,
-            src: listLogo,
-            text: "Files List"
+            pos: 143,
+            src: shmulSys,
+            text: "Shmul Sys"
         },
         {
             pos: 242,
@@ -42,10 +42,18 @@
     }
 
     let windows = [];//represents 1x of each of the current windows open.
+    function startWindows(winList) {
+        winList.forEach((ele) => {
+            windows.push(ele);
+            $writableArray.push(ele);
+        });
+        $writableArray = $writableArray;
+    }
+    startWindows(["Shmul Sys"]);
     //bind to child z-index values in order to set to the highest on file icon press.
     //alternatively set the highest by default in the element to start and it will be the first one when you init it.
-    let zMap = {'Files Grid': 0, 'Files List': 0, 'VS Code': 0};
-    let isMinimized = {'Files Grid': false, 'Files List': false, 'VS Code': false};
+    let zMap = {'File System': 0, 'Shmul Sys': 0, 'VS Code': 0};
+    let isMinimized = {'File System': false, 'Shmul Sys': false, 'VS Code': false};
 
     //this is run when opening a window
     function updateWindows() {
@@ -101,21 +109,21 @@
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
-    {#if windows.indexOf('Files Grid') !== -1}
-        <SysWindow bind:hide="{isMinimized['Files Grid']}"  bind:zIdx="{zMap['Files Grid']}" on:close={() => removeWindow('Files Grid')}/>
+    {#if windows.indexOf('File System') !== -1}
+        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')}/>
     {/if}
-    {#if windows.indexOf('Files List') !== -1}
-        <FileList bind:hide="{isMinimized['Files List']}" bind:zIdx="{zMap['Files List']}" on:close={() => removeWindow('Files List')}/>
+    {#if windows.indexOf('Shmul Sys') !== -1}
+        <AboutMe bind:hide="{isMinimized['Shmul Sys']}" bind:zIdx="{zMap['Shmul Sys']}" on:close={() => removeWindow('Shmul Sys')}/>
     {/if}
     {#if windows.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}/>
     {/if}
-    <AboutMe zIdx={-1}/>
     <BottomBar on:min={handleMessage}/>
 </main>
 
 
 <style>
+    /*<AboutMe zIdx={-1}/>*/
     .homeIconText {
         margin-top: -11px;
         margin-bottom: -3px;
