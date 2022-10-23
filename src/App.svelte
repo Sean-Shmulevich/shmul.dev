@@ -10,9 +10,12 @@
     import VsCode from './lib/VsCode.svelte'
     import FileList from './lib/FileList.svelte'
     import SysWindow from "./lib/SysWindow.svelte";
+    import JsPaint from "./lib/JsPaint.svelte"
 
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
+
+    import {startGame} from './js/snake.js';
 
 
     let current = '';
@@ -29,9 +32,14 @@
             text: "Shmul Sys"
         },
         {
-            pos: 242,
+            pos: 232,
             src: vsLogo,
             text: "VS Code"
+        },
+        {
+            pos: 315,
+            src: "https://win98icons.alexmeub.com/icons/png/paint_old-0.png",
+            text: "Js Paint"
         },
     ];
 
@@ -109,8 +117,19 @@
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
+    <div class="homeIcon" style="top:400px; left:32px"
+         on:click="{startGame}">
+        <img
+                src={shmulSys}
+                alt="folder icon Windows 95"
+                style="width:50px">
+        <p class="homeIconText">testButton</p>
+    </div>
     {#if windows.indexOf('File System') !== -1}
         <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')}/>
+    {/if}
+    {#if windows.indexOf('Js Paint') !== -1}
+        <JsPaint bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if windows.indexOf('Shmul Sys') !== -1}
         <AboutMe bind:hide="{isMinimized['Shmul Sys']}" bind:zIdx="{zMap['Shmul Sys']}" on:close={() => removeWindow('Shmul Sys')}/>
@@ -142,5 +161,8 @@
         width: fit-content;
         top: 45px;
         left: 32px;
+    }
+    :global(.jspaint){
+        background: rgb(174, 168, 217) !important;
     }
 </style>

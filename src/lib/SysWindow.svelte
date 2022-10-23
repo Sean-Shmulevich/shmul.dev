@@ -1,65 +1,13 @@
 <script context="module">
-    import DragDropTouch from 'svelte-drag-drop-touch'
-    import {asDraggable} from 'svelte-drag-and-drop-actions'
-</script>
-<script>
-    import '../css/98.css';
-    import '../css/myStyle.css';
-    import SysWindowContent from './SysWindowContent.svelte'
-    import {createEventDispatcher} from 'svelte';
-
-    import {count} from '../stores/zIndex.js';
-    import {writableArray} from '../stores/minimized.js';
-    import {fly} from "svelte/transition";
     import {quartOut} from "svelte/easing";
 
-    export let zIdx = 0;
-
-    const dispatch = createEventDispatcher();
-
-    function forward(event) {
-        dispatch('close', event.detail);
-    }
-
-    let BoxX = 200, BoxY = 200;//starting coords
-    function onDragStart() {
-        return {x: BoxX, y: BoxY}
-    }
-
-    function onDragMove(x, y, dx, dy) {
-        BoxX = x;
-        BoxY = y
-    }
-
-    function onDragEnd(x, y, dx, dy) {
-        BoxX = x;
-        BoxY = y
-    }
-
-    export const incrementCount = () => {
-        if (zIdx > $count) {
-            count.set(zIdx);
-        } else if (zIdx == $count) {
-            zIdx += 2;
-            count.set(zIdx);
-        } else {
-            zIdx = $count + 1;
-            count.set(zIdx);
-        }
-        return zIdx;
-    };
-    export let hide = false;
-
-    function fade(node, {
+    export function fade(node, {
         delay = 80,
         duration = 1000,
         easing = quartOut,
     }) {
-        const o = +getComputedStyle(node).opacity;
         const w = getComputedStyle(node).width;
         const h = getComputedStyle(node).height;
-        console.log(getComputedStyle(node).top);
-        console.log(getComputedStyle(node).left);
 
         //check the store to find what order the array is in to find the exact position to go into.
         //the data may only be available in app. make a store that gets sent then wiped with this data.
@@ -70,7 +18,6 @@
         const yTranslate = (u) => {
             return u * aboutTheLengthToTheBottom;
         };
-        console.log(`transform: translate(${xTranslate}, ${yTranslate})`);
         return {
             delay,
             duration,
@@ -78,23 +25,56 @@
             //scale y down faster then your are scaling x this will allow you to squash the object
             //or use rotateX .2 also to squash the y values.rotateX(.2turn)
             //skew(${u*80}deg)
-            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t/1.4},${t/1.4})`
+            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t},${t})`
         };
     }
 
-    //function wrapper so cool and solid im glad I found this
+    export function incrementCount(zIdx, currMaxZ, currStore) {
+        if (zIdx > currMaxZ) {
+        } else if (zIdx == currMaxZ) {
+            zIdx += 2;
+        } else {
+            zIdx = currMaxZ + 1;
+        }
+        currStore.set(zIdx);
+        return zIdx;
+    };
+</script>
+<script>
+    import '../css/98.css';
+    import '../css/myStyle.css';
+    import SysWindowContent from './SysWindowContent.svelte'
+    import {createEventDispatcher} from 'svelte';
+    import {asDraggable} from 'svelte-drag-and-drop-actions'
+
+    import {count} from '../stores/zIndex.js';
+
+    export let zIdx = 0;
+    let BoxX = 200, BoxY = 200;//starting coords
+
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+    const dispatch = createEventDispatcher();
+
+    function forward(event) {
+        dispatch('close', event.detail);
+    }
+
+
+    export let hide = false;
+
+    let currentPath;//currentPath
+    let thisWindow;//theCurrent window
+
+    //not a pure function.
+    let animation = {fn: fade};
     function maybe(node, options) {
         if (hide) {
             return options.fn(node, options);
-            //how do I use minimized.js in order to show conditionally set hide back.
-            //i need the knowledge of if it is currently on the screen or not.
-            //but if i just check that its in the store then i can just flip hide?
         }
     }
-    let animation = {fn: fade};
-
-    let currentPath;
-    let thisWindow;
 
 
 </script>
@@ -103,8 +83,9 @@
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         z-index: {zIdx};
-    " on:mousedown={incrementCount} out:maybe={animation} in:maybe={animation}>
-        <div class="title-bar fileGridBar windowBar " style="cursor:move"
+        cursor: unset !important;
+    " on:mousedown={() => zIdx = incrementCount(zIdx, $count, count)} out:maybe={animation} in:maybe={animation}>
+        <div class="title-bar fileGridBar windowBar "
              use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: 4px;">
@@ -155,12 +136,12 @@
 
 
             <div class="window myWindow"
-                 style="background: white;width: 400px;margin-left: 0px;border: 4px solid #c0c0c0!important;box-shadow: inset -1px -1px #000000, inset 1px 1px #0a0a0a, inset -2px -2px #808080, inset 2px 2px #dfdfdf;">
+                 style="width: calc(100% - 14px);background: white;margin-left: 0px;border: 4px solid #c0c0c0!important;box-shadow: inset -1px -1px #000000, inset 1px 1px #0a0a0a, inset -2px -2px #808080, inset 2px 2px #dfdfdf;">
 
 
                 <div class="window-body">
 
-                    <SysWindowContent bind:path={currentPath} bind:this={thisWindow}/>
+                    <SysWindowContent bind:this={thisWindow} bind:path={currentPath}/>
 
                 </div>
 

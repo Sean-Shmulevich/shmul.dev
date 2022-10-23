@@ -45,7 +45,6 @@ button {
     display: inline-block;
     text-align: center;
     align-items: flex-start;
-    cursor: default;
     box-sizing: border-box;
     background-color: buttonface;
     margin: 0em;
@@ -281,7 +280,6 @@ button {
     background: linear-gradient( 90deg, #ff0000, #3010ffe6 );
     width: 99.5%;
     margin-bottom: -8px;
-    cursor: pointer;
 }
 .term_styles{
     margin-right: 20px;

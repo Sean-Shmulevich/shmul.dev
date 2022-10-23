@@ -38,7 +38,6 @@
     function incrementCount() {
         if (zIdx > $count) {
             count.set(zIdx);
-            console.log($count);
         } else if (zIdx == $count) {
             zIdx += 2;
             count.set(zIdx);

@@ -1,15 +1,13 @@
-<script context="module">
-    import  DragDropTouch  from 'svelte-drag-drop-touch'
-    import { asDraggable } from 'svelte-drag-and-drop-actions'
-  </script>
 <script>
     import '../css/98.css';
     import '../css/myStyle.css';
 
     import { count } from '../stores/zIndex.js';
     import {createEventDispatcher} from "svelte";
-    import {fly} from "svelte/transition";
-    import {quartOut, quintOut} from "svelte/easing";
+    import {asDraggable} from 'svelte-drag-and-drop-actions'
+
+    //getThe zIndex and animations functions used for all windows.
+    import {fade, incrementCount} from "./SysWindow.svelte"
 
     export let zIdx;
     let BoxX = 200, BoxY = 200;//starting coords
@@ -17,20 +15,6 @@
     function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
     function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
 
-    function incrementCount() {
-        if(zIdx > $count){
-            count.set(zIdx);
-            console.log($count);
-        }
-        else if(zIdx == $count){
-            zIdx += 2;
-            count.set(zIdx);
-        }
-        else {
-            zIdx = $count + 1;
-            count.set(zIdx);
-        }
-	}
     let value = "Hello";
 
     const dispatch = createEventDispatcher();
@@ -51,38 +35,6 @@
         }
     }
 
-    function fade(node, {
-        delay = 80,
-        duration = 1000,
-        easing = quartOut,
-    }) {
-        const o = +getComputedStyle(node).opacity;
-        const w = getComputedStyle(node).width;
-        const h = getComputedStyle(node).height;
-        console.log(getComputedStyle(node).top);
-        console.log(getComputedStyle(node).left);
-
-        //check the store to find what order the array is in to find the exact position to go into.
-        //the data may only be available in app. make a store that gets sent then wiped with this data.
-
-        const aboutTheLengthToTheBottom = parseInt(getComputedStyle(node).bottom) + parseInt(h);
-        const aboutTheLengthToTheLeft = parseInt(getComputedStyle(node).left) + parseInt(w)/2;
-        const xTranslate = (u) => u*aboutTheLengthToTheLeft;
-        const yTranslate = (u) => {
-            return u * aboutTheLengthToTheBottom;
-        };
-        console.log(`transform: translate(${xTranslate}, ${yTranslate})`);
-        return {
-            delay,
-            duration,
-            easing,
-            //scale y down faster then your are scaling x this will allow you to squash the object
-            //or use rotateX .2 also to squash the y values.rotateX(.2turn)
-            //skew(${u*80}deg)
-            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t/1.4},${t/1.4})`
-        };
-    }
-
     let animation = {fn: fade};
 </script>
 
@@ -95,9 +47,8 @@
         padding: 5px; 
         display:block;
         left:{BoxX}px; top:{BoxY}px; width:375px; height:430px;
-        cursor:move;
         z-index: {zIdx};
-        " on:mousedown={incrementCount} out:maybe={animation}>
+        " on:mousedown={() => zIdx = incrementCount(zIdx, $count, count)} out:maybe={animation}>
     <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}} class="title-bar fileGridBar windowBar" style="width:auto" >
         <div class="title-bar-text" style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: -1px;">Overview</div>
         <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">

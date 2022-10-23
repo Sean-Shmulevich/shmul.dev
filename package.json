@@ -10,6 +10,7 @@
     "deploy": "npx gh-pages -d dist"
   },
   "devDependencies": {
+    "@codemirror/highlight": "^0.19.8",
     "@sveltejs/vite-plugin-svelte": "^1.0.2",
     "gh-pages": "^4.0.0",
     "node-sass": "^7.0.3",
@@ -17,6 +18,24 @@
     "vite": "^3.1.8"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.3.0",
+    "@codemirror/closebrackets": "^0.19.2",
+    "@codemirror/commands": "^6.1.2",
+    "@codemirror/comment": "^0.19.1",
+    "@codemirror/gutter": "^0.19.9",
+    "@codemirror/history": "^0.19.2",
+    "@codemirror/lang-javascript": "^6.1.0",
+    "@codemirror/lang-markdown": "^6.0.2",
+    "@codemirror/language": "^6.2.1",
+    "@codemirror/lint": "^6.0.0",
+    "@codemirror/matchbrackets": "^0.19.4",
+    "@codemirror/rectangular-selection": "^0.19.2",
+    "@codemirror/search": "^6.2.2",
+    "@codemirror/state": "^6.1.2",
+    "@codemirror/theme-one-dark": "^6.1.0",
+    "@codemirror/view": "^6.4.0",
+    "@uiw/codemirror-themes": "^4.12.4",
+    "codemirror": "^6.0.1",
     "svelte-device-info": "^1.0.0",
     "svelte-drag-and-drop-actions": "^1.0.0",
     "svelte-drag-drop-touch": "^0.1.9"
