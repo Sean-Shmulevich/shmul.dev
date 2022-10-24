@@ -122,7 +122,7 @@
 
                 <div class="window-body" style="height: calc(100% - 35px);margin:0px">
 
-                    <iframe class:mouseOn={zIdx === $count} src="https://jspaint.app" style="width: 100%;height: 100%;pointer-events: none;"></iframe>;
+                    <iframe class:mouseOn={zIdx === $count['zIdx']} src="https://jspaint.app" style="width: 100%;height: 100%;pointer-events: none;"></iframe>;
                     https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
 
                 </div>

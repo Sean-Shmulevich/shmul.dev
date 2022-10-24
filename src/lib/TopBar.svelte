@@ -51,6 +51,7 @@
     .topBar {
         align-items: center;
         height: 30px;
+        position: fixed;
     }
     .rightmost {
         /*transform: scaleX(-1);*/
