@@ -69,7 +69,7 @@
 
 
         console.log(domButtonPos.left, domButtonPos.width);
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width/2);
+        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(vsPos);
         let left = parseInt(styles.left);
         let bottom = parseInt(styles.bottom);
@@ -83,13 +83,22 @@
 
     }
 
-</script>
+    function maybeDontIncrement(){
+        if(!hide){
+            zIdx = incrementCount(zIdx, $count, count, "VS Code");
+        }
+        else{
+            zIdx = zIdx;
+        }
+    }
 
+    let maxX = 0, maxY = 0;
+
+</script>
+<svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
 <div class="vscode" style="
         position: fixed;
         left:{BoxX}px; top:{BoxY}px;
-        --currX: {BoxX}px;
-        --currY: {BoxY}px;
         --menuX: {menuX}px;
         --menuY: {menuY}px;
         z-index: {zIdx};
@@ -97,13 +106,13 @@
         max-width: 833px;
         min-width: 200px;
         min-height: 250px;
-" on:mousedown={() => zIdx = incrementCount(zIdx, $count, count)} class:classname={hide}  bind:this={vsPos}>
+" on:mousedown={maybeDontIncrement} class:classname={hide}  bind:this={vsPos}>
     <div class="vsAppBar"
 
-         use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
+         use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:26, maxX:maxX-700, maxY: maxY-612}}>
         <div style="margin-left: 6px;">
             <div class="fakeButtons fakeClose vsControlButtons" on:mousedown={forward}></div>
-            <div class="fakeButtons fakeMinimize vsControlButtons" on:click={() => handleMinimize()}></div>
+            <div class="fakeButtons fakeMinimize vsControlButtons" on:mousedown|capture={() => handleMinimize()}></div>
             <div class="fakeButtons fakeZoom vsControlButtons"></div>
         </div>
         <div class="barSearch">

@@ -70,6 +70,14 @@
         elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
     }
 
+    function maybeDontIncrement(){
+        if(!hide){
+            zIdx = incrementCount(zIdx, $count, count, "Js Paint");
+        }
+        else{
+            zIdx = zIdx;
+        }
+    }
 
 </script>
     <div class="remBoxMobile" style="
@@ -88,7 +96,7 @@
         max-width: 833px;
         min-width: 200px;
         min-height: 250px;
-    " on:mousedown={() => zIdx = incrementCount(zIdx, $count, count)} class:classname={hide} bind:this={remBox}>
+    " on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={remBox}>
         <div class="title-bar fileGridBar windowBar " style="width:unset"
              use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
             <div class="title-bar-text"
@@ -97,7 +105,7 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:click={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
+                        on:mousedown|capture={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"

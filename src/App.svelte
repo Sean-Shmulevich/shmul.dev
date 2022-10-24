@@ -15,7 +15,6 @@
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
 
-    import {startGame} from './js/snake.js';
 
 
     let current = '';
@@ -77,8 +76,9 @@
         }
         //this line lets you open minimized items with file doubleclicks
         isMinimized[doubleClick] = false;
-        zMap[doubleClick] = $count + 1;
-        count.increment();
+        zMap[doubleClick] = $count["zIdx"] + 1;
+        let newCount = zMap[doubleClick];
+        count.set({zIdx: newCount, name: doubleClick});
         doubleClick = '';
     }
 
@@ -96,9 +96,17 @@
     //capture makes it go from outer-innerMost as opposed to innerMost-toOutside.
     function handleMessage(event) {
         isMinimized[event.detail.text] = false;
-        zMap[event.detail.text] = $count + 1;
-        count.increment();
+        zMap[event.detail.text] = $count['zIdx'] + 1;
+        let newCount = zMap[event.detail.text];
+        let currName = event.detail.text;
+        count.set({zIdx: newCount, name: currName});
         //take the one that you recieve and set it
+    }
+
+    $: {
+        if(windows.length === 0){
+            $count = {zIdx: 0, name: ""};
+        }
     }
 </script>
 
@@ -117,14 +125,6 @@
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
-    <div class="homeIcon" style="top:400px; left:32px"
-         on:click="{startGame}">
-        <img
-                src={shmulSys}
-                alt="folder icon Windows 95"
-                style="width:50px">
-        <p class="homeIconText">testButton</p>
-    </div>
     {#if windows.indexOf('File System') !== -1}
         <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')}/>
     {/if}

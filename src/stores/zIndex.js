@@ -1,13 +1,13 @@
 import { writable } from 'svelte/store';
 
 function createCount() {
-	const { subscribe, set, update } = writable(0);
+	const { subscribe, set, update } = writable({zIdx: 1, name: "Shmul Sys"});
 
 	return {
 		subscribe,
 		increment: () => update(n => n + 1),
 		decrement: () => update(n => n - 1),
-		reset: () => set(0),
+		reset: () => set({zIdx: 0, name: ""}),
         set: (n) => set(n)
 	};
 }

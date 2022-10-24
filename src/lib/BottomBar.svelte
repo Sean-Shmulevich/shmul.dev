@@ -17,11 +17,11 @@
     const dispatch = createEventDispatcher();
 
     let text;
-    export let currWin;
+    let activeWindow = "";
     function forward(event, text) {
+        activeWindow = text;
         dispatch('min', {text: text});
     }
-
 
 
 </script>
@@ -37,10 +37,10 @@
 
     <div class="minimizedItems">
         {#each currentWindows as window}
-                <button on:click|capture={(event) => forward(event,window)} class:classes={window === $glowWindow} class="appMinimized">
+                <button on:click|capture|preventDefault={(event) => forward(event,window)}  class="appMinimized" class:classes={window === $glowWindow}>
                     <img src="{iconMap[window]}" alt="hello alt"
-                         style="width:25px;vertical-align: middle;margin-right: 6px;">
-                    <span style="font-size:1rem;">{window}</span>
+                         style="width:25px;vertical-align: middle;margin-right: 6px;padding-left:10px;padding-right:6px;transform: skew(20deg);">
+                    <span style="font-size:1rem;padding-right:12px;transform: skew(20deg);">{window}</span>
                 </button>
         {/each}
     </div>
@@ -66,7 +66,7 @@
 
 
     <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
-    <div class="timeBox" style="margin-right: -6px">
+    <div class="timeBox" style="margin-right: -6px;background: #B8A9FFFF;">
         <img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
              style="width:22px;margin-right:2px;margin-bottom: -5px">
@@ -77,26 +77,14 @@
 
 </div>
 <style>
-    .classes{
-        -webkit-animation-name: glow;
-        -webkit-animation-duration: 180ms;
-        -webkit-animation-iteration-count: 2;
-        -webkit-animation-timing-function: linear;
-        -webkit-animation-direction: alternate;
-        -webkit-animation-delay: 35ms;
-    }
-    @keyframes glow {
-        from {
-            box-shadow: -5px 10px 0px rgb(26 26 101);
-        }
-        to {
-            box-shadow: 0px -10px 20px rgb(26 26 101);
-        }
-    }
 
     button {
-        background: rgb(174, 168, 217);
+        background: #B8A9FFFF;
 
+    }
+    button:focus{
+        outline: unset;
+        border: unset;
     }
     .gears{
         width: 24px;
@@ -120,35 +108,85 @@
         margin-top: 8px;
         height: 24px;
     }
-
-    .appMinimized:focus {
-        outline: 2px solid #000000;
-        outline-offset: -2px;
-        background: rgb(208 202 249);
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
-    .appMinimized:not(:disabled):active {
-        box-shadow: unset;
+    .classes{
+        -webkit-animation-name: glow, animatedgradient;
+        z-index: -1;
+        background-size: 300% 300%;
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
     }
+    @keyframes glow {
+        from {
+            box-shadow: 10px 10px 0px rgb(26 26 101);
+        }
+        to {
+            box-shadow: 0px -10px 35px rgb(26 26 101);
+        }
+    }
+    @keyframes rotate {
+        from {
+            transform: rotateZ(0deg);
+        }
+        to {
+            transform: rotateZ(360deg);
+        }
+    }
+
+    .appMinimized:hover::after {
+        content: '';
+        position: absolute;
+        border-radius: 7px 7px 7px 7px;
+        top: calc(-1 * var(--borderWidth) + 2px);
+        left: calc(-1 * var(--borderWidth) + 3px);
+        height: calc(82% + var(--borderWidth) * 2);
+        width: calc(96% + var(--borderWidth) * 2);
+        background: linear-gradient(60deg, #abffe5, #ffae9e, #ff7aa0, rgba(179, 143, 236, 0.87));
+        z-index: -1;
+        background-size: 300% 300%;
+        animation: animatedgradient 2s ease alternate infinite;
+    }
+
 
     .appMinimized {
+        --borderWidth: 1px;
         font-family: 'Apple Garamond Bold';
-        margin-top: 5px;
+        margin-top: 6px;
         color: black;
         width: fit-content;
         margin-left: 7px;
         /* box-shadow: unset; */
         padding: 7px 0px 7px 7px;
-        max-height: 29px;
+        max-height: 26px;
         padding-right: 5px;
         /* border-left: 2px solid black; */
         /* border-right: 2px solid black; */
         align-items: center;
         justify-content: space-around;
         display: inline-flex;
+        position: relative;
+        transform: skew(-20deg);
+        z-index: 5;
+        border-radius: 5px 9px 5px 9px;
+        /*background: linear-gradient(60deg, #abffe5, #6e99dc, #ff9eba, rgba(179, 143, 236, 0.87));*/
     }
 
     .minimizedItems {
+        position: relative;
         margin-left: 0px;
         margin-right: auto;
         display: flex;

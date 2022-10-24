@@ -29,14 +29,14 @@
         };
     }
 
-    export function incrementCount(zIdx, currMaxZ, currStore) {
-        if (zIdx > currMaxZ) {
-        } else if (zIdx == currMaxZ) {
+    export function incrementCount(zIdx, currMaxZ, currStore, name) {
+        if (zIdx > currMaxZ["zIdx"]) {
+        } else if (zIdx == currMaxZ["zIdx"]) {
             zIdx += 2;
         } else {
-            zIdx = currMaxZ + 1;
+            zIdx = currMaxZ["zIdx"] + 1;
         }
-        currStore.set(zIdx);
+        currStore.set({zIdx, name});
         return zIdx;
     };
 </script>
@@ -48,6 +48,8 @@
     import {asDraggable} from 'svelte-drag-and-drop-actions'
 
     import {count} from '../stores/zIndex.js';
+    import {glowWindow} from "../stores/keep.js";
+    import {writableArray} from "../stores/minimized.js";
 
     export let zIdx = 0;
     let BoxX = 200, BoxY = 200;//starting coords
@@ -76,24 +78,64 @@
         }
     }
 
+    let menuX, menuY;
+    let remPos;
 
+    function handleMinimize(){
+        glowWindow.set("File System");
+        hide=true;
+        let currMenuPos = $writableArray.indexOf("File System");
+        if(currMenuPos === -1) return
+        let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
+
+        const element = document.createElement("div");
+        document.body.appendChild(element);
+
+
+        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
+        let styles = getComputedStyle(remPos);
+        let left = parseInt(styles.left);
+        let bottom = parseInt(styles.bottom);
+        let height = parseInt(styles.height);
+        let width = parseInt(styles.width);
+        menuX = (buttonMidPt - (left + width/2))-15;
+        menuY = bottom + height;
+
+        let elem = document.querySelector(".remBoxMobile");
+        elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
+
+    }
+    let maxX = 0;
+    let maxY = 0;
+    $: console.log(maxX);
+    let w;
+    let h;
 </script>
-{#if !hide}
+<svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <div class="remBoxMobile" style="
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         z-index: {zIdx};
+        --menuX: {menuX}px;
+        --menuY: {menuY}px;
         cursor: unset !important;
-    " on:mousedown={() => zIdx = incrementCount(zIdx, $count, count)} out:maybe={animation} in:maybe={animation}>
-        <div class="title-bar fileGridBar windowBar "
-             use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
+    " on:mousedown={() => {
+        if(!hide){
+             zIdx = incrementCount(zIdx, $count, count, "File System");
+        }
+        else{
+            zIdx = zIdx;
+        }
+    }} class:classname={hide} bind:this={remPos}>
+        <div class="title-bar fileGridBar windowBar " bind:clientWidth={w} bind:clientHeight={h}
+             use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:26, maxX:maxX-415, maxY: maxY-410}}>
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: 4px;">
                 <span class="filesBarText">File Explorer</span>
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:click={() => hide=true} on:touchstart={() => hide=true}></button>
+                        on:mousedown|capture={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"
@@ -160,8 +202,26 @@
         </div><!--window ends -->
 
     </div>
-{/if}
 <style>
+    @keyframes move {
+        50%, 100% {
+            transform: translate(var(--menuX), 0) translate(0, var(--menuY)) scale(.1) ;
+        }
+        0% {
+            transform: translate(0, 0) translate(0, 0) scale(1);
+        }
+        10% {
+            transform: translate(calc(var(--menuX) / 1.1), 0) translate(calc(var(--menuY) / 10), 0) scale(.25);
+        }
+    }
+    .classname {
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 840ms;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+    }
+
     .moveText {
         display: inline-block;
         transform: translate(2px, -7px);
