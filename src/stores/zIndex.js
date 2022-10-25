@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 function createCount() {
-	const { subscribe, set, update } = writable({zIdx: 1, name: "Shmul Sys"});
+	const { subscribe, set, update } = writable({zIdx: 1, name: "Overview"});
 
 	return {
 		subscribe,

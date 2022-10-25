@@ -55,9 +55,7 @@
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
 
-
-        console.log(domButtonPos.left, domButtonPos.width/4);
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width/4);
+        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(remBox);
         let left = parseInt(styles.left);
         let bottom = parseInt(styles.bottom);

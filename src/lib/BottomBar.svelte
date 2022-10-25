@@ -6,9 +6,9 @@
 
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
-    import shmulSys from '../assets/windowicons/doc_panda1.ico';
+    import Overview from '../assets/windowicons/doc_panda1.ico';
 
-    let iconMap = {'File System': fileLogo,'Shmul Sys': shmulSys, 'VS Code': vsLogo, "Js Paint": "https://win98icons.alexmeub.com/icons/png/paint_old-0.png"};
+    let iconMap = {'File System': fileLogo,'Overview': Overview, 'VS Code': vsLogo, "Js Paint": "https://win98icons.alexmeub.com/icons/png/paint_old-0.png"};
 
     import {createEventDispatcher} from "svelte";
 

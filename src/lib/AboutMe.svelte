@@ -53,15 +53,15 @@
     let aboutBox;
 
     function handleMinimize() {
-        glowWindow.set("Shmul Sys");
+        glowWindow.set("Overview");
         hide = true;
-        let currMenuPos = $writableArray.indexOf("Shmul Sys");
+        let currMenuPos = $writableArray.indexOf("Overview");
         if (currMenuPos === -1) return
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
 
         console.log(domButtonPos.left, domButtonPos.width / 4);
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width / 4);
+        let buttonMidPt = domButtonPos.left + (domButtonPos.width / 3);
         let styles = getComputedStyle(aboutBox);
         let left = parseInt(styles.left);
         let bottom = parseInt(styles.bottom);
@@ -78,7 +78,7 @@
 
     function maybeDontIncrement(){
         if(!hide){
-            zIdx = incrementCount(zIdx, $count, count, "Shmul Sys");
+            zIdx = incrementCount(zIdx, $count, count, "Overview");
         }
         else{
             zIdx = zIdx;
