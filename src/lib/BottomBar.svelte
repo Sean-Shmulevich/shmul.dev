@@ -40,7 +40,7 @@
                 <button on:click|capture|preventDefault={(event) => forward(event,window)}  class="appMinimized" class:classes={window === $glowWindow}>
                     <img src="{iconMap[window]}" alt="hello alt"
                          style="width:25px;vertical-align: middle;margin-right: 6px;padding-left:10px;padding-right:6px;transform: skew(20deg);">
-                    <span style="font-size:1rem;padding-right:12px;transform: skew(20deg);">{window}</span>
+                    <span style="font-size:1rem;padding-right:12px;transform: skew(20deg);white-space: nowrap;">{window}</span>
                 </button>
         {/each}
     </div>
@@ -65,14 +65,14 @@
     </script>
 
 
-    <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
-    <div class="timeBox" style="margin-right: -6px;">
-        <img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">
+    <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px;"></div>
+    <div class="timeBox" style="margin-right: -6px;white-space: nowrap;display: flex;">
+        <!--<img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">-->
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
-             style="width:22px;margin-right:2px;margin-bottom: -5px">
+             style="width:22px;margin-right:0px;margin-top: 2px;margin-left:6px">
 
 
-        <b id="time" class="timeText" style="margin-top:3px"> PM</b>
+        <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px"> PM</b>
     </div>
 
 </div>
@@ -96,6 +96,7 @@
         margin-right: 6px;
         font-family: AppleSystemUIFont;
         display: inline-block;
+        white-space: nowrap;
     }
 
     .vl {
@@ -154,7 +155,6 @@
         height: calc(82% + var(--borderWidth) * 2);
         width: calc(96% + var(--borderWidth) * 2);
         background: linear-gradient(60deg, #abffe5, #ffae9e, #ff7aa0, rgba(179, 143, 236, 0.87));
-        
         z-index: -1;
         background-size: 300% 300%;
         animation: animatedgradient 2s ease alternate infinite;
@@ -166,11 +166,14 @@
         font-family: 'Apple Garamond Bold';
         margin-top: 6px;
         color: black;
-        width: fit-content;
+        width: 100%;
+        overflow: hidden;
+
         margin-left: 7px;
         /* box-shadow: unset; */
         padding: 7px 0px 7px 7px;
         max-height: 26px;
+        min-width: 20px;
         padding-right: 5px;
         /* border-left: 2px solid black; */
         /* border-right: 2px solid black; */
@@ -187,6 +190,7 @@
 
     .minimizedItems {
         position: relative;
+        overflow: hidden;
         margin-left: 0px;
         margin-right: auto;
         display: flex;

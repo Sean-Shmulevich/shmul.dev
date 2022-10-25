@@ -68,7 +68,7 @@
 
 
 
-        console.log(domButtonPos.left, domButtonPos.width);
+
         let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(vsPos);
         let left = parseInt(styles.left);

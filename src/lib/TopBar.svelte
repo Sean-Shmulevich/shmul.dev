@@ -4,10 +4,16 @@
 
     import linkedIn from '../assets/linkedin_pixel_logo_icon_181925.png';
     import instaLogo from '../assets/instagram_pixel_logo_icon_181922.png';
+
+    import {createEventDispatcher} from 'svelte';
+    const dispatch = createEventDispatcher();
+    function forward(event) {
+        dispatch('open ', event.detail);
+    }
 </script>
 <div class="notAButton notMyToolBar topBar">
-    <div class="notAButton" style="max-height:25px;display: flex; margin-top: 0px;transform: skew(-20deg);border-radius: 5px 9px 5px 9px;border: 2px solid black;background-color: rgb(160,151,229)">
-        <h1 class="street">Sean Shmulevich</h1>
+    <div class="nameBorder">
+        <h1 class="street" on:click|capture={forward}>Sean Shmulevich</h1>
         <!--<img src="./favicon.svg" class="leftIcon" alt="hello alt">-->
     </div>
     <div class="rightBox">
@@ -25,21 +31,37 @@
         margin-top: -10px;
         vertical-align: middle;
     }
+    .nameBorder{
+
+        width: 300px;
+        min-width: 150px;
+        overflow: hidden;
+        height: 30px;
+        max-height:30px;
+        display: flex; 
+        margin-top: 0px;
+
+
+        background: rgb(174, 168, 217);
+    }
   .street {
-        transform: skew(20deg);
+        white-space: nowrap;
         position: relative;
         font-family: 'Apple Garamond bold', sans-serif;
-        font-size: 22px;
+        font-size: 38px;
         font-style: italic;
-        -webkit-text-stroke: 0.1px #ed2121;
-        color: #000;
-        text-shadow: 3.5px 2px rgb(160,151,229);
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+        color: rgb(40,40,77);
+        background: -webkit-linear-gradient(60deg, #46fecd, #ff8b74, rgba(97, 28, 209, 0.87));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin: 0;
         margin-right: auto;
-        margin-top: -2px;
+        margin-top: -6px;
         margin-left: 0px;
       }
     .dateText{
+        white-space: nowrap;
         color: black;
         font-family: 'Apple Garamond bold';
         font-size: 1.5rem;
@@ -52,7 +74,7 @@
     }
     .topBar {
         align-items: center;
-        height: 30px;
+        height: 36px;
         position: fixed;
     }
     .rightmost {

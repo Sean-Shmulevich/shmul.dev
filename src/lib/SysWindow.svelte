@@ -107,7 +107,7 @@
     }
     let maxX = 0;
     let maxY = 0;
-    $: console.log(maxX);
+
     let w;
     let h;
 </script>

@@ -10,7 +10,7 @@
     import {fade, incrementCount} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
-    $: console.log($count)
+
     export let zIdx;
     let BoxX = 200, BoxY = 200;//starting coords
     function onDragStart() {
@@ -60,7 +60,6 @@
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
 
-        console.log(domButtonPos.left, domButtonPos.width / 4);
         let buttonMidPt = domButtonPos.left + (domButtonPos.width / 3);
         let styles = getComputedStyle(aboutBox);
         let left = parseInt(styles.left);
