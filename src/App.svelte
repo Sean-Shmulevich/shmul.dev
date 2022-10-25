@@ -1,7 +1,7 @@
 <script>
     import svelteLogo from './assets/windowicons/aim_fldr.ico';
     import vsLogo from './assets/windowicons/vb-bas.ico';
-    import shmulSys from './assets/windowicons/doc_panda1.ico';
+    import shmulSys from './assets/myIcon_1.png';
 
     import AboutMe from './lib/AboutMe.svelte'
     import TopBar from './lib/TopBar.svelte'
@@ -21,22 +21,23 @@
     let doubleClick = '';
     const icons = [
         {
-            pos: 45,
-            src: svelteLogo,
-            text: "File System"
-        },
-        {
-            pos: 143,
+            left: 30,
+            pos: 55,
             src: shmulSys,
             text: "Overview"
         },
         {
-            pos: 232,
+            left: 25,
+            src: svelteLogo,
+            text: "File System"
+        },
+        {
+            left: 25,
             src: vsLogo,
             text: "VS Code"
         },
         {
-            pos: 315,
+            left: 25,
             src: "https://win98icons.alexmeub.com/icons/png/paint_old-0.png",
             text: "Js Paint"
         },
@@ -118,13 +119,13 @@
     <div class="mountainDiv">
     </div>
     
-    {#each icons as {pos, src, text}}
-        <div class="homeIcon" style="top:{pos}px; left:32px" class:blue={current === text}
+    {#each (icons) as {left, src, text}, i}
+        <div class="homeIcon" style="top:{(i*115)+65}px; left:{left}px" class:blue={current === text}
              on:click="{() => current = text}" on:dblclick="{updateWindows}">
             <img
                     {src}
                     alt="folder icon Windows 95"
-                    style="width:50px">
+                    style="width:65px">
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
@@ -174,7 +175,7 @@
         margin-top: -11px;
         margin-bottom: -3px;
         font-family: Apple Garamond;
-        font-size: 1rem;
+        font-size: 1.15rem;
     }
 
     .blue {

@@ -181,7 +181,7 @@
         justify-content: space-around;
         display: inline-flex;
         position: relative;
-        transform: skew(-20deg);
+        /*transform: skew(-40deg);*/
         z-index: 5;
         border-radius: 5px 9px 5px 9px;
         border: 2px solid black;
@@ -192,6 +192,9 @@
         position: relative;
         overflow: hidden;
         margin-left: 0px;
+        padding-right: 2px;
+        border-radius: 5px 9px 5px 9px;
+        transform: skew(-20deg);
         margin-right: auto;
         display: flex;
     }

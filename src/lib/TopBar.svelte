@@ -50,9 +50,9 @@
         font-family: 'Apple Garamond bold', sans-serif;
         font-size: 38px;
         font-style: italic;
-        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.35);
         color: rgb(40,40,77);
-        background: -webkit-linear-gradient(60deg, #46fecd, #ff8b74, rgba(97, 28, 209, 0.87));
+        background: -webkit-linear-gradient(60deg, rgb(154 143 233), rgb(26 26 101) );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin: 0;
