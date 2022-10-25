@@ -26,7 +26,7 @@
 
 </script>
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px">
+    <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="hello alt"
              style="width:28px;vertical-align: middle;margin-right:-2px;">
         <span style="font-family: 'Apple Garamond Bold';font-size: 1.4rem;display: inline-block;transform: translate(4px,2px);">Start</span>
@@ -66,7 +66,7 @@
 
 
     <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px"></div>
-    <div class="timeBox" style="margin-right: -6px;background: #B8A9FFFF;">
+    <div class="timeBox" style="margin-right: -6px;">
         <img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
              style="width:22px;margin-right:2px;margin-bottom: -5px">
@@ -79,12 +79,10 @@
 <style>
 
     button {
-        background: #B8A9FFFF;
-
+        background: #aea8d8;
     }
     button:focus{
         outline: unset;
-        border: unset;
     }
     .gears{
         width: 24px;
@@ -156,6 +154,7 @@
         height: calc(82% + var(--borderWidth) * 2);
         width: calc(96% + var(--borderWidth) * 2);
         background: linear-gradient(60deg, #abffe5, #ffae9e, #ff7aa0, rgba(179, 143, 236, 0.87));
+        
         z-index: -1;
         background-size: 300% 300%;
         animation: animatedgradient 2s ease alternate infinite;
@@ -182,6 +181,7 @@
         transform: skew(-20deg);
         z-index: 5;
         border-radius: 5px 9px 5px 9px;
+        border: 2px solid black;
         /*background: linear-gradient(60deg, #abffe5, #6e99dc, #ff9eba, rgba(179, 143, 236, 0.87));*/
     }
 
