@@ -7,12 +7,9 @@
 
     import {createEventDispatcher} from 'svelte';
     const dispatch = createEventDispatcher();
-    function forward(event,text) {
-        dispatch('openMain', {text: text});
-    }
 </script>
 <div class="notAButton notMyToolBar topBar">
-    <div class="nameBorder" on:click={(event) => forward(event,"Overview")}>
+    <div class="nameBorder">
         <h1 class="street">Sean Shmulevich</h1>
         <!--<img src="./favicon.svg" class="leftIcon" alt="hello alt">-->
     </div>

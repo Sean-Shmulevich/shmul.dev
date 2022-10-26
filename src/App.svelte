@@ -120,12 +120,12 @@
     </div>
     
     {#each (icons) as {left, src, text}, i}
-        <div class="homeIcon" style="top:{(i*115)+65}px; left:{left}px" class:blue={current === text}
+        <div class="homeIcon" style="top:{(i*105)+65}px; left:{left}px" class:blue={current === text}
              on:click="{() => current = text}" on:dblclick="{updateWindows}">
             <img
                     {src}
                     alt="folder icon Windows 95"
-                    style="width:65px">
+                    style="width:55px">
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
@@ -136,7 +136,7 @@
         <JsPaint bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if windows.indexOf('Overview') !== -1}
-        <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:open={() => removeWindow('Overview')} on:close={() => removeWindow('Overview')} />
+        <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
     {#if windows.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}/>
