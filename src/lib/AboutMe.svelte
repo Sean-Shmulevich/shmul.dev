@@ -147,11 +147,37 @@
                      style="border-width: 1px;border-style: solid;border-color: white black black white;z-index: 0;padding: 20px;height: 295px">
                     <div style="display: flex;flex-direction: row;">
                         <div style="width: 100%;padding: 20px;line-height: 1.5;">
+                            {#if value == "Hello"}
                             <h2>Tech I've Built With</h2>
-                            <div style="font-family: 'Apple Garamond bold'">
-                                {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
                                 django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                            </div>
+                                <div style="font-family: 'Apple Garamond bold'">
+                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                </div>
+                            {:else if value === "Skills"}
+                                <h2>{value} </h2>
+                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
+                                <div style="font-family: 'Apple Garamond bold'">
+                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                </div>
+                            {:else if value === "Social"}
+                                <h2>{value} </h2>
+                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
+                                <div style="font-family: 'Apple Garamond bold'">
+                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                </div>
+                            {:else if value === "Credits"}
+                                <h2>{value} </h2>
+                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
+                                <div style="font-family: 'Apple Garamond bold'">
+                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                </div>
+                            {:else if value === "Statue"}
+                                <h2>{value} </h2>
+                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
+                                <div style="font-family: 'Apple Garamond bold'">
+                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                </div>
+                            {/if}
                         </div>
                     </div>
                 </div>

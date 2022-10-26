@@ -26,10 +26,10 @@
 
 </script>
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;">
+    <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="hello alt"
-             style="width:28px;vertical-align: middle;margin-right:-2px;">
-        <span style="font-family: 'Apple Garamond Bold';font-size: 1.4rem;display: inline-block;transform: translate(4px,2px);">Start</span>
+             style="width:27px;vertical-align: middle;margin-right:-2px;">
+        <span class="startWords">Start</span>
     </button>
     {#if currentWindows.length > 0}
         <div class="vl"></div>
@@ -39,8 +39,8 @@
         {#each currentWindows as window}
                 <button on:click|capture|preventDefault={(event) => forward(event,window)}  class="appMinimized" class:classes={window === $glowWindow}>
                     <img src="{iconMap[window]}" alt="hello alt"
-                         style="width:25px;vertical-align: middle;margin-right: 6px;padding-left:10px;padding-right:6px;transform: skew(20deg);">
-                    <span style="font-size:1rem;padding-right:12px;transform: skew(20deg);white-space: nowrap;">{window}</span>
+                         style="width:25px;vertical-align: middle;margin-right: -2px;padding-left:10px;padding-right:6px;transform: skew(20deg);">
+                    <span class="minItemText">{window}</span>
                 </button>
         {/each}
     </div>
@@ -57,7 +57,7 @@
             if (hours < 10) {
                 hours = "0" + a.getHours();
             }
-            time = hours + ':' + minutes + " PM";
+            time = hours + ':' + minutes;
             timeText = document.createTextNode(time);
             document.getElementById('time').innerText = '';
             document.getElementById('time').appendChild(timeText);
@@ -66,17 +66,26 @@
 
 
     <div class="vl" style="height:28px;margin-top: 5px;margin-right: 2px;"></div>
-    <div class="timeBox" style="margin-right: -6px;white-space: nowrap;display: flex;">
+    <div class="timeBox" style="margin-right: -6px;white-space: nowrap;display: flex;background: linear-gradient( 90deg, rgb(26 26 101), rgb(154 143 233) );">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">-->
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
-             style="width:22px;margin-right:0px;margin-top: 2px;margin-left:6px">
+             style="width:20px;margin-right:10px;margin-top: 2px;margin-left:-2px;padding-left:10px">
 
 
-        <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px"> PM</b>
+        <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px;color:white;font-family: 'Apple Garamond Bold'"></b>
     </div>
 
 </div>
 <style>
+    .minItemText {
+        font-size:1rem;padding-right:12px;transform: skew(20deg);white-space: nowrap;
+    }
+    .startWords{
+        font-family: 'Apple Garamond Bold';
+        font-size: 1.4rem;
+        display: inline-block;
+        transform: translate(4px,2px);
+    }
 
     button {
         background: #aea8d8;
@@ -93,10 +102,11 @@
 
     .timeText {
         font-size: 1.25rem;
-        margin-right: 6px;
+        margin-right: 2px;
         font-family: AppleSystemUIFont;
         display: inline-block;
         white-space: nowrap;
+        padding-right: 10px;
     }
 
     .vl {
@@ -164,7 +174,7 @@
     .appMinimized {
         --borderWidth: 1px;
         font-family: 'Apple Garamond Bold';
-        margin-top: 6px;
+        margin-top: 3px;
         color: black;
         width: 100%;
         overflow: hidden;
@@ -172,7 +182,7 @@
         margin-left: 7px;
         /* box-shadow: unset; */
         padding: 7px 0px 7px 7px;
-        max-height: 26px;
+        max-height: 32px;
         min-width: 20px;
         padding-right: 5px;
         /* border-left: 2px solid black; */

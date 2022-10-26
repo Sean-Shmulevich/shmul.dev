@@ -18,6 +18,21 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@media (max-width: 800px) {
+  .startWords{display: none !important;}
+  .menuBarStart{width: 38px !important}
+}
+
+@media (max-width: 580px) {
+  .minItemText{display: none !important;}
+  .startWords{display: none !important;}
+  .appMinimized {padding:0 !important;margin-top:4px !important}
+  .dateText {display: none !important;}
+  .rightBox{margin-right:-20px !important;}
+  .nameBorder{margin-left: -5px !important}
+  .appMinimized img {transform: translateX(-4px) skew(20deg) !important;}
+}
+
 @font-face {
   font-family: 'Apple Garamond';
   font-style: normal;

@@ -17,7 +17,7 @@
         <!--<img src="./favicon.svg" class="leftIcon" alt="hello alt">-->
     </div>
     <div class="rightBox">
-        <img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">
+        <!--<img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">-->
         <span class="dateText">Tue Oct 18</span>
         <img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="hello alt" class="rightmost" style="margin-left:-3px">
         <img src="{linkedIn}" alt="hello alt" class="rightmost">

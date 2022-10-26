@@ -203,6 +203,10 @@
 
     </div>
 <style>
+    div{
+        -webkit-touch-callout:none;
+        -ms-touch-action:none; touch-action:none;
+    }
     @keyframes move {
         50%, 100% {
             transform: translate(var(--menuX), 0) translate(0, var(--menuY)) scale(.1) ;
