@@ -130,13 +130,13 @@
         </div>
     {/each}
     {#if windows.indexOf('File System') !== -1}
-        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')}/>
+        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')} />
     {/if}
     {#if windows.indexOf('Js Paint') !== -1}
         <JsPaint bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if windows.indexOf('Overview') !== -1}
-        <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')}/>
+        <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:open={() => removeWindow('Overview')} on:close={() => removeWindow('Overview')} />
     {/if}
     {#if windows.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}/>

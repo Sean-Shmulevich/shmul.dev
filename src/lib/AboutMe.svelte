@@ -121,23 +121,23 @@
 
             <div class="SubMenu">
                 <div class="SubMenuTabs" style="height: 21px;z-index: 1;user-select: none;display: flex">
-                    <label class="SubMenuTab radioTab" style="display: unset">
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Hello"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Hello"}>
                         <span class="menuText">Hello</span>
                     </label>
-                    <label class="SubMenuTab radioTab" style="display: unset">
-                        <input type=radio bind:group={value} name="scoops" value={"Skills"}>
+                    <label class="SubMenuTab radioTab" style="display: unset" class:selectedTab={value === "Skills"} >
+                        <input type=radio bind:group={value}  name="scoops" value={"Skills"}>
                         <span class="menuText">Skills</span>
                     </label>
-                    <label class="SubMenuTab radioTab" style="display: unset">
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Social"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Social"}>
                         <span class="menuText">Social</span>
                     </label>
-                    <label class="SubMenuTab radioTab" style="display: unset">
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Credits"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Credits"}>
                         <span class="menuText">Credits</span>
                     </label>
-                    <label class="SubMenuTab radioTab" style="display: unset">
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Statue"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Statue"}>
                         <span class="menuText">Statue</span>
                     </label>
@@ -190,6 +190,9 @@
 
     </div>
     <style>
+        .selectedTab{
+            height: 19px !important;
+        }
 
         @keyframes move {
             50%, 100% {
