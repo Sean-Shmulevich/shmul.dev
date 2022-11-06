@@ -25,8 +25,8 @@
     export let view = null
 
     /* `doc` is deliberately made non-reactive for not storing a reduntant string
-       besides the editor. Also, setting doc to undefined will not trigger an
-       update, so that you can clear it after setting one. */
+        besides the editor. Also, setting doc to undefined will not trigger an
+        update, so that you can clear it after setting one. */
     export let doc
 
     /* Set this if you would like to listen to all transactions via `update` event. */
@@ -114,7 +114,6 @@
         }
 
         extensions = [...extensions, javascript()];
-
 
 
         view = new EditorView({

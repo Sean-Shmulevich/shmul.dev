@@ -4,7 +4,6 @@
     import '../css/codicon.css';
     import '../css/terminal.css';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
-    import { oneDark } from '@codemirror/theme-one-dark';
 
     import {fade, incrementCount} from "./SysWindow.svelte"
     import CodeMirror from './CodeMirror.svelte'
@@ -153,12 +152,36 @@
             <div class="vsLineNumbers" style="display:none">
 
             </div>
-            <div class="vsCodeWindow">
+            <div class="vsCodeWindow" style="overflow-y:scroll;overflow: overlay;">
                 <div class="vsText">
-                    <div>
-                        <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
+                    <div style="color:white;padding:10px;margin-top:-25px">
+                        <!-- <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
                                     bind:docStore={store}
-                                    on:change={changeHandler}></CodeMirror>
+                                    on:change={changeHandler}></CodeMirror> -->
+                                    <h1 id="sample-markdown">Sample Markdown</h1>
+                                    <p><img src="http://placebear.com/200/200" alt="bears"></p>
+                                    <p>This is some basic, sample markdown.</p>
+                                    <h2 id="second-heading">Second Heading</h2>
+                                    <ul>
+                                    <li>Unordered lists, and:<ol>
+                                    <li>One</li>
+                                    <li>Two</li>
+                                    <li>Three</li>
+                                    </ol>
+                                    </li>
+                                    <li>More</li>
+                                    </ul>
+                                    <blockquote>
+                                    <p>Blockquote</p>
+                                    </blockquote>
+                                    <p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
+                                    <p>And code highlighting:</p>
+                                    
+
+                                    <p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
+                                    <p>Or an image of bears</p>
+                                    <p>The end ...</p>
+                                    
                     </div>
                 </div>
             </div>
@@ -207,6 +230,8 @@
         -webkit-animation-timing-function: linear;
         -webkit-animation-fill-mode:    forwards;
     }
+    ::-webkit-scrollbar{background: transparent;width:10px}
+    ::-webkit-scrollbar-thumb{background: rgb(160 151 229/ 50%);  }
 
     :global(.Codemirror) {
         display: contents;

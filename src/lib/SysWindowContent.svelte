@@ -73,6 +73,8 @@
 <script>
     import '../css/98.css';
     import '../css/myStyle.css';
+    import {appLaunch} from '../stores/appLaunch.js';
+  import VsCode from './VsCode.svelte';
     //grid view should be able to be controlled by the parent, use bind value very easy
     //export let gridViewOn = false;
 
@@ -141,6 +143,24 @@
         filesList = currObj.files;
         foldersList = Object.keys((currObj.folders));
     }
+    function openItem(file){
+        if ($appLaunch[0] !== file){
+            //match VS code. 
+            if(file == "vsCode.app"){
+                $appLaunch.push("VS Code");
+            }
+            //match a file ending in .md
+            else if(/^.+\.md$/.test(file)){
+                console.log("MD file");
+                //push to store and remove the .md at the end of the file.
+                $appLaunch.push(file.substring(0, file.length-3));
+            }
+            else{
+                //default case. 
+                $appLaunch.push(file);
+            }
+        }
+    }
 
 </script>
 <div class="window-body" style="justify-content: center;text-align: center;min-height: 250px;">
@@ -153,7 +173,7 @@
             </div>
         {/each}
         {#each filesList as file}
-            <div class="exploreIcon" on:dblclick={() => goUp()}>
+            <div class="exploreIcon" on:dblclick|capture|preventDefault={() => openItem(file)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>

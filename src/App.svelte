@@ -5,17 +5,16 @@
     import swissMountains from './assets/swissMountains.png';
 
     import AboutMe from './lib/AboutMe.svelte'
-    import TopBar from './lib/TopBar.svelte'
     import BottomBar from './lib/BottomBar.svelte'
-    import FilePage from './lib/FilePage.svelte'
-    import VsCode from './lib/VsCode.svelte'
-    import FileList from './lib/FileList.svelte'
-    import SysWindow from "./lib/SysWindow.svelte";
     import JsPaint from "./lib/JsPaint.svelte"
+    import SysWindow from "./lib/SysWindow.svelte";
+    import TopBar from './lib/TopBar.svelte'
+    import VsCode from './lib/VsCode.svelte'
     
 
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
+    import {appLaunch} from './stores/appLaunch.js';
 
 
 
@@ -54,7 +53,9 @@
     //define starting windows on the screen names defined by "icons"
     function startWindows(winList) {
         winList.forEach((ele) => {
-            $writableArray.push(ele);
+            if($writableArray.indexOf(ele) === -1){
+                $writableArray.push(ele);
+            }
         });
         $writableArray = $writableArray;
     }
@@ -69,7 +70,8 @@
     let numFileWin = 0;
     function makeSubFileWin(name, i) {
         //check if it not already in the writable array
-        let maxWindows = 5;//maximum amount of extra windows allowed that are not the root menu.
+        //4 max windows total right now
+        let maxWindows = 3;//maximum amount of extra windows allowed that are not the root menu.
         if(numFileWin < maxWindows)
         {   
             if($writableArray.indexOf(doubleClick) === -1){
@@ -135,12 +137,25 @@
         //take the one that you recieve and set it
     }
 
-    //after all of the windows are hidden reset the z-index so it doesn't get unresonably large but also would it ever do this.
     $: {
+        //after all of the windows are hidden reset the z-index so it doesn't get unresonably large but also would it ever do this.
         if($writableArray.length === 0){
-
             $count = {zIdx: 0, name: ""};
         }
+        if($appLaunch.length === 1){
+            console.log($appLaunch);
+            let currApp = $appLaunch[0];
+            if($writableArray.indexOf(currApp) === -1){
+                $writableArray = [...$writableArray, currApp];//add to writable array
+            }
+            isMinimized[currApp] = false;//unset double click when the desktop icon is pressed
+            zMap[currApp] = $count["zIdx"] + 1;//set z index to highest when the desktop icon is pressed
+            let newCount = zMap[currApp];//var to set new count
+            count.set({zIdx: newCount, name: currApp});
+            $appLaunch.splice(0,1);//remove the only element in the array.
+            console.log($appLaunch);
+        }
+
     }
 </script>
 

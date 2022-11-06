@@ -6,7 +6,7 @@
 
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
-    import Overview from '../assets/windowicons/doc_panda1.ico';
+    import Overview from '../assets/myIcon_1.png';
 
     let iconMap = {'File System': fileLogo,'Overview': Overview, 'VS Code': vsLogo, "Js Paint": "https://win98icons.alexmeub.com/icons/png/paint_old-0.png"};
 
@@ -20,9 +20,19 @@
     let activeWindow = "";
     function forward(event, text) {
         activeWindow = text;
+
+        //why is this called min when button is pressed the item will show unless it already exists in that case it will be set to the highest zIndex
         dispatch('min', {text: text});
     }
-
+    function findIcon(map, window){
+        let win = window;
+        //test regex pattern 
+        //File System(int)
+        if(/File System\d+$/.test(window)){
+            win = win.slice(0, -1);//cut the number off of the name;
+        }
+        return map[win];
+    }
 
 </script>
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
@@ -38,8 +48,8 @@
     <div class="minimizedItems">
         {#each currentWindows as window}
                 <button on:click|capture|preventDefault={(event) => forward(event,window)}  class="appMinimized" class:classes={window === $glowWindow}>
-                    <img src="{iconMap[window]}" alt="hello alt"
-                         style="width:25px;vertical-align: middle;margin-right: -2px;padding-left:10px;padding-right:6px;transform: skew(20deg);">
+                    <img src="{findIcon(iconMap, window)}" alt="hello alt"
+                         style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);">
                     <span class="minItemText">{window}</span>
                 </button>
         {/each}
