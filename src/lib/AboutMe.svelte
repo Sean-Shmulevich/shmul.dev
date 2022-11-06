@@ -53,10 +53,11 @@
     let aboutBox;
 
     function handleMinimize() {
-        glowWindow.set("Overview");
         hide = true;
         let currMenuPos = $writableArray.indexOf("Overview");
         if (currMenuPos === -1) return
+        glowWindow.set("Overview");
+        $glowWindow = $glowWindow;
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
 
@@ -72,6 +73,7 @@
         let elem = document.querySelector(".SystemMenuWrapper");
         elem.addEventListener("animationend", function () {
             glowWindow.reset()
+            $glowWindow = $glowWindow;
         }, false);
     }
 

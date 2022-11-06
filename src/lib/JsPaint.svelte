@@ -48,10 +48,11 @@
     let menuX, menuY;
 
     function handleMinimize(){
-        glowWindow.set("Js Paint");
-        hide=true;
         let currMenuPos = $writableArray.indexOf("Js Paint");
         if(currMenuPos === -1) return
+        glowWindow.set("Js Paint");
+        $glowWindow = $glowWindow;
+        hide=true;
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
 
@@ -65,7 +66,7 @@
         menuY = bottom + height;
 
         let elem = document.querySelector(".remBoxMobile");
-        elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
+        elem.addEventListener("animationend", function() {glowWindow.reset();$glowWindow = $glowWindow;}, false);
     }
 
     function maybeDontIncrement(){

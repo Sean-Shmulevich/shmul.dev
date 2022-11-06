@@ -6,11 +6,7 @@
     import {asDraggable} from 'svelte-drag-and-drop-actions'
 
     import {fade, incrementCount} from "./SysWindow.svelte"
-    import CodeMirror from './CodeMirror.svelte'
-    let store;
-    function changeHandler({ detail: {tr} }) {
-        console.log('change', tr.changes.toJSON())
-    }
+
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from '../stores/keep.js';
@@ -57,6 +53,7 @@
     //requires a lot of information multiples stores and a call to the dom.
     function handleMinimize(){
         glowWindow.set("VS Code");
+        $glowWindow = $glowWindow;
         hide=true;
         let currMenuPos = $writableArray.indexOf("VS Code");
         if(currMenuPos === -1) return
@@ -64,9 +61,6 @@
 
         const element = document.createElement("div");
         document.body.appendChild(element);
-
-
-
 
         let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(vsPos);
@@ -78,7 +72,7 @@
         menuY = bottom + height;
 
         let elem = document.querySelector(".vscode");
-        elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
+        elem.addEventListener("animationend", function() {glowWindow.reset();$glowWindow = $glowWindow;}, false);
 
     }
 
@@ -154,35 +148,7 @@
             </div>
             <div class="vsCodeWindow" style="overflow-y:scroll;overflow: overlay;">
                 <div class="vsText">
-                    <div style="color:white;padding:10px;margin-top:-25px">
-                        <!-- <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
-                                    bind:docStore={store}
-                                    on:change={changeHandler}></CodeMirror> -->
-                                    <h1 id="sample-markdown">Sample Markdown</h1>
-                                    <p><img src="http://placebear.com/200/200" alt="bears"></p>
-                                    <p>This is some basic, sample markdown.</p>
-                                    <h2 id="second-heading">Second Heading</h2>
-                                    <ul>
-                                    <li>Unordered lists, and:<ol>
-                                    <li>One</li>
-                                    <li>Two</li>
-                                    <li>Three</li>
-                                    </ol>
-                                    </li>
-                                    <li>More</li>
-                                    </ul>
-                                    <blockquote>
-                                    <p>Blockquote</p>
-                                    </blockquote>
-                                    <p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
-                                    <p>And code highlighting:</p>
-                                    
-
-                                    <p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
-                                    <p>Or an image of bears</p>
-                                    <p>The end ...</p>
-                                    
-                    </div>
+                    <slot></slot>
                 </div>
             </div>
         </div>
@@ -228,10 +194,10 @@
         -webkit-animation-duration: 850ms;
         -webkit-animation-iteration-count: 1;
         -webkit-animation-timing-function: linear;
-        -webkit-animation-fill-mode:    forwards;
+        -webkit-animation-fill-mode: forwards;
     }
-    ::-webkit-scrollbar{background: transparent;width:10px}
-    ::-webkit-scrollbar-thumb{background: rgb(160 151 229/ 50%);  }
+    ::-webkit-scrollbar-thumb{display: block !important;background: transparent;  }
+    ::-webkit-scrollbar-track{background: rgb(160 151 229/ 50%);  }
 
     :global(.Codemirror) {
         display: contents;

@@ -10,6 +10,7 @@
     import SysWindow from "./lib/SysWindow.svelte";
     import TopBar from './lib/TopBar.svelte'
     import VsCode from './lib/VsCode.svelte'
+    import CodeMirror from './lib/CodeMirror.svelte'
     
 
     import {count} from './stores/zIndex.js';
@@ -17,6 +18,8 @@
     import {appLaunch} from './stores/appLaunch.js';
     import {glowWindow} from './stores/keep.js';
 
+    import SvelteMarkdown from 'svelte-markdown'
+    import source from './assets/markdown/test.md?raw';
 
 
 
@@ -158,6 +161,11 @@
         }
 
     }
+    
+    let store;
+    function changeHandler({ detail: {tr} }) {
+        console.log('change', tr.changes.toJSON())
+    }
 </script>
 
 <svelte:window on:click|capture={unsetBlue}/>
@@ -194,7 +202,41 @@
         <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
-        <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}/>
+        <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
+            <!-- <div style="color:white;padding:10px;margin-top:-25px">
+                <h1 id="sample-markdown">Sample Markdown</h1>
+                <p><img src="http://placebear.com/200/200" alt="bears"></p>
+                <p>This is some basic, sample markdown.</p>
+                <h2 id="second-heading">Second Heading</h2>
+                <ul>
+                <li>Unordered lists, and:<ol>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+                </ol>
+                </li>
+                <li>More</li>
+                </ul>
+                <blockquote>
+                <p>Blockquote</p>
+                </blockquote>
+                <p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
+                <p>And code highlighting:</p>
+                
+
+                <p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
+                <p>Or an image of bears</p>
+                <p>The end ...</p>
+                
+            </div> -->
+                <!-- <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
+                    bind:docStore={store}
+                    on:change={changeHandler}>
+                </CodeMirror> -->
+                <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-10px">
+                    <SvelteMarkdown {source} />
+                </div>
+        </VsCode>
     {/if}
     <BottomBar on:min={handleMessage}/>
 </main>

@@ -94,15 +94,15 @@
         if(windowIndex !== -1){
             currWindow = currWindow+(windowIndex);
         }
+        console.log(currWindow);
 
-
+        let currMenuPos = $writableArray.indexOf(currWindow);
+        if(currMenuPos === -1) return
         //store the current window in glow window until the menubar animation ends
         glowWindow.set(currWindow);
         $glowWindow = $glowWindow;
         hide=true;
         //if the current window is not visible then return and dont animate
-        let currMenuPos = $writableArray.indexOf(currWindow);
-        if(currMenuPos === -1) return
 
         //current menubar item position information
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
@@ -125,9 +125,12 @@
         menuY = bottom + height;
 
         //select rembox and wait for the current animation to end..
-        let elem = document.querySelector(".remBoxMobile");
+        let pickWindow = windowIndex;
+        if(windowIndex === -1){pickWindow = 0}
+        let elem = document.querySelectorAll(".remBoxMobile");
+        console.log(elem, pickWindow); 
         //animation is over stop glow window
-        elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
+        elem[pickWindow].addEventListener("animationend", function() {glowWindow.reset();$glowWindow = $glowWindow;}, false);
 
     }
     let maxX = 0;
@@ -160,11 +163,11 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:mousedown|capture|preventDefault={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
+                        on:mousedown|capture|preventDefault={() => handleMinimize()} on:touchstart|capture|preventDefault={() => handleMinimize()}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"
-                        on:mousedown={forward} on:touchstart={forward}></button>
+                        on:mousedown|capture|preventDefault={forward} on:touchstart|capture|preventDefault={forward}></button>
             </div>
         </div>
 
