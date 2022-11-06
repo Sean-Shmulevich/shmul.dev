@@ -168,7 +168,7 @@
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
             {#if $writableArray.indexOf(fileWin) !== -1}
-                <SysWindow bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)} on:close={() => removeWindow(fileWin)} />
+                <SysWindow windowIndex="{parseInt(fileWin.charAt(fileWin.length -1 ))}" bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)} on:close={() => removeWindow(fileWin)} />
             {/if}
     {/each}
     {#if $writableArray.indexOf('Js Paint') !== -1}

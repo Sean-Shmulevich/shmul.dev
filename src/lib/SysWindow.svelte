@@ -83,17 +83,23 @@
 
     let menuX, menuY;
     let remPos;
+    export let windowIndex = -1;
 
     function handleMinimize(){
-        glowWindow.set("File System");
+        let currWindow = "File System";
+        if(windowIndex !== -1){
+            currWindow = currWindow+(windowIndex);
+        }
+        console.log(currWindow);
+        glowWindow.set(currWindow);
         hide=true;
-        let currMenuPos = $writableArray.indexOf("File System");
+        let currMenuPos = $writableArray.indexOf(currWindow);
         if(currMenuPos === -1) return
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
+        //uh why tho
         const element = document.createElement("div");
         document.body.appendChild(element);
-
 
         let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(remPos);
