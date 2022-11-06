@@ -205,7 +205,7 @@
         -webkit-animation-duration: 850ms;
         -webkit-animation-iteration-count: 1;
         -webkit-animation-timing-function: linear;
-        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-fill-mode:    forwards;
     }
 
     :global(.Codemirror) {
@@ -214,6 +214,7 @@
         height: auto !important;
         background-color: rgb(43,43,74);
         border: 5px solid white !important;
+        
     }
     :global(.cm-gutters){
         background-color: rgb(43,43,74) !important;
@@ -225,6 +226,9 @@
     :global(.cm-lineNumbers){
         background-color: rgb(43,43,74) !important;
     }
+    :global(.cm-activeLine){
+        background-color: rgb(31 32 63);
+    }
     :global(.cm-scroller){
         background-color: rgb(43,43,74) !important;
     }
@@ -234,6 +238,8 @@
     :global(.cm-gutterElement){
         color: rgb(160,151,229) !important;
     }
+    :global(.cm-line){
+    }
     :global(.cm-editor){
         margin-top: -2px !important;
         max-height: 524px !important;
@@ -241,6 +247,24 @@
     }
      :global(.cm-focused){
          outline:unset !important;
+     }
+     :global(.ͼb){
+        color: rgb(242,160,57);
+     }
+     :global(.ͼg){
+        color: rgb(273,154,247);
+     }
+     :global(.ͼe){
+        color: rgb(185, 251, 154 );
+     }
+     :global(.ͼl){
+        color: rgb(178 251 251);
+     }
+     :global(.cm-line){
+        color: rgb(244 208 70);
+     }
+     :global(.ͼd){
+        color: rgb(244 109 141);
      }
 
 

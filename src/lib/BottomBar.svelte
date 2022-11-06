@@ -174,7 +174,7 @@
     .appMinimized {
         --borderWidth: 1px;
         font-family: 'Apple Garamond Bold';
-        margin-top: 3px;
+        margin-top: 5px;
         color: black;
         width: 100%;
         overflow: hidden;
@@ -182,7 +182,7 @@
         margin-left: 7px;
         /* box-shadow: unset; */
         padding: 7px 0px 7px 7px;
-        max-height: 32px;
+        max-height: 30px;
         min-width: 20px;
         padding-right: 5px;
         /* border-left: 2px solid black; */

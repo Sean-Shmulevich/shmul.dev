@@ -2,6 +2,7 @@
     import svelteLogo from './assets/windowicons/aim_fldr.ico';
     import vsLogo from './assets/windowicons/vb-bas.ico';
     import shmulSys from './assets/myIcon_1.png';
+    import swissMountains from './assets/swissMountains.png';
 
     import AboutMe from './lib/AboutMe.svelte'
     import TopBar from './lib/TopBar.svelte'
@@ -11,6 +12,7 @@
     import FileList from './lib/FileList.svelte'
     import SysWindow from "./lib/SysWindow.svelte";
     import JsPaint from "./lib/JsPaint.svelte"
+    
 
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
@@ -147,7 +149,7 @@
 <main>
 
     <TopBar/>
-    <div class="mountainDiv">
+    <div style="background: url({swissMountains}) 0 50% repeat-x" class="mountainDiv">
     </div>
     
     {#each (icons) as {left, src, text}, i}
@@ -163,8 +165,8 @@
     {#if $writableArray.indexOf('File System') !== -1}
         <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')} />
     {/if}
-    <!-- display one subfile menu for each time the new window button was pressed -->
-    {#each (Object.keys(fileSysWindows)) as fileWin, i (fileSysWindows[fileWin])}
+    <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
+    {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
             {#if $writableArray.indexOf(fileWin) !== -1}
                 <SysWindow bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)} on:close={() => removeWindow(fileWin)} />
             {/if}
@@ -191,7 +193,6 @@
         background-size:contain;
         background-repeat: repeat-x;
         background-size: 350px 300px;
-        background: url(https://png2.cleanpng.com/sh/c6501a073cc680aae025f1619f056cf8/L0KzQYm3UcI5N5lsiZH0aYP2gLBuTfp2dphritNALYPmeLrzlPhwep8ygdD9ZYLvcbzsjr10aZ1Beud7Zz33f8b5igN1NZJ5ReVCaYT9dcPzgf5lNZt6htlvcnH4Pb3ojvR0a5J1fZ95bHHxPYboVvQ3amo1TNQ9YnGzPom4Vsg1QGQ8Sac6N0G1QIW3UMMxQGUziNDw/kisspng-jungfrau-schilthorn-interlaken-salzburg-tourist-at-switzerland-jungfrau-landscape-plan-5a6d6b904b4ba0.8168483715171204003084.png) 55% 39% repeat-x, url(https://png2.cleanpng.com/sh/c6501a073cc680aae025f1619f056cf8/L0KzQYm3UcI5N5lsiZH0aYP2gLBuTfp2dphritNALYPmeLrzlPhwep8ygdD9ZYLvcbzsjr10aZ1Beud7Zz33f8b5igN1NZJ5ReVCaYT9dcPzgf5lNZt6htlvcnH4Pb3ojvR0a5J1fZ95bHHxPYboVvQ3amo1TNQ9YnGzPom4Vsg1QGQ8Sac6N0G1QIW3UMMxQGUziNDw/kisspng-jungfrau-schilthorn-interlaken-salzburg-tourist-at-switzerland-jungfrau-landscape-plan-5a6d6b904b4ba0.8168483715171204003084.png) 55% 39% repeat-x;
     }
     .swissMountains{
         width: 100%;
