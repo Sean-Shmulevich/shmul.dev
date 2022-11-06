@@ -49,10 +49,9 @@
         }
     }
 
-    let windows = [];//represents 1x of each of the current windows open.
+    //define starting windows on the screen names defined by "icons"
     function startWindows(winList) {
         winList.forEach((ele) => {
-            windows.push(ele);
             $writableArray.push(ele);
         });
         $writableArray = $writableArray;
@@ -62,33 +61,61 @@
     //alternatively set the highest by default in the element to start and it will be the first one when you init it.
     let zMap = {'File System': 0, 'Overview': 0, 'VS Code': 0};
     let isMinimized = {'File System': false, 'Overview': false, 'VS Code': false};
+    let fileSysWindows = {};
 
-    //this is run when opening a window
+    //keep track of the number of file item menus and How many there are.
+    let numFileWin = 0;
+    function makeSubFileWin(name, i) {
+        //check if it not already in the writable array
+        let maxWindows = 5;//maximum amount of extra windows allowed that are not the root menu.
+        if(numFileWin < maxWindows)
+        {   
+            if($writableArray.indexOf(doubleClick) === -1){
+                $writableArray = [...$writableArray, name];//add to writable array
+                fileSysWindows[name] = i;
+            }
+            //the order of the statemnets here is weird but it works well.
+            numFileWin = numFileWin + 1;
+        }
+    }
+
+    //this is run when opening a window from the 'desktop'
     function updateWindows() {
+        //kind of convoluted logic for setting blue styles after one click 
+        //this should have been be done with css 
         doubleClick = current;
         current = '';//unbluing
-        if (windows.indexOf(doubleClick) === -1) {//setting this to true just makes more closes necessary.
-            windows.push(doubleClick);
-            windows = windows;
 
-            if($writableArray.indexOf(doubleClick) === -1){
-                $writableArray = [...$writableArray, doubleClick];//add to writable array
-            }
+        //global stores to what is currently on the screen and also in the menubar
+        //if the item doesnt exist yet in the menubar then add it
+            //what if the item is not on the screen but should still be in the menubar
+            //its still under the screen with my implementation.
+            //what are the edge cases here?
+        if($writableArray.indexOf(doubleClick) === -1){
+            $writableArray = [...$writableArray, doubleClick];//add to writable array
         }
+        //MAIN FILE WINDOW IS OPENED
+        // if(doubleClick === "File System" && numFileWin === 0){
+        //     fileSysWindows["File System"] = 0;
+        //     numFileWin = 1;
+        // }
         //this line lets you open minimized items with file doubleclicks
-        isMinimized[doubleClick] = false;
-        zMap[doubleClick] = $count["zIdx"] + 1;
-        let newCount = zMap[doubleClick];
-        count.set({zIdx: newCount, name: doubleClick});
-        doubleClick = '';
+        isMinimized[doubleClick] = false;//unset double click when the desktop icon is pressed
+        zMap[doubleClick] = $count["zIdx"] + 1;//set z index to highest when the desktop icon is pressed
+        let newCount = zMap[doubleClick];//var to set new count
+        count.set({zIdx: newCount, name: doubleClick});//set count in the store to the highest
+        doubleClick = '';//blue class stuff i think
     }
 
     function removeWindow(window) {
-        windows.splice(windows.indexOf(window), 1);
-        windows = windows;
-
         //remove from bottom bar as well.
         //style the focused window differently.
+
+        //if the window being removed is in a subFilemenu item.
+        if(Object.keys(fileSysWindows).indexOf(window) !== -1){
+            delete fileSysWindows[window];
+            numFileWin = numFileWin - 1;
+        }
         $writableArray.splice($writableArray.indexOf(window), 1);//get rid of it in the min bar if it's there.
         $writableArray = $writableArray;
     }
@@ -97,6 +124,8 @@
     //capture makes it go from outer-innerMost as opposed to innerMost-toOutside.
     function handleMessage(event) {
         isMinimized[event.detail.text] = false;
+
+        //this code allows you to click on the item in the menubar and show it to the screen and set the current z index to the highest.
         zMap[event.detail.text] = $count['zIdx'] + 1;
         let newCount = zMap[event.detail.text];
         let currName = event.detail.text;
@@ -104,8 +133,10 @@
         //take the one that you recieve and set it
     }
 
+    //after all of the windows are hidden reset the z-index so it doesn't get unresonably large but also would it ever do this.
     $: {
-        if(windows.length === 0){
+        if($writableArray.length === 0){
+
             $count = {zIdx: 0, name: ""};
         }
     }
@@ -129,16 +160,22 @@
             <p class="homeIconText">{text}</p>
         </div>
     {/each}
-    {#if windows.indexOf('File System') !== -1}
-        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:close={() => removeWindow('File System')} />
+    {#if $writableArray.indexOf('File System') !== -1}
+        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')} />
     {/if}
-    {#if windows.indexOf('Js Paint') !== -1}
+    <!-- display one subfile menu for each time the new window button was pressed -->
+    {#each (Object.keys(fileSysWindows)) as fileWin, i (fileSysWindows[fileWin])}
+            {#if $writableArray.indexOf(fileWin) !== -1}
+                <SysWindow bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)} on:close={() => removeWindow(fileWin)} />
+            {/if}
+    {/each}
+    {#if $writableArray.indexOf('Js Paint') !== -1}
         <JsPaint bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
-    {#if windows.indexOf('Overview') !== -1}
+    {#if $writableArray.indexOf('Overview') !== -1}
         <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
-    {#if windows.indexOf('VS Code') !== -1}
+    {#if $writableArray.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}/>
     {/if}
     <BottomBar on:min={handleMessage}/>

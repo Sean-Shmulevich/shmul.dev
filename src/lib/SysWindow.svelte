@@ -63,6 +63,9 @@
     function forward(event) {
         dispatch('close', event.detail);
     }
+    function newWindow(event) {
+        dispatch('newWin', event.detail);
+    }
 
 
     export let hide = false;
@@ -164,7 +167,7 @@
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:0px"/>
                     <span class="moveText" style="margin-right: 6px">Home</span>
                 </button>
-                <button class="backButton" style="margin-right: 0px;width:fit-content;flex: 0 0 auto;">
+                <button class="backButton" style="margin-right: 0px;width:fit-content;flex: 0 0 auto;" on:click|preventDefault|capture={newWindow}>
                     <img src="https://win98icons.alexmeub.com/icons/png/web_file_set-0.png" class="pathIcon"
                          style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px;margin-right:-4px"/>
                     <span class="moveText" style="margin-right: 6px">New Window</span>
