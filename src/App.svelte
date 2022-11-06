@@ -15,6 +15,8 @@
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
     import {appLaunch} from './stores/appLaunch.js';
+    import {glowWindow} from './stores/keep.js';
+
 
 
 
@@ -142,8 +144,8 @@
         if($writableArray.length === 0){
             $count = {zIdx: 0, name: ""};
         }
+
         if($appLaunch.length === 1){
-            console.log($appLaunch);
             let currApp = $appLaunch[0];
             if($writableArray.indexOf(currApp) === -1){
                 $writableArray = [...$writableArray, currApp];//add to writable array
@@ -153,7 +155,6 @@
             let newCount = zMap[currApp];//var to set new count
             count.set({zIdx: newCount, name: currApp});
             $appLaunch.splice(0,1);//remove the only element in the array.
-            console.log($appLaunch);
         }
 
     }

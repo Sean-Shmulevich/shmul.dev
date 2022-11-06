@@ -32,6 +32,7 @@
     export function incrementCount(zIdx, currMaxZ, currStore, name) {
         if (zIdx > currMaxZ["zIdx"]) {
         } else if (zIdx == currMaxZ["zIdx"]) {
+            //make it higher then anything
             zIdx += 2;
         } else {
             zIdx = currMaxZ["zIdx"] + 1;
@@ -86,39 +87,54 @@
     export let windowIndex = -1;
 
     function handleMinimize(){
+        //current default window is File System
         let currWindow = "File System";
+
+        //if the winddow is a subWindow then append the number to the end of the string
         if(windowIndex !== -1){
             currWindow = currWindow+(windowIndex);
         }
-        console.log(currWindow);
+
+
+        //store the current window in glow window until the menubar animation ends
         glowWindow.set(currWindow);
+        $glowWindow = $glowWindow;
         hide=true;
+        //if the current window is not visible then return and dont animate
         let currMenuPos = $writableArray.indexOf(currWindow);
         if(currMenuPos === -1) return
+
+        //current menubar item position information
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
         //uh why tho
         const element = document.createElement("div");
         document.body.appendChild(element);
 
+        //calculate 1/3rd into the button
+        //the location that the window will go into
         let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let styles = getComputedStyle(remPos);
         let left = parseInt(styles.left);
         let bottom = parseInt(styles.bottom);
         let height = parseInt(styles.height);
         let width = parseInt(styles.width);
+        //offset the amount it needs to move from where it is right now
+        //these variables will be put into css variables
         menuX = (buttonMidPt - (left + width/2))-15;
         menuY = bottom + height;
 
+        //select rembox and wait for the current animation to end..
         let elem = document.querySelector(".remBoxMobile");
+        //animation is over stop glow window
         elem.addEventListener("animationend", function() {glowWindow.reset()}, false);
 
     }
     let maxX = 0;
     let maxY = 0;
 
-    let w;
-    let h;
+    //idk what these are doing
+    let w, h;
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <div class="remBoxMobile" style="
@@ -144,7 +160,7 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:mousedown|capture={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
+                        on:mousedown|capture|preventDefault={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"
