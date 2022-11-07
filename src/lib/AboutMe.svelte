@@ -5,11 +5,17 @@
     import {count} from '../stores/zIndex.js';
     import {createEventDispatcher} from "svelte";
     import {asDraggable} from 'svelte-drag-and-drop-actions'
+    import  DragDropTouch  from 'svelte-drag-drop-touch'
 
     //getThe zIndex and animations functions used for all windows.
     import {fade, incrementCount} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
+  import { SvelteComponent } from 'svelte/internal';
+
+    // @ts-ignore
+    
+    
 
     export let zIdx;
     let BoxX = 200, BoxY = 200;//starting coords
@@ -151,9 +157,8 @@
                         <div style="width: 100%;padding: 20px;line-height: 1.5;">
                             {#if value == "Hello"}
                             <h2>Tech I've Built With</h2>
-                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                                <div style="font-family: 'Apple Garamond bold'">
-                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                            <div style="font-family: 'Apple Garamond bold';font-size:0.9rem">
+                                    python (django, selnium, scrapy, pandas, Flask), Java, Typescript, Javascript (Node.js, React, Svelte), C, Rust, SCSS, Tailwind Css, Bash, Git, ZSH, regular expressions.
                                 </div>
                             {:else if value === "Skills"}
                                 <h2>{value} </h2>

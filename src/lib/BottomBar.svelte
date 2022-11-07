@@ -205,7 +205,11 @@
         z-index: 5;
         border-radius: 5px 9px 5px 9px;
         border: 2px solid black;
-        /*background: linear-gradient(60deg, #abffe5, #6e99dc, #ff9eba, rgba(179, 143, 236, 0.87));*/
+
+        /* background: linear-gradient(90deg, rgb(26, 26, 101), rgb(154, 143, 233)); */
+
+        /* background: rgba(179, 143, 236, 0.87); */
+        /* background: linear-gradient(60deg, #abffe5, #6e99dc, #ff9eba, rgba(179, 143, 236, 0.87)); */
     }
 
     .minimizedItems {
