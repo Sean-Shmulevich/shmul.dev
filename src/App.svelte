@@ -79,11 +79,12 @@
         //check if it not already in the writable array
         //4 max windows total right now
         let maxWindows = 3;//maximum amount of extra windows allowed that are not the root menu.
-        if(numFileWin < maxWindows)
+        console.log(Object.keys(fileSysWindows).length);
+        if(Object.keys(fileSysWindows).length < maxWindows)
         {   
             if($writableArray.indexOf(doubleClick) === -1){
                 $writableArray = [...$writableArray, name];//add to writable array
-                fileSysWindows[name] = i;
+                fileSysWindows[name] = numFileWin;
             }
             //the order of the statemnets here is weird but it works well.
             numFileWin = numFileWin + 1;
@@ -125,7 +126,6 @@
         //if the window being removed is in a subFilemenu item.
         if(Object.keys(fileSysWindows).indexOf(window) !== -1){
             delete fileSysWindows[window];
-            numFileWin = numFileWin - 1;
         }
         //remove from writable array.
         $writableArray.splice($writableArray.indexOf(window), 1);//get rid of it in the min bar if it's there.
@@ -182,7 +182,6 @@
     <TopBar/>
     <div style="background: url({swissMountains}) 0 50% repeat-x" class="mountainDiv">
     </div>
-    
     {#each (icons) as {left, src, text}, i}
         <div class="homeIcon" style="top:{(i*105)+65}px; left:{left}px" class:blue={current === text}
              on:click="{() => current = text}" on:dblclick="{updateWindows}">
@@ -199,7 +198,7 @@
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
             {#if $writableArray.indexOf(fileWin) !== -1}
-                <SysWindow windowIndex="{parseInt(fileWin.charAt(fileWin.length -1 ))}" bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)} on:close={() => removeWindow(fileWin)} />
+                <SysWindow windowIndex="{parseInt(fileWin.charAt(fileWin.length -1 ))}" bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} on:close={() => removeWindow(fileWin)} />
             {/if}
     {/each}
     {#if $writableArray.indexOf('Js Paint') !== -1}

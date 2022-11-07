@@ -47,6 +47,7 @@
     import SysWindowContent from './SysWindowContent.svelte'
     import {createEventDispatcher} from 'svelte';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
+    import  DragDropTouch  from 'svelte-drag-drop-touch'
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from "../stores/keep.js";
@@ -126,12 +127,11 @@
 
         //select rembox and wait for the current animation to end..
         let pickWindow = windowIndex;
-        if(windowIndex === -1){pickWindow = 0}
-        let elem = document.querySelectorAll(".remBoxMobile");
-        console.log(elem, pickWindow); 
+        // if(windowIndex === -1){pickWindow = 0}
+        let elem = document.querySelector(".remBoxMobile");
         
         //animation is over stop glow window
-        elem[pickWindow].addEventListener("animationend", function() {
+        elem.addEventListener("animationend", function() {
             let currWindow = "File System";
             //if the winddow is a subWindow then append the number to the end of the string
             if(windowIndex !== -1){

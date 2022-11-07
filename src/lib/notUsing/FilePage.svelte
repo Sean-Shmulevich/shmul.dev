@@ -1,6 +1,6 @@
 <script context="module">
+    import { asDraggable } from 'svelte-drag-and-drop-actions';
     import  DragDropTouch  from 'svelte-drag-drop-touch'
-    import { asDraggable } from 'svelte-drag-and-drop-actions'
 </script>
 <script>
     import '../css/98.css';

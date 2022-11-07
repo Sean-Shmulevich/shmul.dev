@@ -4,6 +4,7 @@
     import '../css/codicon.css';
     import '../css/terminal.css';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
+    import  DragDropTouch  from 'svelte-drag-drop-touch'
 
     import {fade, incrementCount} from "./SysWindow.svelte"
 
