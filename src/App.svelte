@@ -58,6 +58,8 @@
     //define starting windows on the screen names defined by "icons"
     function startWindows(winList) {
         winList.forEach((ele) => {
+            //this if statement is mostly for development becaause 
+            //vite will double add this to the menubar unless you force there to be only one.
             if($writableArray.indexOf(ele) === -1){
                 $writableArray.push(ele);
             }
@@ -125,6 +127,7 @@
             delete fileSysWindows[window];
             numFileWin = numFileWin - 1;
         }
+        //remove from writable array.
         $writableArray.splice($writableArray.indexOf(window), 1);//get rid of it in the min bar if it's there.
         $writableArray = $writableArray;
     }
@@ -148,11 +151,15 @@
             $count = {zIdx: 0, name: ""};
         }
 
+
+        //locic for launching apps from filesystem.
         if($appLaunch.length === 1){
             let currApp = $appLaunch[0];
+            //only launch if its not already in the menu bar
             if($writableArray.indexOf(currApp) === -1){
                 $writableArray = [...$writableArray, currApp];//add to writable array
             }
+            //if its already in the menu bar just increment the z index;
             isMinimized[currApp] = false;//unset double click when the desktop icon is pressed
             zMap[currApp] = $count["zIdx"] + 1;//set z index to highest when the desktop icon is pressed
             let newCount = zMap[currApp];//var to set new count
@@ -203,39 +210,18 @@
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
-            <!-- <div style="color:white;padding:10px;margin-top:-25px">
-                <h1 id="sample-markdown">Sample Markdown</h1>
-                <p><img src="http://placebear.com/200/200" alt="bears"></p>
-                <p>This is some basic, sample markdown.</p>
-                <h2 id="second-heading">Second Heading</h2>
-                <ul>
-                <li>Unordered lists, and:<ol>
-                <li>One</li>
-                <li>Two</li>
-                <li>Three</li>
-                </ol>
-                </li>
-                <li>More</li>
-                </ul>
-                <blockquote>
-                <p>Blockquote</p>
-                </blockquote>
-                <p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <del>strikethrough</del>. <a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
-                <p>And code highlighting:</p>
-                
-
-                <p>Or inline code like <code>var foo = &#39;bar&#39;;</code>.</p>
-                <p>Or an image of bears</p>
-                <p>The end ...</p>
-                
-            </div> -->
-                <!-- <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
+                <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
                     bind:docStore={store}
                     on:change={changeHandler}>
-                </CodeMirror> -->
-                <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-10px">
-                    <SvelteMarkdown {source} />
-                </div>
+                </CodeMirror>
+        </VsCode>
+    {/if}
+    <!-- i could also show all the md files but hide them by default -->
+    {#if $writableArray.indexOf("resume") !== -1}
+        <VsCode bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
+            <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-30px">
+                <SvelteMarkdown {source} />
+            </div>
         </VsCode>
     {/if}
     <BottomBar on:min={handleMessage}/>
@@ -243,6 +229,10 @@
 
 
 <style>
+    /* markdown styles */
+    :global(pre){
+        background: unset;
+    }
     .mountainDiv{
         position: fixed;
         bottom:20px;
@@ -285,8 +275,5 @@
         width: fit-content;
         top: 45px;
         left: 32px;
-    }
-    :global(.jspaint){
-        background: rgb(174, 168, 217) !important;
     }
 </style>

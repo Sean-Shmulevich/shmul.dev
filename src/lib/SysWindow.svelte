@@ -129,8 +129,19 @@
         if(windowIndex === -1){pickWindow = 0}
         let elem = document.querySelectorAll(".remBoxMobile");
         console.log(elem, pickWindow); 
+        
         //animation is over stop glow window
-        elem[pickWindow].addEventListener("animationend", function() {glowWindow.reset();$glowWindow = $glowWindow;}, false);
+        elem[pickWindow].addEventListener("animationend", function() {
+            let currWindow = "File System";
+            //if the winddow is a subWindow then append the number to the end of the string
+            if(windowIndex !== -1){
+                currWindow = currWindow+(windowIndex);
+            }
+            let currMenuPos = $writableArray.indexOf(currWindow);
+            let domButtonPos = document.querySelectorAll(".appMinimized")[currMenuPos];
+        
+            glowWindow.reset();
+            $glowWindow = $glowWindow;}, false);
 
     }
     let maxX = 0;
@@ -244,6 +255,36 @@
         }
         10% {
             transform: translate(calc(var(--menuX) / 1.1), 0) translate(calc(var(--menuY) / 10), 0) scale(.25);
+        }
+    }
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .classes{
+        -webkit-animation-name: glow, animatedgradient;
+        z-index: -1;
+        background-size: 300% 300%;
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+    }
+    @keyframes glow {
+        from {
+            box-shadow: 10px 10px 0px rgb(26 26 101);
+        }
+        to {
+            box-shadow: 0px -10px 35px rgb(26 26 101);
         }
     }
     .classname {

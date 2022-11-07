@@ -47,9 +47,9 @@
 
     <div class="minimizedItems">
         {#each currentWindows as window}
-                <button on:click|capture|preventDefault={(event) => forward(event,window)}  class="appMinimized" class:classes={window === $glowWindow}>
+                <button on:click|capture|preventDefault={(event) => forward(event,window)} class:classes={window === $glowWindow}  class="appMinimized">
                     <img src="{findIcon(iconMap, window)}" alt="hello alt"
-                         style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);">
+                    style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);">
                     <span class="minItemText">{window}</span>
                 </button>
         {/each}
@@ -79,7 +79,7 @@
     <div class="timeBox" style="margin-right: -6px;white-space: nowrap;display: flex;background: linear-gradient( 90deg, rgb(26 26 101), rgb(154 143 233) );">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">-->
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
-             style="width:20px;margin-right:10px;margin-top: 2px;margin-left:-2px;padding-left:10px">
+            style="width:20px;margin-right:10px;margin-top: 2px;margin-left:-2px;padding-left:10px">
 
 
         <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px;color:white;font-family: 'Apple Garamond Bold'"></b>
