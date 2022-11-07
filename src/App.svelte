@@ -20,6 +20,7 @@
 
     import SvelteMarkdown from 'svelte-markdown'
     import source from './assets/markdown/test.md?raw';
+  import { group_outros } from 'svelte/internal';
 
 
 
@@ -198,7 +199,16 @@
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
             {#if $writableArray.indexOf(fileWin) !== -1}
-                <SysWindow windowIndex="{parseInt(fileWin.charAt(fileWin.length -1 ))}" bind:hide="{isMinimized[fileWin]}"  bind:zIdx="{zMap[fileWin]}" on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} on:close={() => removeWindow(fileWin)} />
+                <SysWindow 
+                windowIndex="{
+                    //this line of code is matching the int in a string.
+                    //coding with regex is cool.
+                    parseInt(fileWin.match(/.+(?<num>\d+)/).groups.num)
+                }" 
+                bind:hide="{isMinimized[fileWin]}"  
+                bind:zIdx="{zMap[fileWin]}" 
+                on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} 
+                on:close={() => removeWindow(fileWin)} />
             {/if}
     {/each}
     {#if $writableArray.indexOf('Js Paint') !== -1}

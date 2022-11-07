@@ -98,7 +98,7 @@
         console.log(currWindow);
 
         let currMenuPos = $writableArray.indexOf(currWindow);
-        if(currMenuPos === -1) return
+        if(currMenuPos === -1) {return}
         //store the current window in glow window until the menubar animation ends
         glowWindow.set(currWindow);
         $glowWindow = $glowWindow;
@@ -128,10 +128,11 @@
         //select rembox and wait for the current animation to end..
         let pickWindow = windowIndex;
         // if(windowIndex === -1){pickWindow = 0}
-        let elem = document.querySelector(".remBoxMobile");
+        let elem = document.querySelectorAll(".remBoxMobile");
+        console.log(pickWindow);
         
         //animation is over stop glow window
-        elem.addEventListener("animationend", function() {
+        elem[pickWindow].addEventListener("animationend", function() {
             let currWindow = "File System";
             //if the winddow is a subWindow then append the number to the end of the string
             if(windowIndex !== -1){
