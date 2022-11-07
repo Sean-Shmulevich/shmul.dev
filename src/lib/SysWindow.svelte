@@ -63,6 +63,7 @@
     const dispatch = createEventDispatcher();
 
     function forward(event) {
+        glowWindow.reset();
         dispatch('close', event.detail);
     }
     function newWindow(event) {
@@ -85,14 +86,14 @@
 
     let menuX, menuY;
     let remPos;
-    export let windowIndex = -1;
+    export let windowIndex = 0;
 
     function handleMinimize(){
         //current default window is File System
         let currWindow = "File System";
 
         //if the winddow is a subWindow then append the number to the end of the string
-        if(windowIndex !== -1){
+        if(windowIndex !== 0){
             currWindow = currWindow+(windowIndex);
         }
         console.log(currWindow);
@@ -126,7 +127,7 @@
         menuY = bottom + height;
 
         //select rembox and wait for the current animation to end..
-        let pickWindow = windowIndex;
+        let pickWindow = currMenuPos;
         // if(windowIndex === -1){pickWindow = 0}
         let elem = document.querySelectorAll(".remBoxMobile");
         console.log(pickWindow);
@@ -135,9 +136,9 @@
         elem[pickWindow].addEventListener("animationend", function() {
             let currWindow = "File System";
             //if the winddow is a subWindow then append the number to the end of the string
-            if(windowIndex !== -1){
-                currWindow = currWindow+(windowIndex);
-            }
+            // if(windowIndex !== -1){
+            //     currWindow = currWindow+(windowIndex);
+            // }
             let currMenuPos = $writableArray.indexOf(currWindow);
             let domButtonPos = document.querySelectorAll(".appMinimized")[currMenuPos];
         

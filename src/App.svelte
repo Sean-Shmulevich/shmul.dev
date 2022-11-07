@@ -75,12 +75,12 @@
     let fileSysWindows = {};
 
     //keep track of the number of file item menus and How many there are.
-    let numFileWin = 0;
+    let numFileWin = 1;
     function makeSubFileWin(name, i) {
         //check if it not already in the writable array
         //4 max windows total right now
         let maxWindows = 3;//maximum amount of extra windows allowed that are not the root menu.
-        console.log(Object.keys(fileSysWindows).length);
+        console.log(i);
         if(Object.keys(fileSysWindows).length < maxWindows)
         {   
             if($writableArray.indexOf(doubleClick) === -1){
