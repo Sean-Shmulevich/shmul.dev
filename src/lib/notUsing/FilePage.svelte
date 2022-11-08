@@ -7,8 +7,8 @@
     import '../css/myStyle.css';
     import {createEventDispatcher} from 'svelte';
 
-    import { count } from '../stores/zIndex.js';
-    import { writableArray } from '../stores/minimized.js';
+    import { count } from '../../stores/zIndex.js';
+    import { writableArray } from '../../stores/minimized.js';
     import {fly} from "svelte/transition";
     import {quintOut} from "svelte/easing";
     export let zIdx = 0;

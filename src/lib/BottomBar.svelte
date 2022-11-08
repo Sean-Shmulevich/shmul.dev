@@ -29,7 +29,8 @@
         //test regex pattern 
         //File System(int)
         if(/File System\d+$/.test(window)){
-            win = win.slice(0, -1);//cut the number off of the name;
+            let a = window.match(/(?<num>[0-9].*$)/).groups.num.length
+            win = win.slice(0, -a);//cut the number off of the name;
         }
         return map[win];
     }

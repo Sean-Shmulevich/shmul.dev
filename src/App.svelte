@@ -194,7 +194,7 @@
         </div>
     {/each}
     {#if $writableArray.indexOf('File System') !== -1}
-        <SysWindow bind:hide="{isMinimized['File System']}"  bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')} />
+        <SysWindow bind:hide="{isMinimized['File System']}" bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')} />
     {/if}
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
