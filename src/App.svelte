@@ -203,7 +203,7 @@
                 windowIndex="{
                     //this line of code is matching the int in a string.
                     //coding with regex is cool.
-                    parseInt(fileWin.match(/.+(?<num>\d+)/).groups.num)
+                    parseInt(fileWin.match(/(?<num>[0-9].*$)/).groups.num)
                 }" 
                 bind:hide="{isMinimized[fileWin]}"  
                 bind:zIdx="{zMap[fileWin]}" 

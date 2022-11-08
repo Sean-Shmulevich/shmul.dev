@@ -96,7 +96,7 @@
         if(windowIndex !== 0){
             currWindow = currWindow+(windowIndex);
         }
-        console.log(currWindow);
+        console.log(windowIndex);
 
         let currMenuPos = $writableArray.indexOf(currWindow);
         if(currMenuPos === -1) {return}
