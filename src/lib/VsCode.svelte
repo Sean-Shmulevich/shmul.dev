@@ -52,13 +52,14 @@
   let menuX, menuY;
   let currWidth = 600;
   let currHeight = 400;
+  export let windowName = "VS Code";
 
   //requires a lot of information multiples stores and a call to the dom.
   function handleMinimize() {
-    glowWindow.set("VS Code");
+    glowWindow.set(windowName);
     $glowWindow = $glowWindow;
     hide = true;
-    let currMenuPos = $writableArray.indexOf("VS Code");
+    let currMenuPos = $writableArray.indexOf(windowName);
     if (currMenuPos === -1) return;
     let domButtonPos = document
       .querySelectorAll(".appMinimized")
@@ -76,7 +77,11 @@
     menuX = buttonMidPt - (left + width / 2) - 15;
     menuY = bottom + height;
 
-    let elem = document.querySelector(".vscode");
+    //which vs code is it?
+    //TODO impplement logic for picking the right window.
+    let thisWindowClass = windowName.replace(/\s+/g, '-');
+    let elem = document.querySelector(`.vscode.${thisWindowClass}`);
+    console.log(`.vscode.${thisWindowClass}`);
     elem.addEventListener(
       "animationend",
       function () {
@@ -128,9 +133,9 @@ function stopResize(e) {
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
 <div
-  class="vscode"
+  class="vscode {windowName.replace(/\s+/g, '-')}"
   style="
-    position: absolute;
+    position: fixed;
     left:{BoxX}px; top:{BoxY}px;
     width:{currWidth}px;
     height:{currHeight}px;

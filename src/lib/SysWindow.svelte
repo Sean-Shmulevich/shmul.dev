@@ -129,11 +129,11 @@
         //select rembox and wait for the current animation to end..
         let pickWindow = currMenuPos;
         // if(windowIndex === -1){pickWindow = 0}
-        let elem = document.querySelectorAll(".remBoxMobile");
-        console.log(pickWindow);
+        let elem = document.querySelector(`.remBoxMobile.File-System${windowIndex}`);
+        console.log(elem);
         
         //animation is over stop glow window
-        elem[pickWindow].addEventListener("animationend", function() {
+        elem.addEventListener("animationend", function() {
             let currWindow = "File System";
             //if the winddow is a subWindow then append the number to the end of the string
             // if(windowIndex !== -1){
@@ -153,7 +153,7 @@
     let w, h;
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
-    <div class="remBoxMobile" style="
+    <div class="remBoxMobile File-System{windowIndex}" style="
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         z-index: {zIdx};

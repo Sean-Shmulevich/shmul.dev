@@ -7,8 +7,9 @@
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
     import Overview from '../assets/myIcon_1.png';
+    import defaultLogo from '../assets/windowicons/aim_fldr.ico';
 
-    let iconMap = {'File System': fileLogo,'Overview': Overview, 'VS Code': vsLogo, "Js Paint": "https://win98icons.alexmeub.com/icons/png/paint_old-0.png"};
+    let iconMap = {'File System': fileLogo,'Overview': Overview, 'VS Code': vsLogo, "Js Paint": "https://win98icons.alexmeub.com/icons/png/paint_old-0.png", "Default": "https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"};
 
     import {createEventDispatcher} from "svelte";
 
@@ -31,6 +32,9 @@
         if(/File System\d+$/.test(window)){
             let a = window.match(/(?<num>[0-9].*$)/).groups.num.length
             win = win.slice(0, -a);//cut the number off of the name;
+        }
+        else if(!map[win]){
+            return map['Default'];
         }
         return map[win];
     }
@@ -193,7 +197,8 @@
         margin-left: 7px;
         /* box-shadow: unset; */
         padding: 7px 0px 7px 7px;
-        max-height: 30px;
+        max-height: 29px;
+        margin-top: 5px;
         min-width: 20px;
         padding-right: 5px;
         /* border-left: 2px solid black; */

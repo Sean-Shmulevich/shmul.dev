@@ -227,7 +227,7 @@
     {/if}
     <!-- i could also show all the md files but hide them by default -->
     {#if $writableArray.indexOf("resume") !== -1}
-        <VsCode bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
+        <VsCode windowName="resume" bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
             <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-30px">
                 <SvelteMarkdown {source} />
             </div>
