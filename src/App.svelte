@@ -219,7 +219,7 @@
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
         <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
-                <CodeMirror doc={'let a = 15;\n"let a = 15;"'}
+                <CodeMirror doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
                     bind:docStore={store}
                     on:change={changeHandler}>
                 </CodeMirror>
@@ -234,11 +234,30 @@
         </VsCode>
     {/if}
     <BottomBar on:min={handleMessage}/>
+    <div class="scan-lines"></div>
 </main>
 
 
 <style>
     /* markdown styles */
+    .scan-lines {
+    z-index: 99999;
+    opacity: .7;
+    filter: alpha(70);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background-image: radial-gradient(ellipse at center,transparent 0,transparent 60%,rgba(0,0,0,.25) 100%),repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.35) 3px);
+    background-size: 100% 100%,100% 6px;
+    -webkit-animation: flicker .3s linear infinite;
+    animation: flicker .3s linear infinite;
+}
     :global(pre){
         background: unset;
     }

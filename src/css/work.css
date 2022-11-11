@@ -15,7 +15,7 @@
 .vsAppBar{
     background-color: rgb(30,31,61);
     width: 100%;
-    height: calc(5% + 4px);
+    height: 30px;
     /* margin: 20px; */
     /* margin-top: 100px; */
     /* padding: 0px 0px 0px 0px; */
@@ -38,6 +38,10 @@
     background: rgb(36,36,64);
     border-radius: 0px 0px 8px 8px;
     display: flex;
+    width:inherit;
+    /* margin-top: -31px; */
+    max-width: 833px;
+    min-width: 100%;
     /* border-bottom: 1px solid rgb(133,119,62); */
     border-bottom: 1px solid rgb(187,187,207);
 }
