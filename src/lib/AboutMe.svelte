@@ -6,6 +6,7 @@
     import {createEventDispatcher} from "svelte";
     import {asDraggable} from 'svelte-drag-and-drop-actions'
     import  DragDropTouch  from 'svelte-drag-drop-touch'
+    import {onMount} from 'svelte';
 
     //getThe zIndex and animations functions used for all windows.
     import {fade, incrementCount} from "./SysWindow.svelte"
@@ -13,12 +14,20 @@
     import {writableArray} from "../stores/minimized.js";
   import { SvelteComponent } from 'svelte/internal';
 
-    // @ts-ignore
-    
+    onMount(() => {
+        BoxX = window.innerWidth/4;
+        //basically a media query
+        if(window.innerWidth < 460){
+            BoxY = 50;
+            width = 300;
+            height = 420;
+            // @ts-ignore
+        }
+	});
     
 
     export let zIdx;
-    let BoxX = 200, BoxY = 200;//starting coords
+    export let BoxX = 200, BoxY = 120;//starting coords
     function onDragStart() {
         return {x: BoxX, y: BoxY}
     }
@@ -92,6 +101,8 @@
         }
     }
     let maxX = 0, maxY = 0;
+    let width = 375;//+13
+    let height = 430;//+50
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <!-- svelte-ignore missing-declaration -->
@@ -103,14 +114,14 @@
         display:block;
         left:{BoxX}px;
         top:{BoxY}px;
-        width:375px;
-        height:430px;
+        width:{width}px;
+        height:{height}px;
         z-index: {zIdx};
         --menuX: {menuX}px;
         --menuY: {menuY}px;
 
         " on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={aboutBox}>
-        <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:maxX-384, maxY: maxY-480}}
+        <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:maxX-(width+13), maxY: maxY-(height+50)}}
              class="title-bar fileGridBar windowBar" style="width:auto">
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: -1px;">Overview
@@ -197,6 +208,9 @@
 
     </div>
     <style>
+        @media (max-width: 460px) {
+            .SubMenuTabs{transform: scale(.86) translateX(-22px);}
+        }
         .selectedTab{
             height: 19px !important;
         }

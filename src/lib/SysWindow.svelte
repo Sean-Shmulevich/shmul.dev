@@ -40,6 +40,8 @@
         currStore.set({zIdx, name});
         return zIdx;
     };
+
+    export let fileWinOffset = 0;
 </script>
 <script>
     import '../css/98.css';
@@ -48,17 +50,31 @@
     import {createEventDispatcher} from 'svelte';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
     import  DragDropTouch  from 'svelte-drag-drop-touch'
+    import { onMount, onDestroy } from 'svelte';
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
 
     export let zIdx = 0;
-    let BoxX = 200, BoxY = 200;//starting coords
+    export let BoxX = 120, BoxY = 120;//starting coords
 
     function onDragStart () { return { x:BoxX,y:BoxY} }
     function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
     function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+    //fileWinOffset is a static variable that keeps track of how many window have been created it then calculates an offset based off this
+    onMount(() => {
+		fileWinOffset+=25;
+        BoxX = window.innerWidth/4;
+        BoxX+= fileWinOffset;
+        BoxY += fileWinOffset;
+	});
+    //dont let the offset get insane keep it proportional to the current number of windows.
+    //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
+    onDestroy(() => {
+		fileWinOffset -= 25;
+	});
 
     const dispatch = createEventDispatcher();
 

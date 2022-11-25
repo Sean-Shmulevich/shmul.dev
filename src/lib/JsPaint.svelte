@@ -10,7 +10,7 @@
 
 
     export let zIdx = 0;
-    let BoxX = 200, BoxY = 200;//starting coords
+    export let BoxX = 200, BoxY = 200;//starting coords
 
     function onDragStart() {
         return {x: BoxX, y: BoxY}

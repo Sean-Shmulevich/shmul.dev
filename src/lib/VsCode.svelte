@@ -21,8 +21,7 @@
     dispatch("close", event.detail);
   }
 
-  let BoxX = 200,
-    BoxY = 200; //starting coords
+  export let BoxX = 200, BoxY = 200; //starting coords
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
@@ -181,8 +180,8 @@ on:mousedown={initResize}>
       onDragEnd,
       minX: 0,
       minY: 26,
-      maxX: maxX - 700,
-      maxY: maxY - 612,
+      maxX: maxX - currWidth,
+      maxY: maxY - currHeight,
     }}
   >
     <div style="margin-left: 6px;">

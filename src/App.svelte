@@ -20,7 +20,7 @@
 
     import SvelteMarkdown from 'svelte-markdown'
     import source from './assets/markdown/test.md?raw';
-  import { group_outros } from 'svelte/internal';
+    import { group_outros } from 'svelte/internal';
 
 
 
@@ -80,9 +80,14 @@
         //check if it not already in the writable array
         //4 max windows total right now
         let maxWindows = 3;//maximum amount of extra windows allowed that are not the root menu.
-        console.log(i);
+
         if(Object.keys(fileSysWindows).length < maxWindows)
         {   
+            //set z index to the highest current z index.
+            zMap[name] = $count["zIdx"] + 1;//set z index to highest when the desktop icon is pressed
+            let newCount = zMap[name];//var to set new count
+            count.set({zIdx: newCount, name: name});//set count in the store to the highest
+
             if($writableArray.indexOf(doubleClick) === -1){
                 $writableArray = [...$writableArray, name];//add to writable array
                 fileSysWindows[name] = numFileWin;
@@ -167,13 +172,15 @@
             count.set({zIdx: newCount, name: currApp});
             $appLaunch.splice(0,1);//remove the only element in the array.
         }
-
     }
     
     let store;
     function changeHandler({ detail: {tr} }) {
         console.log('change', tr.changes.toJSON())
     }
+
+    let startPositionX = 180, startPositionY = 180;
+    let subWinPosArr = [{x:  180, y: 180, prev: null}, {x:  200, y: 200, prev: null}, {x:  220, y: 220}];
 </script>
 
 <svelte:window on:click|capture={unsetBlue}/>
@@ -198,13 +205,15 @@
     {/if}
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
+            {@const start = startPositionX}
+            {@const end = startPositionY}
             {#if $writableArray.indexOf(fileWin) !== -1}
                 <SysWindow 
                 windowIndex="{
                     //this line of code is matching the int in a string.
                     //coding with regex is cool.
                     parseInt(fileWin.match(/(?<num>[0-9].*$)/).groups.num)
-                }" 
+                }"
                 bind:hide="{isMinimized[fileWin]}"  
                 bind:zIdx="{zMap[fileWin]}" 
                 on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} 
@@ -212,13 +221,13 @@
             {/if}
     {/each}
     {#if $writableArray.indexOf('Js Paint') !== -1}
-        <JsPaint bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
+        <JsPaint BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if $writableArray.indexOf('Overview') !== -1}
-        <AboutMe bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
+        <AboutMe BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
-        <VsCode bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
+        <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
                 <CodeMirror doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
                     bind:docStore={store}
                     on:change={changeHandler}>
@@ -227,7 +236,7 @@
     {/if}
     <!-- i could also show all the md files but hide them by default -->
     {#if $writableArray.indexOf("resume") !== -1}
-        <VsCode windowName="resume" bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
+        <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} windowName="resume" bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
             <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-30px">
                 <SvelteMarkdown {source} />
             </div>
