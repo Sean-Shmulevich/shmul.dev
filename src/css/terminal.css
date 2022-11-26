@@ -120,6 +120,7 @@
 }
 
 .fakeButtons {
+  margin-left: 3px;
   height: 11px;
   width: 11px;
   border-radius: 50%;

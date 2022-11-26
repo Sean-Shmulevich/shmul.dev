@@ -12,22 +12,22 @@
     import {fade, incrementCount} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
-  import { SvelteComponent } from 'svelte/internal';
+    import { SvelteComponent } from 'svelte/internal';
 
+    export let zIdx;
+    export let BoxX = 200, BoxY = 120;//starting coords
     onMount(() => {
         BoxX = window.innerWidth/4;
         //basically a media query
         if(window.innerWidth < 460){
             BoxY = 50;
             width = 300;
+            //generate at the right side for small screens.
+            BoxX = window.innerWidth - width;
             height = 420;
-            // @ts-ignore
         }
 	});
     
-
-    export let zIdx;
-    export let BoxX = 200, BoxY = 120;//starting coords
     function onDragStart() {
         return {x: BoxX, y: BoxY}
     }
@@ -121,7 +121,7 @@
         --menuY: {menuY}px;
 
         " on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={aboutBox}>
-        <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:maxX-(width+13), maxY: maxY-(height+50)}}
+        <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:window.innerWidth, maxY: window.innerHeight-70}}
              class="title-bar fileGridBar windowBar" style="width:auto">
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: -1px;">Overview

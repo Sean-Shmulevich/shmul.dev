@@ -39,6 +39,7 @@
     "svelte-device-info": "^1.0.0",
     "svelte-drag-and-drop-actions": "^1.0.0",
     "svelte-drag-drop-touch": "^0.1.9",
+    "svelte-gestures": "^1.4.1",
     "svelte-markdown": "^0.2.3"
   }
 }

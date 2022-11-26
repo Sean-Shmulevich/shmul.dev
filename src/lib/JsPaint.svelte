@@ -10,7 +10,23 @@
 
 
     export let zIdx = 0;
-    export let BoxX = 200, BoxY = 200;//starting coords
+    export let BoxX = 200, BoxY = 100;//starting coords
+    let width = 350;
+
+    onMount(() => {
+        //basically a media query
+        if(window.innerWidth < 660){
+            BoxX = 50;
+            BoxY = 100;
+        }
+        if(window.innerWidth < 465){
+            BoxX = 20;
+            BoxY = 100;
+        }
+        if(window.innerWidth < 350){
+            width = window.innerWidth;
+        }
+	});
 
     function onDragStart() {
         return {x: BoxX, y: BoxY}
@@ -90,7 +106,7 @@
         resize: both;
         overflow: hidden;
         height: 500px;
-        width: 350px;
+        width: {width}px;
         max-height: 625px;
         max-width: 833px;
         min-width: 200px;

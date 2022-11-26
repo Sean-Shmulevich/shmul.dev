@@ -22,6 +22,12 @@
     import source from './assets/markdown/test.md?raw';
     import { group_outros } from 'svelte/internal';
 
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        startPositionX = window.innerWidth/4;
+	});
+
 
 
     let current = '';
@@ -155,6 +161,9 @@
         //after all of the windows are hidden reset the z-index so it doesn't get unresonably large but also would it ever do this.
         if($writableArray.length === 0){
             $count = {zIdx: 0, name: ""};
+            //reset the starting positions for the windows as well.
+            startPositionX = window.innerWidth/4;
+            startPositionX = 180;
         }
 
 
@@ -179,7 +188,7 @@
         console.log('change', tr.changes.toJSON())
     }
 
-    let startPositionX = 180, startPositionY = 180;
+    let startPositionX = 180, startPositionY = 100;
     let subWinPosArr = [{x:  180, y: 180, prev: null}, {x:  200, y: 200, prev: null}, {x:  220, y: 220}];
 </script>
 
@@ -224,7 +233,7 @@
         <JsPaint BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if $writableArray.indexOf('Overview') !== -1}
-        <AboutMe BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
+        <AboutMe BoxY={startPositionY+=30} bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
         <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>

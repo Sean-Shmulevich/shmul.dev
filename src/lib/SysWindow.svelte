@@ -64,9 +64,21 @@
     function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
 
     //fileWinOffset is a static variable that keeps track of how many window have been created it then calculates an offset based off this
+    let width = 414;
     onMount(() => {
 		fileWinOffset+=25;
         BoxX = window.innerWidth/4;
+        //basically a media query
+        if(window.innerWidth < 660){
+            BoxX = 50;
+        }
+        if(window.innerWidth < 465){
+            BoxX = -23;
+        }
+        //if the width of the screen is bigger then the width of the filesystem window then set the width of the window to twenty less then the max screen size
+        if(window.innerWidth <= 414){
+            width = window.innerWidth - 20;
+        }
         BoxX+= fileWinOffset;
         BoxY += fileWinOffset;
 	});
@@ -175,6 +187,7 @@
         z-index: {zIdx};
         --menuX: {menuX}px;
         --menuY: {menuY}px;
+        width: {width}px;
         cursor: unset !important;
     " on:mousedown={() => {
         if(!hide){
@@ -184,8 +197,8 @@
             zIdx = zIdx;
         }
     }} class:classname={hide} bind:this={remPos}>
-        <div class="title-bar fileGridBar windowBar " bind:clientWidth={w} bind:clientHeight={h}
-             use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:26, maxX:maxX-415, maxY: maxY-410}}>
+        <div class="title-bar fileGridBar windowBar " style="width: calc(100% - 2px);" bind:clientWidth={w} bind:clientHeight={h}
+             use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:26, maxX:window.innerWidth-20, maxY: window.innerHeight-70}}>
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: 4px;">
                 <span class="filesBarText">File Explorer</span>
@@ -200,7 +213,7 @@
             </div>
         </div>
 
-        <div style="border: 1px solid #000000;display: inline-block;width: 414px;margin-top: -6px">
+        <div style="border: 1px solid #000000;display: inline-block;width: inherit;margin-top: -6px">
 
             <fieldset class="fileMenuTop" style="margin-bottom: 0px;display: flex;align-items: center">
                 <button class="backButton" style="margin-left:1px;width:fit-content" on:click={thisWindow.goUp}>
@@ -226,7 +239,7 @@
                          style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px;margin-right:-4px"/>
                     <span class="moveText" style="margin-right: 6px">New Window</span>
                 </button>
-                <button class="backButton" style="margin-right:1px;">
+                <button class="backButton" style="margin-right:1px;min-width: 60px">
                     <img src="https://win98icons.alexmeub.com/icons/png/file_lines-1.png" alt="small file icon"
                          class="pathIcon" style="width:20px;height:20px;margin-bottom:6px;margin-left:-6px"/>
                     <span class="moveText">List view</span>
@@ -319,6 +332,7 @@
     }
 
     .backButton {
+        flex: 1;
         position: relative;
         box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
         color: black;
@@ -327,6 +341,7 @@
         margin-top: 3px;
         align-items: center;
         background: #c0c0c0;
+        min-width: 60px;
     }
 
     .myFileButton {

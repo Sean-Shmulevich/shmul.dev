@@ -5,6 +5,22 @@
   import "../css/terminal.css";
   import { asDraggable } from "svelte-drag-and-drop-actions";
   import DragDropTouch from "svelte-drag-drop-touch";
+  import { swipe } from 'svelte-gestures';
+  import { onMount } from 'svelte';
+
+  let minWidth = 502;
+  onMount(() => {
+        //basically a media query
+        if(window.innerWidth < 700){
+            BoxX = 0;
+            // @ts-ignore
+        }
+        if(window.innerWidth <= 600){
+          minWidth = window.innerWidth;
+          currWidth = window.innerWidth; 
+        }
+	});
+
 
   import { fade, incrementCount } from "./SysWindow.svelte";
 
@@ -143,7 +159,7 @@ function stopResize(e) {
     justify-content: flex-end;
     max-height: 625px;
     max-width: 833px;
-    min-width: 502px;
+    min-width: {minWidth}px;
     min-height: 402px;
     
     --menuX: {menuX}px;
@@ -180,11 +196,11 @@ on:mousedown={initResize}>
       onDragEnd,
       minX: 0,
       minY: 26,
-      maxX: maxX - currWidth,
-      maxY: maxY - currHeight,
+      maxX: window.innerWidth,
+      maxY: window.innerHeight - 70,
     }}
   >
-    <div style="margin-left: 6px;">
+    <div style="margin-top: 1px;width: 60px;display: flex;justify-content: space-evenly;">
       <div
         class="fakeButtons fakeClose vsControlButtons"
         on:mousedown={forward}
@@ -195,11 +211,11 @@ on:mousedown={initResize}>
       />
       <div class="fakeButtons fakeZoom vsControlButtons" />
     </div>
-    <div class="barSearch">
+    <div class="barSearch" style="width:70%">
       <div style="display:flex;width: inherit;">
         <div id="searchLeft" class="codicon codicon-arrow-left" />
         <div id="searchRight" class="codicon codicon-arrow-right" />
-        <div id="searchInBox" class="codicon codicon-search" />
+        <!-- <div id="searchInBox" class="codicon codicon-search" /> -->
         <input
           class="barSearchInput"
           id="text17"
