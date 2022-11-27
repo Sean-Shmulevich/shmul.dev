@@ -63,12 +63,25 @@
     function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
     function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
 
+    var tapedTwice = false;
+    function tapHandler(event) {
+        if(!tapedTwice) {
+            tapedTwice = true;
+            setTimeout( function() { tapedTwice = false; }, 300 );
+            return false;
+        }
+        event.preventDefault();
+        //action on double tap goes below
+        handleMinimize();
+    }
+
     //fileWinOffset is a static variable that keeps track of how many window have been created it then calculates an offset based off this
     let width = 414;
     onMount(() => {
 		fileWinOffset+=25;
         BoxX = window.innerWidth/4;
         //basically a media query
+        
         if(window.innerWidth < 660){
             BoxX = 50;
         }
@@ -84,6 +97,7 @@
         
         document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
         document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", tapHandler);
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
     //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
@@ -91,6 +105,7 @@
 		fileWinOffset -= 25;
         document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchstart", swipeStart);
         document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).removeEventListener("touchstart", tapHandler);
 	});
     let touchstartX = 0;
     let touchendX = 200;

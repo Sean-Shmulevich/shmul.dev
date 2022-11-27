@@ -11,6 +11,20 @@
   let minWidth = 502;
   let touchstartX = 0;
   let touchendX = 200;
+
+  
+  var tapedTwice = false;
+    function tapHandler(event) {
+        if(!tapedTwice) {
+            tapedTwice = true;
+            setTimeout( function() { tapedTwice = false; }, 300 );
+            return false;
+        }
+        event.preventDefault();
+        //action on double tap goes below
+        handleMinimize();
+    }
+  
   onMount(() => {
     //basically a media query
     if (window.innerWidth < 700) {
@@ -23,10 +37,12 @@
     }
     document.querySelector(".vscode").addEventListener("touchstart", swipeStart);
     document.querySelector(".vscode").addEventListener("touchend", swipeEnd);
+    document.querySelector(`.vscode > .vsAppBar`).addEventListener("touchstart", tapHandler);
   });
   onDestroy(() => {
     document.querySelector(".vscode").removeEventListener("touchstart", swipeStart);
     document.querySelector(".vscode").removeEventListener("touchend", swipeEnd);
+    document.querySelector(`.vscode > .vsAppBar`).removeEventListener("touchstart", tapHandler);
   });
 
   function checkDirection() {

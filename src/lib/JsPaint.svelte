@@ -16,6 +16,7 @@
     onDestroy(() => {
         document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
         document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", swipeEnd);
+        document.getElementById("jsBar").removeEventListener("touchstart", tapHandler);
 	});
     let touchstartX = 0;
     let touchendX = 200;
@@ -34,6 +35,17 @@
         checkDirection();
         }
     }
+    var tapedTwice = false;
+    function tapHandler(event) {
+        if(!tapedTwice) {
+            tapedTwice = true;
+            setTimeout( function() { tapedTwice = false; }, 300 );
+            return false;
+        }
+        event.preventDefault();
+        //action on double tap goes below
+        handleMinimize();
+    }
 
     onMount(() => {
         //basically a media query
@@ -50,6 +62,9 @@
         }
         document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
         document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", swipeEnd);
+
+        document.getElementById("jsBar").addEventListener("touchstart", tapHandler);
+
 	});
 
     function onDragStart() {
@@ -136,7 +151,7 @@
         min-width: 200px;
         min-height: 250px;
     " on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={remBox}>
-        <div class="title-bar fileGridBar windowBar " style="width:unset"
+        <div id="jsBar" class="title-bar fileGridBar windowBar " style="width:unset"
              use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: 4px;">
