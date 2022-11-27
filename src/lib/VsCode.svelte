@@ -35,14 +35,14 @@
       minWidth = window.innerWidth;
       currWidth = window.innerWidth;
     }
-    document.querySelector(".vscode").addEventListener("touchstart", swipeStart);
-    document.querySelector(".vscode").addEventListener("touchend", swipeEnd);
-    document.querySelector(`.vscode > .vsAppBar`).addEventListener("touchstart", tapHandler);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", swipeEnd);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", tapHandler);
   });
   onDestroy(() => {
-    document.querySelector(".vscode").removeEventListener("touchstart", swipeStart);
-    document.querySelector(".vscode").removeEventListener("touchend", swipeEnd);
-    document.querySelector(`.vscode > .vsAppBar`).removeEventListener("touchstart", tapHandler);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchstart", swipeStart);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchend", swipeEnd);
+    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).removeEventListener("touchstart", tapHandler);
   });
 
   function checkDirection() {

@@ -22,8 +22,8 @@
         if(window.innerWidth < 460){
             BoxY = 50;
             width = 300;
-            //generate at the right side for small screens.
-            BoxX = window.innerWidth - width;
+            //generate 100 away from the right side of the screen this turns out to be right after the menu screen icons
+            BoxX = 100;
             height = 420;
         }
             //wait for the window to load and then add an event listener

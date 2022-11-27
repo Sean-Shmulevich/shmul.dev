@@ -30,8 +30,6 @@
 	});
 
 
-
-
     let current = '';
     let doubleClick = '';
     const icons = [
@@ -160,6 +158,26 @@
         //take the one that you recieve and set it
     }
 
+    // screen.orientation.lock("portrait");
+    //from portrait detect change. 
+    // let portrait = window.matchMedia("(orientation: portrait)");
+
+    // portrait.addEventListener("change", function(e) {
+    //     if(e.matches) {
+    //         // Portrait mode
+    //     } else {
+    //         // Landscape
+    //     }
+    // })
+    function reorient(e) {
+        var portrait = (window.orientation % 180 == 0 && window.innerWidth < 500);
+        // .style["-webkit-transform"] = !portrait ? "rotate(-90deg)" : "";
+    }
+    window.onorientationchange = reorient;
+    window.setTimeout(reorient, 0);
+
+
+    // var alowed = window.screen.orientation.lock("portrait");
     $: {
         //after all of the windows are hidden reset the z-index so it doesn't get unresonably large but also would it ever do this.
         if($writableArray.length === 0){

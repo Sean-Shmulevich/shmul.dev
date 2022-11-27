@@ -74,7 +74,8 @@
     import '../css/98.css';
     import '../css/myStyle.css';
     import {appLaunch} from '../stores/appLaunch.js';
-  import VsCode from './VsCode.svelte';
+    import VsCode from './VsCode.svelte';
+    import { tap } from 'svelte-gestures';
     //grid view should be able to be controlled by the parent, use bind value very easy
     //export let gridViewOn = false;
 
@@ -82,6 +83,7 @@
     export let path = "/Home";
     let filesList;
     let foldersList;
+
 
     function getPathObj(str) {
         let pathArr = str.split("/").filter(Boolean);
@@ -173,7 +175,7 @@
             </div>
         {/each}
         {#each filesList as file}
-            <div class="exploreIcon" on:dblclick|capture|preventDefault={() => openItem(file)}>
+            <div class="exploreIcon" on:dblclick|capture={() => openItem(file)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>
