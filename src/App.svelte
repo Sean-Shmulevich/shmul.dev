@@ -59,11 +59,9 @@
         startPositionX = window.innerWidth/4;
         let catchTouchErr = () => {window.onerror = function(msg, url, line, col, error) {return true;}};
         if(touchDevice){
-            window.addEventListener("touchstart", catchTouchErr);
             window.addEventListener("touchmove", catchTouchErr);
         }
 	});
-
 
     function unsetBlue() {
         if (current !== '') {

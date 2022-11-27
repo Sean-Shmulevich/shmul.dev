@@ -12,7 +12,6 @@
     import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
-    import { SvelteComponent } from 'svelte/internal';
 
     export let zIdx;
     let mobileDblTap;
@@ -65,7 +64,7 @@
             //wait for the window to load and then add an event listener
         }
         if(touchDevice){
-            document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
+            document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart);
             document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, handleMinimize));
             document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,handleMinimize));
         }
@@ -237,6 +236,9 @@
             .SubMenuBody{height: 255px !important;}
             .SystemMenuWrapper{height: 383px !important;width:300px !important}
             .SubMenuBody > div > div > h2{margin-top: -16px;}
+        }
+        @media (min-width: 460px) {
+            .SystemMenuWrapper{width:375px !important}
         }
         .selectedTab{
             height: 19px !important;

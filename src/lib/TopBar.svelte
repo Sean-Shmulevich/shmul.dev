@@ -4,7 +4,13 @@
 
     import linkedIn from '../assets/linkedin_pixel_logo_icon_181925.png';
     import instaLogo from '../assets/instagram_pixel_logo_icon_181922.png';
+    
 
+    var today = new Date();
+    //first 3 letters of the current month
+    let monthStr = (new Intl.DateTimeFormat('en-US', { month: "long" }).format(today)).substring(0,3);
+    let dayOfWeek = (new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(today)).substring(0,3);
+    let dayOfMonth = (new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(today));
 </script>
 <div class="notAButton notMyToolBar topBar">
     <div class="nameBorder">
@@ -13,7 +19,7 @@
     </div>
     <div class="rightBox">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">-->
-        <span class="dateText">Tue Oct 18</span>
+        <span class="dateText">{dayOfWeek} {monthStr} {dayOfMonth}</span>
         <a href="https://github.com/Sean-Shmulevich"  target="_blank" rel="noopener noreferrer"><img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="hello alt" class="rightmost" style="margin-left:-3px"></a>
         <a href="https://www.linkedin.com/in/sean-shmulevich-237190185/" target="_blank" rel="noopener noreferrer"><img src={linkedIn} alt="hello alt" class="rightmost"></a>
         <a href="https://www.instagram.com/theshmulconspiracy/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="hello alt" class="rightmost"></a>

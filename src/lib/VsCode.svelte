@@ -216,7 +216,7 @@ bottom: 0;
       />
       <div
         class="fakeButtons fakeMinimize vsControlButtons"
-        on:mousedown|capture={() => handleMinimize()}
+        on:mousedown={() => handleMinimize()}
       />
       <div class="fakeButtons fakeZoom vsControlButtons" />
     </div>
