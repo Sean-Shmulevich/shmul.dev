@@ -93,8 +93,8 @@
       .querySelectorAll(".appMinimized")
       [currMenuPos].getBoundingClientRect();
 
-    const element = document.createElement("div");
-    document.body.appendChild(element);
+    // const element = document.createElement("div");
+    // document.body.appendChild(element);
 
     let buttonMidPt = domButtonPos.left + domButtonPos.width / 3;
     let styles = getComputedStyle(vsPos);

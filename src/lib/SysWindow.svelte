@@ -157,8 +157,8 @@
         let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
 
         //uh why tho
-        const element = document.createElement("div");
-        document.body.appendChild(element);
+        // const element = document.createElement("div");
+        // document.body.appendChild(element);
 
         //calculate 1/3rd into the button
         //the location that the window will go into

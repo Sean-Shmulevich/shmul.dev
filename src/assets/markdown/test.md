@@ -8,9 +8,3 @@ look like:
   * this one
   * that one
   * the other one
-
-Note that --- not considering the asterisk --- the actual text
-content starts at 4-columns in.
-
-> Block quotes are
-> written like so.

@@ -33,22 +33,6 @@
         dispatch('close', event.detail);
     }
 
-    
-    function mobileResize(width) {
-        if(width < 460){
-            BoxY = 50;
-            width = 300;
-            //generate 100 away from the right side of the screen this turns out to be right after the menu screen icons
-            BoxX = 102;
-            height = 420;
-        }
-        else{
-            width = 375;
-            height = 430;
-            //wait for the window to load and then add an event listener
-        }
-    }
-
     onMount(() => {
         //basically a media query
         if(window.innerWidth < 460){

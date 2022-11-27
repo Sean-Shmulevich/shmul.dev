@@ -2,26 +2,27 @@
     import svelteLogo from './assets/windowicons/aim_fldr.ico';
     import vsLogo from './assets/windowicons/vb-bas.ico';
     import shmulSys from './assets/myIcon_1.png';
-    import swissMountains from './assets/swissMountains.png';
+    // import swissMountains from './assets/swissMountains.png';
 
     import AboutMe from './lib/AboutMe.svelte'
     import BottomBar from './lib/BottomBar.svelte'
-    import JsPaint from "./lib/JsPaint.svelte"
-    import SysWindow from "./lib/SysWindow.svelte";
-    import {touchDevice} from './lib/SysWindow.svelte';
+    // import JsPaint from "./lib/JsPaint.svelte"
+    // import SysWindow from "./lib/SysWindow.svelte";
+    // import {touchDevice} from './lib/SysWindow.svelte';
     import TopBar from './lib/TopBar.svelte'
-    import VsCode from './lib/VsCode.svelte'
-    import CodeMirror from './lib/CodeMirror.svelte'
-    
+    // import VsCode from './lib/VsCode.svelte'
+    let VSCODE = null;
+    let FILESYS = null;
+    let JSPAINT= null;
+    let CODEMIRROR= null;
 
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
     import {appLaunch} from './stores/appLaunch.js';
-    import {glowWindow} from './stores/keep.js';
 
     import SvelteMarkdown from 'svelte-markdown'
     import source from './assets/markdown/test.md?raw';
-    import { group_outros } from 'svelte/internal';
+    // import CodeMirror from './lib/CodeMirror.svelte'
     
 
     import { onMount } from 'svelte';
@@ -58,9 +59,7 @@
     onMount(() => {
         startPositionX = window.innerWidth/4;
         let catchTouchErr = () => {window.onerror = function(msg, url, line, col, error) {return true;}};
-        if(touchDevice){
             window.addEventListener("touchmove", catchTouchErr);
-        }
 	});
 
     function unsetBlue() {
@@ -111,10 +110,22 @@
     }
 
     //this is run when opening a window from the 'desktop'
-    function updateWindows() {
+    async function updateWindows() {
         //kind of convoluted logic for setting blue styles after one click 
         //this should have been be done with css 
+        //dynamic import.
+        if(VSCODE === null && current === "VS Code"){
+            VSCODE = (await import('./lib/VsCode.svelte')).default;
+            CODEMIRROR = (await import('./lib/CodeMirror.svelte')).default;
+        }
+        else if(FILESYS === null && current === "File System"){
+            FILESYS = (await import('./lib/SysWindow.svelte')).default;
+        }
+        else if(JSPAINT === null && current === "Js Paint"){
+            JSPAINT = (await import("./lib/JsPaint.svelte")).default;
+        }
         doubleClick = current;
+        console.log(doubleClick);
         current = '';//unbluing
 
         //global stores to what is currently on the screen and also in the menubar
@@ -179,6 +190,13 @@
 
         //locic for launching apps from filesystem.
         if($appLaunch.length === 1){
+            let a = async () => {
+                if(VSCODE === null){
+                    VSCODE = (await import('./lib/VsCode.svelte')).default;
+                    CODEMIRROR = (await import('./lib/CodeMirror.svelte')).default;
+                }
+            }
+            a();
             let currApp = $appLaunch[0];
             //only launch if its not already in the menu bar
             if($writableArray.indexOf(currApp) === -1){
@@ -199,7 +217,7 @@
 <main>
 
     <TopBar/>
-    <div style="background: url({swissMountains}) 0 50% repeat-x" class="mountainDiv">
+    <div style="background: url('https://crustmag.slimecars.com/images/swissMountains.png') 0 50% repeat-x" class="mountainDiv">
     </div>
     {#each (icons) as {left, src, text}, i}
         <div class="homeIcon" style="top:{(i*105)+65}px; left:{left}px" class:blue={current === text}
@@ -212,45 +230,43 @@
         </div>
     {/each}
     {#if $writableArray.indexOf('File System') !== -1}
-        <SysWindow bind:hide="{isMinimized['File System']}" bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')} />
+        <svelte:component this={FILESYS} bind:hide="{isMinimized['File System']}" bind:zIdx="{zMap['File System']}" on:newWin={() => makeSubFileWin('File System'+numFileWin, numFileWin)}  on:close={() => removeWindow('File System')}/>
     {/if}
     <!-- display one subfile menu for each time the new window button was pressed the key is very important here-->
     {#each (Object.keys(fileSysWindows)) as fileWin (fileSysWindows[fileWin])}
-            {@const start = startPositionX}
-            {@const end = startPositionY}
             {#if $writableArray.indexOf(fileWin) !== -1}
-                <SysWindow 
-                windowIndex="{
-                    //this line of code is matching the int in a string.
-                    //coding with regex is cool.
-                    parseInt(fileWin.match(/(?<num>[0-9].*$)/).groups.num)
-                }"
-                bind:hide="{isMinimized[fileWin]}"  
-                bind:zIdx="{zMap[fileWin]}" 
-                on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} 
-                on:close={() => removeWindow(fileWin)} />
+            <svelte:component this={FILESYS}                 
+            windowIndex="{
+                //this line of code is matching the int in a string.
+                //coding with regex is cool.
+                parseInt(fileWin.match(/(?<num>[0-9].*$)/).groups.num)
+            }"
+            bind:hide="{isMinimized[fileWin]}"  
+            bind:zIdx="{zMap[fileWin]}" 
+            on:newWin={() => makeSubFileWin('File System'+(numFileWin+1), fileSysWindows[fileWin])} 
+            on:close={() => removeWindow(fileWin)}/>
             {/if}
     {/each}
     {#if $writableArray.indexOf('Js Paint') !== -1}
-        <JsPaint BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
+        <svelte:component this={JSPAINT} BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['Js Paint']}" bind:zIdx="{zMap['Js Paint']}" on:close={() => removeWindow('Js Paint')}/>
     {/if}
     {#if $writableArray.indexOf('Overview') !== -1}
         <AboutMe BoxY={startPositionY+=30} bind:hide="{isMinimized['Overview']}" bind:zIdx="{zMap['Overview']}" on:close={() => removeWindow('Overview')} />
     {/if}
     {#if $writableArray.indexOf('VS Code') !== -1}
-        <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
-                <CodeMirror doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
-                    bind:docStore={store}>
-                </CodeMirror>
-        </VsCode>
+        <svelte:component this={VSCODE} BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
+            <svelte:component this={CODEMIRROR} doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}>
+                bind:docStore={store}>
+            </svelte:component>
+        </svelte:component>
     {/if}
     <!-- i could also show all the md files but hide them by default -->
     {#if $writableArray.indexOf("resume") !== -1}
-        <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} windowName="resume" bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
+        <svelte:component this={VSCODE} BoxX={startPositionX+=30} BoxY={startPositionY+=30} windowName="resume" bind:hide="{isMinimized['resume']}" bind:zIdx="{zMap['resume']}" on:close={() => removeWindow('resume')}>
             <div style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-30px">
                 <SvelteMarkdown {source} />
             </div>
-        </VsCode>
+        </svelte:component>
     {/if}
     <BottomBar on:min={handleMessage}/>
     <div class="scan-lines"></div>
