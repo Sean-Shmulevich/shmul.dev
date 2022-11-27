@@ -52,15 +52,6 @@
             document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,handleMinimize));
         }
 	});
-    window.onerror = function(msg, url, line, col, error) {
-    let pathList = url.split("/");
-    let fileName = pathList[pathList.length -1];
-    if(fileName === "svelte-drag-drop-touch.esm.js"){
-        // this error from this file needds to just be passed
-        //return true and the error will be ignored
-        return true;
-    }
-};
 
     onDestroy(() => {
         //remove the touch listeners

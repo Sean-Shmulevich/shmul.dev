@@ -56,6 +56,14 @@
 
     onMount(() => {
         startPositionX = window.innerWidth/4;
+        let catchTouchErr = () => {
+            window.onerror = function(msg, url, line, col, error) {
+                    // this error from this file needds to just be passed
+                    //return true and the error will be ignored
+                    return true;
+            }};
+        window.addEventListener("touchstart", catchTouchErr);
+        window.addEventListener("touchmove", catchTouchErr);
 	});
 
 
@@ -236,8 +244,7 @@
     {#if $writableArray.indexOf('VS Code') !== -1}
         <VsCode BoxX={startPositionX+=30} BoxY={startPositionY+=30} bind:hide="{isMinimized['VS Code']}" bind:zIdx="{zMap['VS Code']}" on:close={() => removeWindow('VS Code')}>
                 <CodeMirror doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
-                    bind:docStore={store}
-                    on:change={changeHandler}>
+                    bind:docStore={store}>
                 </CodeMirror>
         </VsCode>
     {/if}
