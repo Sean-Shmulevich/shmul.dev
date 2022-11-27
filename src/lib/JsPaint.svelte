@@ -5,13 +5,35 @@
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from '../stores/keep.js';
     import {fade, incrementCount} from "./SysWindow.svelte"
-    import {onMount} from 'svelte';
+    import {onMount, onDestroy} from 'svelte';
     import {writableArray} from "../stores/minimized.js";
 
 
     export let zIdx = 0;
     export let BoxX = 200, BoxY = 100;//starting coords
     let width = 350;
+
+    onDestroy(() => {
+        document.querySelector(`.s-97VA8Z_peBrv > .window`).removeEventListener("touchstart", swipeStart);
+        document.querySelector(`.s-97VA8Z_peBrv > .window`).removeEventListener("touchend", swipeEnd);
+	});
+    let touchstartX = 0;
+    let touchendX = 200;
+
+    function checkDirection() {
+        //swipe direction down
+        if (touchendX > touchstartX) handleMinimize();
+    }
+    function swipeStart(e){
+        // console.log(e.target);
+        touchstartX = e.changedTouches[0].screenY;
+    }
+    function swipeEnd(e){
+        touchendX = e.changedTouches[0].screenY;
+        if(Math.abs(touchstartX - touchendX) > 100){
+        checkDirection();
+        }
+    }
 
     onMount(() => {
         //basically a media query
@@ -26,6 +48,8 @@
         if(window.innerWidth < 350){
             width = window.innerWidth;
         }
+        document.querySelector(`.s-97VA8Z_peBrv > .window`).addEventListener("touchstart", swipeStart);
+        document.querySelector(`.s-97VA8Z_peBrv > .window`).addEventListener("touchend", swipeEnd);
 	});
 
     function onDragStart() {

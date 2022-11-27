@@ -82,15 +82,15 @@
         BoxX+= fileWinOffset;
         BoxY += fileWinOffset;
         
-        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).addEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", swipeEnd);
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
     //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
     onDestroy(() => {
 		fileWinOffset -= 25;
-        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).removeEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).removeEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchend", swipeEnd);
 	});
     let touchstartX = 0;
     let touchendX = 200;
