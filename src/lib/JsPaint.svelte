@@ -14,8 +14,8 @@
     let width = 350;
 
     onDestroy(() => {
-        document.querySelector(`.s-97VA8Z_peBrv > .window`).removeEventListener("touchstart", swipeStart);
-        document.querySelector(`.s-97VA8Z_peBrv > .window`).removeEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", swipeEnd);
 	});
     let touchstartX = 0;
     let touchendX = 200;
@@ -48,8 +48,8 @@
         if(window.innerWidth < 350){
             width = window.innerWidth;
         }
-        document.querySelector(`.s-97VA8Z_peBrv > .window`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.s-97VA8Z_peBrv > .window`).addEventListener("touchend", swipeEnd);
+        document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", swipeEnd);
 	});
 
     function onDragStart() {
