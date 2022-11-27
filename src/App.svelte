@@ -25,11 +25,6 @@
 
     import { onMount } from 'svelte';
 
-    onMount(() => {
-        startPositionX = window.innerWidth/4;
-	});
-
-
     let current = '';
     let doubleClick = '';
     const icons = [
@@ -55,6 +50,14 @@
             text: "Js Paint"
         },
     ];
+    let store;
+    let startPositionX = 180, startPositionY = 100;
+
+
+    onMount(() => {
+        startPositionX = window.innerWidth/4;
+	});
+
 
     function unsetBlue() {
         if (current !== '') {
@@ -158,24 +161,6 @@
         //take the one that you recieve and set it
     }
 
-    // screen.orientation.lock("portrait");
-    //from portrait detect change. 
-    // let portrait = window.matchMedia("(orientation: portrait)");
-
-    // portrait.addEventListener("change", function(e) {
-    //     if(e.matches) {
-    //         // Portrait mode
-    //     } else {
-    //         // Landscape
-    //     }
-    // })
-    function reorient(e) {
-        var portrait = (window.orientation % 180 == 0 && window.innerWidth < 500);
-        // .style["-webkit-transform"] = !portrait ? "rotate(-90deg)" : "";
-    }
-    window.onorientationchange = reorient;
-    window.setTimeout(reorient, 0);
-
 
     // var alowed = window.screen.orientation.lock("portrait");
     $: {
@@ -203,14 +188,6 @@
             $appLaunch.splice(0,1);//remove the only element in the array.
         }
     }
-    
-    let store;
-    function changeHandler({ detail: {tr} }) {
-        // console.log('change', tr.changes.toJSON())
-    }
-
-    let startPositionX = 180, startPositionY = 100;
-    let subWinPosArr = [{x:  180, y: 180, prev: null}, {x:  200, y: 200, prev: null}, {x:  220, y: 220}];
 </script>
 
 <svelte:window on:click|capture={unsetBlue}/>

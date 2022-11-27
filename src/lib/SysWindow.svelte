@@ -1,33 +1,4 @@
 <script context="module">
-    import {quartOut} from "svelte/easing";
-
-    export function fade(node, {
-        delay = 80,
-        duration = 1000,
-        easing = quartOut,
-    }) {
-        const w = getComputedStyle(node).width;
-        const h = getComputedStyle(node).height;
-
-        //check the store to find what order the array is in to find the exact position to go into.
-        //the data may only be available in app. make a store that gets sent then wiped with this data.
-
-        const aboutTheLengthToTheBottom = parseInt(getComputedStyle(node).bottom) + parseInt(h);
-        const aboutTheLengthToTheLeft = parseInt(getComputedStyle(node).left) + parseInt(w)/2;
-        const xTranslate = (u) => u*aboutTheLengthToTheLeft;
-        const yTranslate = (u) => {
-            return u * aboutTheLengthToTheBottom;
-        };
-        return {
-            delay,
-            duration,
-            easing,
-            //scale y down faster then your are scaling x this will allow you to squash the object
-            //or use rotateX .2 also to squash the y values.rotateX(.2turn)
-            //skew(${u*80}deg)
-            css: (t,u) => `transform: translate(${xTranslate(-u)}px, ${yTranslate(u)}px) scale(${t},${t})`
-        };
-    }
 
     export function incrementCount(zIdx, currMaxZ, currStore, name) {
         if (zIdx > currMaxZ["zIdx"]) {
@@ -42,6 +13,41 @@
     };
 
     export let fileWinOffset = 0;
+
+    var tapedTwice = false;
+    export function tapHandler(event, handleMinimize)  {
+        if(!tapedTwice) {
+            tapedTwice = true;
+            setTimeout( function() { tapedTwice = false; }, 300 );
+            return false;
+        }
+        event.preventDefault();
+        //action on double tap goes below
+        handleMinimize();
+    }
+    function isTouchDevice() {
+        console.log(('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        // @ts-ignore
+        (navigator.msMaxTouchPoints > 0));
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        // @ts-ignore
+        (navigator.msMaxTouchPoints > 0));
+    }
+    //true if the device has a touch screen.
+    export let touchDevice = isTouchDevice();
+    let touchstartX = 0;
+    let touchendX = 200;
+    export function swipeStart(e){
+        touchstartX = e.changedTouches[0].screenY;
+    }
+    export function swipeEnd(e, handleMinimize){
+        touchendX = e.changedTouches[0].screenY;
+        if(Math.abs(touchstartX - touchendX) > 100){
+            if (touchendX > touchstartX) handleMinimize();
+        }
+    }
 </script>
 <script>
     import '../css/98.css';
@@ -59,24 +65,24 @@
     export let zIdx = 0;
     export let BoxX = 120, BoxY = 120;//starting coords
 
-    function onDragStart () { return { x:BoxX,y:BoxY} }
-    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
-    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
-
-    var tapedTwice = false;
-    function tapHandler(event) {
-        if(!tapedTwice) {
-            tapedTwice = true;
-            setTimeout( function() { tapedTwice = false; }, 300 );
-            return false;
-        }
-        event.preventDefault();
-        //action on double tap goes below
-        handleMinimize();
-    }
-
     //fileWinOffset is a static variable that keeps track of how many window have been created it then calculates an offset based off this
     let width = 414;
+    export let hide = false;
+
+    let currentPath;//currentPath
+    let thisWindow;//theCurrent window
+
+    let menuX, menuY;
+    let remPos;
+    export let windowIndex = 0;
+    
+    //double tap function to relese on destroy.
+    let mobileDblTap;
+    let mobileSwipe;
+    let maxX = 0;
+    let maxY = 0;
+    let w, h;
+
     onMount(() => {
 		fileWinOffset+=25;
         BoxX = window.innerWidth/4;
@@ -95,35 +101,23 @@
         BoxX+= fileWinOffset;
         BoxY += fileWinOffset;
         
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", swipeEnd);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", tapHandler);
+        if(touchDevice){
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, handleMinimize)});
+        }
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
     //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
     onDestroy(() => {
 		fileWinOffset -= 25;
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchend", swipeEnd);
-        document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).removeEventListener("touchstart", tapHandler);
-	});
-    let touchstartX = 0;
-    let touchendX = 200;
-
-    function checkDirection() {
-        //swipe direction down
-        if (touchendX > touchstartX) handleMinimize();
-    }
-    function swipeStart(e){
-        // console.log(e.target);
-        touchstartX = e.changedTouches[0].screenY;
-    }
-    function swipeEnd(e){
-        touchendX = e.changedTouches[0].screenY;
-        if(Math.abs(touchstartX - touchendX) > 100){
-        checkDirection();
+        if(touchDevice){
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchstart", swipeStart);
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).removeEventListener("touchend", mobileSwipe);
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).removeEventListener("touchstart", mobileDblTap);
         }
-    }
+	});
+
     //wait for the window to load and then add an event listener
     // window.addEventListener("load", () =>{
     //     document.querySelector(".s--qfxjjQmf6o1").addEventListener("touchstart", swipeStart);
@@ -140,23 +134,10 @@
         dispatch('newWin', event.detail);
     }
 
-
-    export let hide = false;
-
-    let currentPath;//currentPath
-    let thisWindow;//theCurrent window
-
-    //not a pure function.
-    let animation = {fn: fade};
-    function maybe(node, options) {
-        if (hide) {
-            return options.fn(node, options);
-        }
-    }
-
-    let menuX, menuY;
-    let remPos;
-    export let windowIndex = 0;
+    //handle drag
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
 
     function handleMinimize(){
         //current default window is File System
@@ -216,11 +197,8 @@
             $glowWindow = $glowWindow;}, false);
 
     }
-    let maxX = 0;
-    let maxY = 0;
 
-    //idk what these are doing
-    let w, h;
+
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <div class="remBoxMobile File-System{windowIndex}" style="

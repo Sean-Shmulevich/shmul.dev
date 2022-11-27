@@ -9,13 +9,32 @@
     import {onMount, onDestroy} from 'svelte';
 
     //getThe zIndex and animations functions used for all windows.
-    import {fade, incrementCount} from "./SysWindow.svelte"
+    import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
     import { SvelteComponent } from 'svelte/internal';
 
     export let zIdx;
+    let mobileDblTap;
+    let mobileSwipe;
+    export let hide = false;
+    // let animation = {fn: fade};
+
+    let menuX, menuY;
+    let aboutBox;
     export let BoxX = 200, BoxY = 120;//starting coords
+    let value = "Hello";
+    let maxX = 0, maxY = 0;
+    let width = 375;//+13
+    let height = 430;//+50
+
+    const dispatch = createEventDispatcher();
+
+    function forward(event) {
+        dispatch('close', event.detail);
+    }
+
+
     onMount(() => {
         BoxX = window.innerWidth/6;
         //basically a media query
@@ -27,48 +46,20 @@
             height = 420;
         }
             //wait for the window to load and then add an event listener
-        document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
-        document.querySelector(".SubMenu").addEventListener("touchend", swipeEnd);
-        document.getElementById("aboutBar").addEventListener("touchstart", tapHandler);
-	});
-    let touchstartX = 0;
-    let touchendX = 200;
-
-    var tapedTwice = false;
-    function tapHandler(event) {
-        if(!tapedTwice) {
-            tapedTwice = true;
-            setTimeout( function() { tapedTwice = false; }, 300 );
-            return false;
+        if(touchDevice){
+            document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
+            document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => mobileSwipe(e, handleMinimize));
+            document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,handleMinimize));
         }
-        event.preventDefault();
-        //action on double tap goes below
-        handleMinimize();
-    }
+	});
 
     onDestroy(() => {
         //remove the touch listeners
         document.querySelector(".SubMenu").removeEventListener("touchstart", swipeStart);
-        document.querySelector(".SubMenu").removeEventListener("touchend", swipeEnd);
+        document.querySelector(".SubMenu").removeEventListener("touchend", mobileSwipe);
         //double tap on bar.
-        document.getElementById("aboutBar").removeEventListener("touchstart", tapHandler);
+        document.getElementById("aboutBar").removeEventListener("touchstart", mobileDblTap);
     });
-
-    function checkDirection() {
-        //swipe direction down
-        if (touchendX > touchstartX) handleMinimize();
-    }
-    function swipeStart(e){
-        // console.log(e.target);
-        touchstartX = e.changedTouches[0].screenY;
-    }
-    function swipeEnd(e){
-        touchendX = e.changedTouches[0].screenY;
-        if(Math.abs(touchstartX - touchendX) > 100){
-        checkDirection();
-        }
-    }
-    
     function onDragStart() {
         return {x: BoxX, y: BoxY}
     }
@@ -82,31 +73,6 @@
         BoxX = x;
         BoxY = y
     }
-
-    let value = "Hello";
-
-    const dispatch = createEventDispatcher();
-
-    function forward(event) {
-        dispatch('close', event.detail);
-    }
-
-    export let hide = false;
-
-    //function wrapper so cool and solid im glad I found this
-    function maybe(node, options) {
-        if (hide) {
-            return options.fn(node, options);
-            //how do I use minimized.js in order to show conditionally set hide back.
-            //i need the knowledge of if it is currently on the screen or not.
-            //but if i just check that its in the store then i can just flip hide?
-        }
-    }
-
-    let animation = {fn: fade};
-
-    let menuX, menuY;
-    let aboutBox;
 
     function handleMinimize() {
         hide = true;
@@ -141,9 +107,6 @@
             zIdx = zIdx;
         }
     }
-    let maxX = 0, maxY = 0;
-    let width = 375;//+13
-    let height = 430;//+50
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <!-- svelte-ignore missing-declaration -->

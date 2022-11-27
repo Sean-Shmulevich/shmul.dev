@@ -1,29 +1,43 @@
 <script>
+  //css
   import "../css/work.css";
   import "../css/myStyle.css";
   import "../css/codicon.css";
   import "../css/terminal.css";
+
   import { asDraggable } from "svelte-drag-and-drop-actions";
-  // import DragDropTouch from "svelte-drag-drop-touch";
-  import { swipe } from "svelte-gestures";
   import { onDestroy, onMount } from "svelte";
-
-  let minWidth = 502;
-  let touchstartX = 0;
-  let touchendX = 200;
-
+  import { createEventDispatcher } from "svelte";
   
-  var tapedTwice = false;
-    function tapHandler(event) {
-        if(!tapedTwice) {
-            tapedTwice = true;
-            setTimeout( function() { tapedTwice = false; }, 300 );
-            return false;
-        }
-        event.preventDefault();
-        //action on double tap goes below
-        handleMinimize();
-    }
+  //stores
+  import { count } from "../stores/zIndex.js";
+  import { glowWindow } from "../stores/keep.js";
+  import { writableArray } from "../stores/minimized.js";
+
+  import {incrementCount, tapHandler, touchDevice, swipeStart, swipeEnd } from "./SysWindow.svelte";
+  
+  export let zIdx = 0;
+  let minWidth = 502;
+
+  //double tap function to relese on destroy.
+  let mobileDblTap;
+  let mobileSwipe;
+  export let BoxX = 200,BoxY = 200; //starting coords
+  export let hide = false;
+  let vsPos;
+  let menuX, menuY;
+  let currWidth = 600;
+  let currHeight = 400;
+  export let windowName = "VS Code";
+  let maxX = 0,maxY = 0;
+
+  //dispatch the close event to the app.svelte.
+  const dispatch = createEventDispatcher();
+
+  function forward(event) {
+    dispatch("close", event.detail);
+  }
+
   
   onMount(() => {
     //basically a media query
@@ -34,48 +48,24 @@
     if (window.innerWidth <= 600) {
       minWidth = window.innerWidth;
       currWidth = window.innerWidth;
+      //only create if the device has a touchscreen.
+      if(touchDevice){
+        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
+        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
+        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e,handleMinimize)});
+      }
     }
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", swipeEnd);
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", tapHandler);
   });
+  //remove tap listeners.
   onDestroy(() => {
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchstart", swipeStart);
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchend", swipeEnd);
-    document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).removeEventListener("touchstart", tapHandler);
+    if(touchDevice){
+      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchstart", swipeStart);
+      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchend", mobileSwipe);
+      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).removeEventListener("touchstart", mobileDblTap);
+    }
   });
 
-  function checkDirection() {
-    //swipe direction down
-    if (touchendX > touchstartX) handleMinimize();
-  }
-  function swipeStart(e){
-    touchstartX = e.changedTouches[0].screenY;
-  }
-  function swipeEnd(e){
-    touchendX = e.changedTouches[0].screenY;
-    if(Math.abs(touchstartX - touchendX) > 100){
-      checkDirection();
-    }
-  }
 
-  import { fade, incrementCount } from "./SysWindow.svelte";
-
-  import { count } from "../stores/zIndex.js";
-  import { glowWindow } from "../stores/keep.js";
-  import { writableArray } from "../stores/minimized.js";
-  export let zIdx = 0;
-
-  import { createEventDispatcher, afterUpdate } from "svelte";
-
-  const dispatch = createEventDispatcher();
-
-  function forward(event) {
-    dispatch("close", event.detail);
-  }
-
-  export let BoxX = 200,
-    BoxY = 200; //starting coords
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
@@ -90,22 +80,7 @@
     BoxY = y;
   }
 
-  export let hide = false;
-  //function wrapper so cool and solid im glad I found this
-  function maybe(node, options) {
-    if (hide) {
-      return options.fn(node, options);
-      //how do I use minimized.js in order to show conditionally set hide back.
-      //i need the knowledge of if it is currently on the screen or not.
-      //but if i just check that its in the store then i can just flip hide?
-    }
-  }
-  let animation = { fn: fade };
-  let vsPos;
-  let menuX, menuY;
-  let currWidth = 600;
-  let currHeight = 400;
-  export let windowName = "VS Code";
+
 
   //requires a lot of information multiples stores and a call to the dom.
   function handleMinimize() {
@@ -152,9 +127,6 @@
       zIdx = zIdx;
     }
   }
-
-  let maxX = 0,
-    maxY = 0;
 
   //Window funtion mousemove & mouseup
   function initResize(e) {

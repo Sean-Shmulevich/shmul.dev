@@ -4,7 +4,7 @@
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from '../stores/keep.js';
-    import {fade, incrementCount} from "./SysWindow.svelte"
+    import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
     import {onMount, onDestroy} from 'svelte';
     import {writableArray} from "../stores/minimized.js";
 
@@ -12,40 +12,11 @@
     export let zIdx = 0;
     export let BoxX = 200, BoxY = 100;//starting coords
     let width = 350;
-
-    onDestroy(() => {
-        document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", swipeEnd);
-        document.getElementById("jsBar").removeEventListener("touchstart", tapHandler);
-	});
-    let touchstartX = 0;
-    let touchendX = 200;
-
-    function checkDirection() {
-        //swipe direction down
-        if (touchendX > touchstartX) handleMinimize();
-    }
-    function swipeStart(e){
-        // console.log(e.target);
-        touchstartX = e.changedTouches[0].screenY;
-    }
-    function swipeEnd(e){
-        touchendX = e.changedTouches[0].screenY;
-        if(Math.abs(touchstartX - touchendX) > 100){
-        checkDirection();
-        }
-    }
-    var tapedTwice = false;
-    function tapHandler(event) {
-        if(!tapedTwice) {
-            tapedTwice = true;
-            setTimeout( function() { tapedTwice = false; }, 300 );
-            return false;
-        }
-        event.preventDefault();
-        //action on double tap goes below
-        handleMinimize();
-    }
+    export let hide = false;
+    let remBox;
+    let menuX, menuY;
+    let mobileDblTap;
+    let mobileSwipe;
 
     onMount(() => {
         //basically a media query
@@ -60,11 +31,20 @@
         if(window.innerWidth < 350){
             width = window.innerWidth;
         }
-        document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", swipeEnd);
+        if(touchDevice){
+            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
+            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
+            document.getElementById("jsBar").addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, handleMinimize)});
+        }
 
-        document.getElementById("jsBar").addEventListener("touchstart", tapHandler);
 
+	});
+    onDestroy(() => {
+        if(touchDevice){
+            document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
+            document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", mobileSwipe);
+            document.getElementById("jsBar").removeEventListener("touchstart", mobileDblTap);
+        }
 	});
 
     function onDragStart() {
@@ -86,21 +66,6 @@
     function forward(event) {
         dispatch('close', event.detail);
     }
-
-
-    export let hide = false;
-
-    let remBox;
-    //not a pure function.
-    let animation = {fn: fade};
-
-    function maybe(node, options) {
-        if (hide) {
-            return options.fn(node, options);
-        }
-    }
-
-    let menuX, menuY;
 
     function handleMinimize(){
         let currMenuPos = $writableArray.indexOf("Js Paint");

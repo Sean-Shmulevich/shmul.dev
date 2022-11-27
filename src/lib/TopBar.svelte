@@ -6,7 +6,6 @@
     import instaLogo from '../assets/instagram_pixel_logo_icon_181922.png';
 
     import {createEventDispatcher} from 'svelte';
-    const dispatch = createEventDispatcher();
 </script>
 <div class="notAButton notMyToolBar topBar">
     <div class="nameBorder">
@@ -16,9 +15,9 @@
     <div class="rightBox">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">-->
         <span class="dateText">Tue Oct 18</span>
-        <img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="hello alt" class="rightmost" style="margin-left:-3px">
-        <img src="{linkedIn}" alt="hello alt" class="rightmost">
-        <img src={instaLogo} alt="hello alt" class="rightmost">
+        <a href="https://github.com/Sean-Shmulevich"  target="_blank" rel="noopener noreferrer"><img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="hello alt" class="rightmost" style="margin-left:-3px"></a>
+        <a href="https://www.linkedin.com/in/sean-shmulevich-237190185/" target="_blank" rel="noopener noreferrer"><img src={linkedIn} alt="hello alt" class="rightmost"></a>
+        <a href="https://www.instagram.com/theshmulconspiracy/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="hello alt" class="rightmost"></a>
     </div>
 </div>
 <style>
@@ -27,6 +26,9 @@
         max-height: 45px;
         margin-top: -10px;
         vertical-align: middle;
+    }
+    a:focus{
+        outline: unset;
     }
     .nameBorder{
 
