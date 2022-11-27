@@ -109,7 +109,7 @@
     //TODO impplement logic for picking the right window.
     let thisWindowClass = windowName.replace(/\s+/g, "-");
     let elem = document.querySelector(`.vscode.${thisWindowClass}`);
-    console.log(`.vscode.${thisWindowClass}`);
+    // console.log(`.vscode.${thisWindowClass}`);
     elem.addEventListener(
       "animationend",
       function () {

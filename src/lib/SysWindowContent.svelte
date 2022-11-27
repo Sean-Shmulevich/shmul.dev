@@ -153,7 +153,7 @@
             }
             //match a file ending in .md
             else if(/^.+\.md$/.test(file)){
-                console.log("MD file");
+                // console.log("MD file");
                 //push to store and remove the .md at the end of the file.
                 $appLaunch.push(file.substring(0, file.length-3));
             }

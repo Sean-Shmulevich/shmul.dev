@@ -48,17 +48,28 @@
             //wait for the window to load and then add an event listener
         if(touchDevice){
             document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
-            document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => mobileSwipe(e, handleMinimize));
+            document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, handleMinimize));
             document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,handleMinimize));
         }
 	});
+    window.onerror = function(msg, url, line, col, error) {
+    let pathList = url.split("/");
+    let fileName = pathList[pathList.length -1];
+    if(fileName === "svelte-drag-drop-touch.esm.js"){
+        // this error from this file needds to just be passed
+        //return true and the error will be ignored
+        return true;
+    }
+};
 
     onDestroy(() => {
         //remove the touch listeners
-        document.querySelector(".SubMenu").removeEventListener("touchstart", swipeStart);
-        document.querySelector(".SubMenu").removeEventListener("touchend", mobileSwipe);
-        //double tap on bar.
-        document.getElementById("aboutBar").removeEventListener("touchstart", mobileDblTap);
+        if(touchDevice){
+            document.querySelector(".SubMenu").removeEventListener("touchstart", swipeStart);
+            document.querySelector(".SubMenu").removeEventListener("touchend", mobileSwipe);
+            //double tap on bar.
+            document.getElementById("aboutBar").removeEventListener("touchstart", mobileDblTap);
+        }
     });
     function onDragStart() {
         return {x: BoxX, y: BoxY}

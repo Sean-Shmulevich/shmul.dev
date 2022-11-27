@@ -5,7 +5,6 @@
     import linkedIn from '../assets/linkedin_pixel_logo_icon_181925.png';
     import instaLogo from '../assets/instagram_pixel_logo_icon_181922.png';
 
-    import {createEventDispatcher} from 'svelte';
 </script>
 <div class="notAButton notMyToolBar topBar">
     <div class="nameBorder">
