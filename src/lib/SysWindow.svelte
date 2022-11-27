@@ -49,7 +49,7 @@
     import SysWindowContent from './SysWindowContent.svelte'
     import {createEventDispatcher} from 'svelte';
     import {asDraggable} from 'svelte-drag-and-drop-actions'
-    import  DragDropTouch  from 'svelte-drag-drop-touch'
+    // import  DragDropTouch  from 'svelte-drag-drop-touch'
     import { onMount, onDestroy } from 'svelte';
 
     import {count} from '../stores/zIndex.js';
@@ -81,12 +81,39 @@
         }
         BoxX+= fileWinOffset;
         BoxY += fileWinOffset;
+        
+        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).addEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).addEventListener("touchend", swipeEnd);
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
     //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
     onDestroy(() => {
 		fileWinOffset -= 25;
+        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).removeEventListener("touchstart", swipeStart);
+        document.querySelector(`.remBoxMobile.File-System${windowIndex}`).removeEventListener("touchend", swipeEnd);
 	});
+    let touchstartX = 0;
+    let touchendX = 200;
+
+    function checkDirection() {
+        //swipe direction down
+        if (touchendX > touchstartX) handleMinimize();
+    }
+    function swipeStart(e){
+        // console.log(e.target);
+        touchstartX = e.changedTouches[0].screenY;
+    }
+    function swipeEnd(e){
+        touchendX = e.changedTouches[0].screenY;
+        if(Math.abs(touchstartX - touchendX) > 100){
+        checkDirection();
+        }
+    }
+    //wait for the window to load and then add an event listener
+    // window.addEventListener("load", () =>{
+    //     document.querySelector(".s--qfxjjQmf6o1").addEventListener("touchstart", swipeStart);
+    //     document.querySelector(".s--qfxjjQmf6o1").addEventListener("touchend", swipeEnd);
+    // });
 
     const dispatch = createEventDispatcher();
 
@@ -124,7 +151,7 @@
         if(windowIndex !== 0){
             currWindow = currWindow+(windowIndex);
         }
-        console.log(windowIndex);
+        // console.log(windowIndex);
 
         let currMenuPos = $writableArray.indexOf(currWindow);
         if(currMenuPos === -1) {return}
@@ -158,7 +185,7 @@
         let pickWindow = currMenuPos;
         // if(windowIndex === -1){pickWindow = 0}
         let elem = document.querySelector(`.remBoxMobile.File-System${windowIndex}`);
-        console.log(elem);
+        // console.log(elem);
         
         //animation is over stop glow window
         elem.addEventListener("animationend", function() {

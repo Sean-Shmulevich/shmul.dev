@@ -4,23 +4,44 @@
   import "../css/codicon.css";
   import "../css/terminal.css";
   import { asDraggable } from "svelte-drag-and-drop-actions";
-  import DragDropTouch from "svelte-drag-drop-touch";
-  import { swipe } from 'svelte-gestures';
-  import { onMount } from 'svelte';
+  // import DragDropTouch from "svelte-drag-drop-touch";
+  import { swipe } from "svelte-gestures";
+  import { onDestroy, onMount } from "svelte";
 
   let minWidth = 502;
+  let touchstartX = 0;
+  let touchendX = 200;
   onMount(() => {
-        //basically a media query
-        if(window.innerWidth < 700){
-            BoxX = 0;
-            // @ts-ignore
-        }
-        if(window.innerWidth <= 600){
-          minWidth = window.innerWidth;
-          currWidth = window.innerWidth; 
-        }
-	});
+    //basically a media query
+    if (window.innerWidth < 700) {
+      BoxX = 0;
+      // @ts-ignore
+    }
+    if (window.innerWidth <= 600) {
+      minWidth = window.innerWidth;
+      currWidth = window.innerWidth;
+    }
+    document.querySelector(".vscode").addEventListener("touchstart", swipeStart);
+    document.querySelector(".vscode").addEventListener("touchend", swipeEnd);
+  });
+  onDestroy(() => {
+    document.querySelector(".vscode").removeEventListener("touchstart", swipeStart);
+    document.querySelector(".vscode").removeEventListener("touchend", swipeEnd);
+  });
 
+  function checkDirection() {
+    //swipe direction down
+    if (touchendX > touchstartX) handleMinimize();
+  }
+  function swipeStart(e){
+    touchstartX = e.changedTouches[0].screenY;
+  }
+  function swipeEnd(e){
+    touchendX = e.changedTouches[0].screenY;
+    if(Math.abs(touchstartX - touchendX) > 100){
+      checkDirection();
+    }
+  }
 
   import { fade, incrementCount } from "./SysWindow.svelte";
 
@@ -37,7 +58,8 @@
     dispatch("close", event.detail);
   }
 
-  export let BoxX = 200, BoxY = 200; //starting coords
+  export let BoxX = 200,
+    BoxY = 200; //starting coords
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
@@ -94,7 +116,7 @@
 
     //which vs code is it?
     //TODO impplement logic for picking the right window.
-    let thisWindowClass = windowName.replace(/\s+/g, '-');
+    let thisWindowClass = windowName.replace(/\s+/g, "-");
     let elem = document.querySelector(`.vscode.${thisWindowClass}`);
     console.log(`.vscode.${thisWindowClass}`);
     elem.addEventListener(
@@ -118,32 +140,32 @@
   let maxX = 0,
     maxY = 0;
 
-    //Window funtion mousemove & mouseup
-function initResize(e) {
+  //Window funtion mousemove & mouseup
+  function initResize(e) {
     // if(currWidth >= 833){
     //     currWidth = 833;
     // }
     // else if(currWidth <= 502){
     //     currWidth = 502;
     // }
-    window.addEventListener('mousemove', Resize, false);
-    window.addEventListener('mouseup', stopResize, false);
-}
-//resize the element
-function Resize(e) {
-    console.log(currWidth);
+    window.addEventListener("mousemove", Resize, false);
+    window.addEventListener("mouseup", stopResize, false);
+  }
+  //resize the element
+  function Resize(e) {
+    // console.log(currWidth);
     //the resize bar is 6 px
     //(e.clientX - BoxX) <= 833 && (e.clientX - BoxX) >= 502
-    if(true){
-        currWidth = (e.clientX - BoxX);
-        currHeight = (e.clientY - BoxY);
+    if (true) {
+      currWidth = e.clientX - BoxX;
+      currHeight = e.clientY - BoxY;
     }
-}
-//on mouseup remove windows functions mousemove & mouseup
-function stopResize(e) {
-    window.removeEventListener('mousemove', Resize, false);
-    window.removeEventListener('mouseup', stopResize, false);
-}
+  }
+  //on mouseup remove windows functions mousemove & mouseup
+  function stopResize(e) {
+    window.removeEventListener("mousemove", Resize, false);
+    window.removeEventListener("mouseup", stopResize, false);
+  }
 </script>
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
@@ -170,10 +192,8 @@ function stopResize(e) {
   class:classname={hide}
   bind:this={vsPos}
 >
-
-
-<div
-style="   
+  <div
+    style="   
 position: absolute; 
 height:15px;
 width: 9px;
@@ -182,9 +202,8 @@ z-index:50;
 right: 0;
 bottom: 0;
 "
-on:mousedown={initResize}>
-</div>
-
+    on:mousedown={initResize}
+  />
 
   <div
     class="vsAppBar"
@@ -200,7 +219,9 @@ on:mousedown={initResize}>
       maxY: window.innerHeight - 70,
     }}
   >
-    <div style="margin-top: 1px;width: 60px;display: flex;justify-content: space-evenly;">
+    <div
+      style="margin-top: 1px;width: 60px;display: flex;justify-content: space-evenly;"
+    >
       <div
         class="fakeButtons fakeClose vsControlButtons"
         on:mousedown={forward}
@@ -285,8 +306,6 @@ on:mousedown={initResize}>
       <span class="vsBarText">Ln 140, Col 55</span>
     </div>
   </div>
-
-  
 </div>
 
 <style>
@@ -377,5 +396,5 @@ on:mousedown={initResize}>
   }
   :global(.ͼm) {
     color: yellow;
-}
+  }
 </style>

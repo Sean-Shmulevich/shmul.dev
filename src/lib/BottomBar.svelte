@@ -20,6 +20,7 @@
     let text;
     let activeWindow = "";
     function forward(event, text) {
+        // console.log(text);
         activeWindow = text;
 
         //why is this called min when button is pressed the item will show unless it already exists in that case it will be set to the highest zIndex

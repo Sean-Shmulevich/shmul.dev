@@ -1,5 +1,5 @@
 <script context="module">
-    import DragDropTouch from 'svelte-drag-drop-touch'
+    // import DragDropTouch from 'svelte-drag-drop-touch'
     import {asDraggable} from 'svelte-drag-and-drop-actions'
 </script>
 <script>

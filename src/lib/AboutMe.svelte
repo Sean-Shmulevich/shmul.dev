@@ -6,7 +6,7 @@
     import {createEventDispatcher} from "svelte";
     import {asDraggable} from 'svelte-drag-and-drop-actions'
     import  DragDropTouch  from 'svelte-drag-drop-touch'
-    import {onMount} from 'svelte';
+    import {onMount, onDestroy} from 'svelte';
 
     //getThe zIndex and animations functions used for all windows.
     import {fade, incrementCount} from "./SysWindow.svelte"
@@ -26,7 +26,33 @@
             BoxX = window.innerWidth - width;
             height = 420;
         }
+            //wait for the window to load and then add an event listener
+        document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
+        document.querySelector(".SubMenu").addEventListener("touchend", swipeEnd);
 	});
+    let touchstartX = 0;
+    let touchendX = 200;
+
+    onDestroy(() => {
+        //remove the touch listeners
+        document.querySelector(".SubMenu").removeEventListener("touchstart", swipeStart);
+        document.querySelector(".SubMenu").removeEventListener("touchend", swipeEnd);
+    });
+
+    function checkDirection() {
+        //swipe direction down
+        if (touchendX > touchstartX) handleMinimize();
+    }
+    function swipeStart(e){
+        // console.log(e.target);
+        touchstartX = e.changedTouches[0].screenY;
+    }
+    function swipeEnd(e){
+        touchendX = e.changedTouches[0].screenY;
+        if(Math.abs(touchstartX - touchendX) > 100){
+        checkDirection();
+        }
+    }
     
     function onDragStart() {
         return {x: BoxX, y: BoxY}
@@ -120,8 +146,8 @@
         --menuX: {menuX}px;
         --menuY: {menuY}px;
 
-        " on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={aboutBox}>
-        <div use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:window.innerWidth, maxY: window.innerHeight-70}}
+        " tabindex="0" on:mousedown={maybeDontIncrement} class:classname={hide} bind:this={aboutBox}>
+        <div use:asDraggable={{ onlyFrom: '.title-bar', relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:29, maxX:window.innerWidth, maxY: window.innerHeight-70}}
              class="title-bar fileGridBar windowBar" style="width:auto">
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: -1px;">Overview

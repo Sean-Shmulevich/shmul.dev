@@ -21,12 +21,14 @@
     import SvelteMarkdown from 'svelte-markdown'
     import source from './assets/markdown/test.md?raw';
     import { group_outros } from 'svelte/internal';
+    
 
     import { onMount } from 'svelte';
 
     onMount(() => {
         startPositionX = window.innerWidth/4;
 	});
+
 
 
 
@@ -118,6 +120,7 @@
         if($writableArray.indexOf(doubleClick) === -1){
             $writableArray = [...$writableArray, doubleClick];//add to writable array
         }
+        
         //MAIN FILE WINDOW IS OPENED
         // if(doubleClick === "File System" && numFileWin === 0){
         //     fileSysWindows["File System"] = 0;
@@ -163,7 +166,7 @@
             $count = {zIdx: 0, name: ""};
             //reset the starting positions for the windows as well.
             startPositionX = window.innerWidth/4;
-            startPositionX = 180;
+            startPositionY = 180;
         }
 
 
@@ -185,7 +188,7 @@
     
     let store;
     function changeHandler({ detail: {tr} }) {
-        console.log('change', tr.changes.toJSON())
+        // console.log('change', tr.changes.toJSON())
     }
 
     let startPositionX = 180, startPositionY = 100;
