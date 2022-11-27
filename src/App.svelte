@@ -8,6 +8,7 @@
     import BottomBar from './lib/BottomBar.svelte'
     import JsPaint from "./lib/JsPaint.svelte"
     import SysWindow from "./lib/SysWindow.svelte";
+    import {touchDevice} from './lib/SysWindow.svelte';
     import TopBar from './lib/TopBar.svelte'
     import VsCode from './lib/VsCode.svelte'
     import CodeMirror from './lib/CodeMirror.svelte'
@@ -56,14 +57,11 @@
 
     onMount(() => {
         startPositionX = window.innerWidth/4;
-        let catchTouchErr = () => {
-            window.onerror = function(msg, url, line, col, error) {
-                    // this error from this file needds to just be passed
-                    //return true and the error will be ignored
-                    return true;
-            }};
-        window.addEventListener("touchstart", catchTouchErr);
-        window.addEventListener("touchmove", catchTouchErr);
+        let catchTouchErr = () => {window.onerror = function(msg, url, line, col, error) {return true;}};
+        if(touchDevice){
+            window.addEventListener("touchstart", catchTouchErr);
+            window.addEventListener("touchmove", catchTouchErr);
+        }
 	});
 
 

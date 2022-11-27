@@ -34,18 +34,36 @@
         dispatch('close', event.detail);
     }
 
+    
+    function mobileResize(width) {
+        if(width < 460){
+            BoxY = 50;
+            width = 300;
+            //generate 100 away from the right side of the screen this turns out to be right after the menu screen icons
+            BoxX = 102;
+            height = 420;
+        }
+        else{
+            width = 375;
+            height = 430;
+            //wait for the window to load and then add an event listener
+        }
+    }
 
     onMount(() => {
-        BoxX = window.innerWidth/6;
         //basically a media query
         if(window.innerWidth < 460){
             BoxY = 50;
             width = 300;
             //generate 100 away from the right side of the screen this turns out to be right after the menu screen icons
-            BoxX = 100;
+            BoxX = 102;
             height = 420;
         }
+        else{
+            width = 375;
+            height = 430;
             //wait for the window to load and then add an event listener
+        }
         if(touchDevice){
             document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart, true);
             document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, handleMinimize));
@@ -216,6 +234,9 @@
     <style>
         @media (max-width: 460px) {
             .SubMenuTabs{transform: scale(.86) translateX(-22px);}
+            .SubMenuBody{height: 255px !important;}
+            .SystemMenuWrapper{height: 383px !important;width:300px !important}
+            .SubMenuBody > div > div > h2{margin-top: -16px;}
         }
         .selectedTab{
             height: 19px !important;
