@@ -17,7 +17,7 @@
     export let zIdx;
     export let BoxX = 200, BoxY = 120;//starting coords
     onMount(() => {
-        BoxX = window.innerWidth/4;
+        BoxX = window.innerWidth/6;
         //basically a media query
         if(window.innerWidth < 460){
             BoxY = 50;
