@@ -53,7 +53,7 @@
 
     <div class="minimizedItems">
         {#each currentWindows as window}
-                <button on:click|capture|preventDefault={(event) => forward(event,window)} class:classes={window === $glowWindow}  class="appMinimized">
+                <button id={"minButt"+window.replace(/\s/g, '')} on:click|capture|preventDefault={(event) => forward(event,window)} class:classes={window === $glowWindow}  class="appMinimized">
                     <img src="{findIcon(iconMap, window)}" alt="hello alt"
                     style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);">
                     <span class="minItemText">{window}</span>

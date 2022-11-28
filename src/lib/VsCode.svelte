@@ -14,7 +14,7 @@
   import { glowWindow } from "../stores/keep.js";
   import { writableArray } from "../stores/minimized.js";
 
-  import {incrementCount, tapHandler, touchDevice, swipeStart, swipeEnd } from "./SysWindow.svelte";
+  import {incrementCount, tapHandler, touchDevice, swipeStart, swipeEnd, handleMinimize } from "./SysWindow.svelte";
   
   export let zIdx = 0;
   let minWidth = 502;
@@ -22,6 +22,7 @@
   //double tap function to relese on destroy.
   let mobileDblTap;
   let mobileSwipe;
+  let minFunc;
   export let BoxX = 200,BoxY = 200; //starting coords
   export let hide = false;
   let vsPos;
@@ -49,10 +50,11 @@
       minWidth = window.innerWidth;
       currWidth = window.innerWidth;
       //only create if the device has a touchscreen.
+      minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, windowName, `#minButt${windowName.replace(/\s+/g, "")}`, `.vscode.${windowName.replace(/\s+/g, "-")}`);}
       if(touchDevice){
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
-        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e,handleMinimize)});
+        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
+        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e,minFunc)});
       }
     }
   });
@@ -78,46 +80,7 @@
   function onDragEnd(x, y, dx, dy) {
     BoxX = x;
     BoxY = y;
-  }
-
-
-
-  //requires a lot of information multiples stores and a call to the dom.
-  function handleMinimize() {
-    glowWindow.set(windowName);
-    $glowWindow = $glowWindow;
-    hide = true;
-    let currMenuPos = $writableArray.indexOf(windowName);
-    if (currMenuPos === -1) return;
-    let domButtonPos = document
-      .querySelectorAll(".appMinimized")
-      [currMenuPos].getBoundingClientRect();
-
-    // const element = document.createElement("div");
-    // document.body.appendChild(element);
-
-    let buttonMidPt = domButtonPos.left + domButtonPos.width / 3;
-    let styles = getComputedStyle(vsPos);
-    let left = parseInt(styles.left);
-    let bottom = parseInt(styles.bottom);
-    let height = parseInt(styles.height);
-    let width = parseInt(styles.width);
-    menuX = buttonMidPt - (left + width / 2) - 15;
-    menuY = bottom + height;
-
-    //which vs code is it?
-    //TODO impplement logic for picking the right window.
-    let thisWindowClass = windowName.replace(/\s+/g, "-");
-    let elem = document.querySelector(`.vscode.${thisWindowClass}`);
-    // console.log(`.vscode.${thisWindowClass}`);
-    elem.addEventListener(
-      "animationend",
-      function () {
-        glowWindow.reset();
-        $glowWindow = $glowWindow;
-      },
-      false
-    );
+  
   }
 
   function maybeDontIncrement() {
@@ -216,7 +179,7 @@ bottom: 0;
       />
       <div
         class="fakeButtons fakeMinimize vsControlButtons"
-        on:mousedown={() => handleMinimize()}
+        on:mousedown={minFunc}
       />
       <div class="fakeButtons fakeZoom vsControlButtons" />
     </div>

@@ -4,7 +4,7 @@
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from '../stores/keep.js';
-    import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
+    import {handleMinimize, incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
     import {onMount, onDestroy} from 'svelte';
     import {writableArray} from "../stores/minimized.js";
 
@@ -17,6 +17,7 @@
     let menuX, menuY;
     let mobileDblTap;
     let mobileSwipe;
+    let minFunc;
 
     onMount(() => {
         //basically a media query
@@ -31,10 +32,11 @@
         if(window.innerWidth < 350){
             width = window.innerWidth;
         }
+        minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, "Js Paint", "#minButtJsPaint", "#JSremBoxMobile");}
         if(touchDevice){
             document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
-            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
-            document.getElementById("jsBar").addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, handleMinimize)});
+            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
+            document.getElementById("jsBar").addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, minFunc)});
         }
 
 
@@ -67,28 +69,6 @@
         dispatch('close', event.detail);
     }
 
-    function handleMinimize(){
-        let currMenuPos = $writableArray.indexOf("Js Paint");
-        if(currMenuPos === -1) return
-        glowWindow.set("Js Paint");
-        $glowWindow = $glowWindow;
-        hide=true;
-        let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
-
-
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
-        let styles = getComputedStyle(remBox);
-        let left = parseInt(styles.left);
-        let bottom = parseInt(styles.bottom);
-        let height = parseInt(styles.height);
-        let width = parseInt(styles.width);
-        menuX = (buttonMidPt - (left + width/2))-20;
-        menuY = bottom + height;
-
-        let elem = document.querySelector(".remBoxMobile");
-        elem.addEventListener("animationend", function() {glowWindow.reset();$glowWindow = $glowWindow;}, false);
-    }
-
     function maybeDontIncrement(){
         if(!hide){
             zIdx = incrementCount(zIdx, $count, count, "Js Paint");
@@ -99,7 +79,9 @@
     }
 
 </script>
-    <div class="remBoxMobile" style="
+    <div
+        id="JSremBoxMobile"
+         class="remBoxMobile" style="
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         --currX: {BoxX}px;
@@ -124,7 +106,7 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:mousedown|capture={() => handleMinimize()} on:touchstart={() => handleMinimize()}></button>
+                        on:mousedown|capture={minFunc} on:touchstart={minFunc}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"

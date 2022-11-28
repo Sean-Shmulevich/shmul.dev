@@ -44,6 +44,29 @@
             if (touchendX > touchstartX) handleMinimize();
         }
     }
+
+   export function handleMinimize(writableArray, glowWindow, hide, windowName, menuButtonSelector, elementSelector){
+        let currMenuPos = writableArray.indexOf(windowName);
+        glowWindow.set(windowName);
+        // $glowWindow = $glowWindow;
+        hide=true;
+        if(currMenuPos === -1) return [false, 0, 0];
+        let domButtonPos = (document.querySelector(menuButtonSelector)).getBoundingClientRect();
+
+
+        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
+        let elem = document.querySelector(elementSelector);
+        let styles = getComputedStyle(elem);
+        let left = parseInt(styles.left);
+        let bottom = parseInt(styles.bottom);
+        let height = parseInt(styles.height);
+        let width = parseInt(styles.width);
+        let menuX = (buttonMidPt - (left + width/2))-20;
+        let menuY = bottom + height;
+
+        elem.addEventListener("animationend", function() {glowWindow.reset();}, false);
+        return [true, menuX, menuY]; 
+    }
 </script>
 <script>
     import '../css/98.css';
@@ -75,10 +98,12 @@
     //double tap function to relese on destroy.
     let mobileDblTap;
     let mobileSwipe;
+    let minFunc;
     let maxX = 0;
     let maxY = 0;
     let w, h;
 
+    
     onMount(() => {
 		fileWinOffset+=25;
         BoxX = window.innerWidth/4;
@@ -96,11 +121,18 @@
         }
         BoxX+= fileWinOffset;
         BoxY += fileWinOffset;
-        
+
+        let bottomBarButtonSelector = `#minButtFileSystem`
+        let windowName = `File System`
+        if(windowIndex !== 0){
+            bottomBarButtonSelector += windowIndex;
+            windowName += windowIndex;
+        };
+        minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, windowName, bottomBarButtonSelector, `#fileSysWindow${windowIndex}`);}
         if(touchDevice){
             document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
-            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, handleMinimize)});
-            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, handleMinimize)});
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, minFunc)});
         }
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
@@ -135,69 +167,12 @@
     function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
     function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
 
-    function handleMinimize(){
-        //current default window is File System
-        let currWindow = "File System";
-
-        //if the winddow is a subWindow then append the number to the end of the string
-        if(windowIndex !== 0){
-            currWindow = currWindow+(windowIndex);
-        }
-        // console.log(windowIndex);
-
-        let currMenuPos = $writableArray.indexOf(currWindow);
-        if(currMenuPos === -1) {return}
-        //store the current window in glow window until the menubar animation ends
-        glowWindow.set(currWindow);
-        $glowWindow = $glowWindow;
-        hide=true;
-        //if the current window is not visible then return and dont animate
-
-        //current menubar item position information
-        let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
-
-        //uh why tho
-        // const element = document.createElement("div");
-        // document.body.appendChild(element);
-
-        //calculate 1/3rd into the button
-        //the location that the window will go into
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
-        let styles = getComputedStyle(remPos);
-        let left = parseInt(styles.left);
-        let bottom = parseInt(styles.bottom);
-        let height = parseInt(styles.height);
-        let width = parseInt(styles.width);
-        //offset the amount it needs to move from where it is right now
-        //these variables will be put into css variables
-        menuX = (buttonMidPt - (left + width/2))-15;
-        menuY = bottom + height;
-
-        //select rembox and wait for the current animation to end..
-        let pickWindow = currMenuPos;
-        // if(windowIndex === -1){pickWindow = 0}
-        let elem = document.querySelector(`.remBoxMobile.File-System${windowIndex}`);
-        // console.log(elem);
-        
-        //animation is over stop glow window
-        elem.addEventListener("animationend", function() {
-            let currWindow = "File System";
-            //if the winddow is a subWindow then append the number to the end of the string
-            // if(windowIndex !== -1){
-            //     currWindow = currWindow+(windowIndex);
-            // }
-            let currMenuPos = $writableArray.indexOf(currWindow);
-            let domButtonPos = document.querySelectorAll(".appMinimized")[currMenuPos];
-        
-            glowWindow.reset();
-            $glowWindow = $glowWindow;}, false);
-
-    }
+    // function handleMinimize(){
 
 
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
-    <div class="remBoxMobile File-System{windowIndex}" style="
+    <div id="fileSysWindow{windowIndex}" class="remBoxMobile File-System{windowIndex}" style="
         position:fixed;
         left:{BoxX}px; top:{BoxY}px;
         z-index: {zIdx};
@@ -207,7 +182,7 @@
         cursor: unset !important;
     " on:mousedown={() => {
         if(!hide){
-             zIdx = incrementCount(zIdx, $count, count, "File System");
+            zIdx = incrementCount(zIdx, $count, count, "File System");
         }
         else{
             zIdx = zIdx;
@@ -221,7 +196,7 @@
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
-                        on:mousedown|capture|preventDefault={() => handleMinimize()} on:touchstart|capture|preventDefault={() => handleMinimize()}></button>
+                        on:mousedown|capture|preventDefault={minFunc} on:touchstart|capture|preventDefault={minFunc}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;"
                         aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close"

@@ -59,7 +59,7 @@
     onMount(() => {
         startPositionX = window.innerWidth/4;
         let catchTouchErr = () => {window.onerror = function(msg, url, line, col, error) {return true;}};
-            window.addEventListener("touchmove", catchTouchErr);
+        window.addEventListener("touchmove", catchTouchErr);
 	});
 
     function unsetBlue() {
@@ -191,6 +191,7 @@
         //locic for launching apps from filesystem.
         if($appLaunch.length === 1){
             let a = async () => {
+                //dynamically load the js for these components.
                 if(VSCODE === null){
                     VSCODE = (await import('./lib/VsCode.svelte')).default;
                     CODEMIRROR = (await import('./lib/CodeMirror.svelte')).default;

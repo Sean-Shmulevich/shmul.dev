@@ -9,7 +9,7 @@
     import {onMount, onDestroy} from 'svelte';
 
     //getThe zIndex and animations functions used for all windows.
-    import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
+    import {incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice, handleMinimize} from "./SysWindow.svelte"
     import {glowWindow} from "../stores/keep.js";
     import {writableArray} from "../stores/minimized.js";
 
@@ -17,10 +17,10 @@
     let mobileDblTap;
     let mobileSwipe;
     export let hide = false;
+    let minFunc;
     // let animation = {fn: fade};
 
     let menuX, menuY;
-    let aboutBox;
     export let BoxX = 200, BoxY = 120;//starting coords
     let value = "Hello";
     let maxX = 0, maxY = 0;
@@ -34,6 +34,7 @@
     }
 
     onMount(() => {
+        minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, "Overview", "#minButtOverview", "#OverviewWindow")};
         //basically a media query
         if(window.innerWidth < 460){
             BoxY = 50;
@@ -49,8 +50,8 @@
         }
         if(touchDevice){
             document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart);
-            document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, handleMinimize));
-            document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,handleMinimize));
+            document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, minFunc));
+            document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,minFunc));
         }
 	});
 
@@ -77,31 +78,6 @@
         BoxY = y
     }
 
-    function handleMinimize() {
-        hide = true;
-        let currMenuPos = $writableArray.indexOf("Overview");
-        if (currMenuPos === -1) return
-        glowWindow.set("Overview");
-        $glowWindow = $glowWindow;
-        let domButtonPos = (document.querySelectorAll(".appMinimized")[currMenuPos]).getBoundingClientRect();
-
-
-        let buttonMidPt = domButtonPos.left + (domButtonPos.width / 3);
-        let styles = getComputedStyle(aboutBox);
-        let left = parseInt(styles.left);
-        let bottom = parseInt(styles.bottom);
-        let height = parseInt(styles.height);
-        let width = parseInt(styles.width);
-        menuX = (buttonMidPt - (left + width / 2)) - 20;
-        menuY = bottom + height;
-
-        let elem = document.querySelector(".SystemMenuWrapper");
-        elem.addEventListener("animationend", function () {
-            glowWindow.reset()
-            $glowWindow = $glowWindow;
-        }, false);
-    }
-
     function maybeDontIncrement(){
         if(!hide){
             zIdx = incrementCount(zIdx, $count, count, "Overview");
@@ -113,7 +89,8 @@
 </script>
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
     <!-- svelte-ignore missing-declaration -->
-    <div class="SystemMenuWrapper" style="
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <div id="OverviewWindow" class="SystemMenuWrapper" style="
         background-color:lightgrey;
         position:fixed;
         outline:1px solid black;
@@ -134,8 +111,8 @@
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: -1px;">Overview
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
-                <button class="minimize" style="min-width: 15px;" aria-label="Minimize" on:mousedown|capture={() => handleMinimize()}
-                        on:touchstart={() => handleMinimize()}></button>
+                <button class="minimize" style="min-width: 15px;" aria-label="Minimize" on:mousedown|capture={minFunc}
+                        on:touchstart={minFunc}></button>
                 <button class="full" style="min-width: 15px;margin-left: 2px;" aria-label="Maximize"></button>
                 <button class="close" style="min-width: 15px;" aria-label="Close" on:mousedown={forward}
                         on:touchstart={forward}></button>
