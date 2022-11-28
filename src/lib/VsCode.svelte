@@ -42,6 +42,7 @@
   
   onMount(() => {
     //basically a media query
+    minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, windowName, `#minButt${windowName.replace(/\s+/g, "")}`, `.vscode.${windowName.replace(/\s+/g, "-")}`);}
     if (window.innerWidth < 700) {
       BoxX = 0;
       // @ts-ignore
@@ -50,7 +51,6 @@
       minWidth = window.innerWidth;
       currWidth = window.innerWidth;
       //only create if the device has a touchscreen.
-      minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, windowName, `#minButt${windowName.replace(/\s+/g, "")}`, `.vscode.${windowName.replace(/\s+/g, "-")}`);}
       if(touchDevice){
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
@@ -120,6 +120,7 @@
 </script>
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
   class="vscode {windowName.replace(/\s+/g, '-')}"
   style="
@@ -179,7 +180,7 @@ bottom: 0;
       />
       <div
         class="fakeButtons fakeMinimize vsControlButtons"
-        on:mousedown={minFunc}
+        on:click|capture|preventDefault={() => minFunc()}
       />
       <div class="fakeButtons fakeZoom vsControlButtons" />
     </div>

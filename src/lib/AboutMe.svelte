@@ -52,7 +52,7 @@
         if(touchDevice){
             document.querySelector(".SubMenu").addEventListener("touchstart", swipeStart);
             document.querySelector(".SubMenu").addEventListener("touchend", mobileSwipe = (e) => swipeEnd(e, minFunc));
-            document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,minFunc));
+            document.getElementById("aboutBar").addEventListener("touchstart", mobileDblTap = (e) => tapHandler(e,minFunc, forward));
         }
 	});
 

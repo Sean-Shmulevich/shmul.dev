@@ -15,6 +15,7 @@
     export let fileWinOffset = 0;
 
     var tapedTwice = false;
+    var tappedThrice = false;
     export function tapHandler(event, handleMinimize)  {
         if(!tapedTwice) {
             tapedTwice = true;
@@ -22,7 +23,6 @@
             return false;
         }
         event.preventDefault();
-        //action on double tap goes below
         handleMinimize();
     }
     function isTouchDevice() {
@@ -47,12 +47,12 @@
 
    export function handleMinimize(writableArray, glowWindow, hide, windowName, menuButtonSelector, elementSelector){
         let currMenuPos = writableArray.indexOf(windowName);
+        // console.log(currMenuPos);
         glowWindow.set(windowName);
         // $glowWindow = $glowWindow;
         hide=true;
         if(currMenuPos === -1) return [false, 0, 0];
         let domButtonPos = (document.querySelector(menuButtonSelector)).getBoundingClientRect();
-
 
         let buttonMidPt = domButtonPos.left + (domButtonPos.width/3);
         let elem = document.querySelector(elementSelector);
@@ -132,7 +132,7 @@
         if(touchDevice){
             document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchstart", swipeStart);
             document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
-            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, minFunc)});
+            document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, minFunc, forward)});
         }
 	});
     //dont let the offset get insane keep it proportional to the current number of windows.
