@@ -124,8 +124,8 @@
         else if(JSPAINT === null && current === "Js Paint"){
             JSPAINT = (await import("./lib/JsPaint.svelte")).default;
         }
+        if (current === "") return;
         doubleClick = current;
-        console.log(doubleClick);
         current = '';//unbluing
 
         //global stores to what is currently on the screen and also in the menubar

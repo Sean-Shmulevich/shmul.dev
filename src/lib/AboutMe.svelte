@@ -21,6 +21,7 @@
     // let animation = {fn: fade};
 
     let menuX, menuY;
+    let aboutBox;
     export let BoxX = 200, BoxY = 120;//starting coords
     let value = "Hello";
     let maxX = 0, maxY = 0;
