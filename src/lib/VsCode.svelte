@@ -48,7 +48,7 @@
       // @ts-ignore
     }
     if (window.innerWidth <= 600) {
-      minWidth = window.innerWidth;
+      minWidth = window.innerWidth - 80;
       currWidth = window.innerWidth;
       //only create if the device has a touchscreen.
       if(touchDevice){
@@ -101,6 +101,11 @@
     // }
     window.addEventListener("mousemove", Resize, false);
     window.addEventListener("mouseup", stopResize, false);
+    if(touchDevice){
+      
+      window.addEventListener("touchstart", Resize, false);
+      window.addEventListener("touchend", stopResize, false);
+    }
   }
   //resize the element
   function Resize(e) {
@@ -116,13 +121,17 @@
   function stopResize(e) {
     window.removeEventListener("mousemove", Resize, false);
     window.removeEventListener("mouseup", stopResize, false);
+    if(touchDevice){
+      window.removeEventListener("touchstart", Resize, false);
+      window.removeEventListener("touchend", stopResize, false);
+    }
   }
 </script>
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-  class="vscode {windowName.replace(/\s+/g, '-')}"
+  class="container vscode {windowName.replace(/\s+/g, '-')}"
   style="
     position: fixed;
     left:{BoxX}px; top:{BoxY}px;
@@ -134,7 +143,7 @@
     max-height: 625px;
     max-width: 833px;
     min-width: {minWidth}px;
-    min-height: 402px;
+    min-height: 305px;
     
     --menuX: {menuX}px;
     --menuY: {menuY}px;
@@ -147,14 +156,16 @@
   <div
     style="   
 position: absolute; 
-height:15px;
-width: 9px;
+height:20px;
+width: 20px;
+border-radius: 50%;
 cursor: se-resize;
 z-index:50;
 right: 0;
 bottom: 0;
 "
     on:mousedown={initResize}
+    on:touchstart={initResize}
   />
 
   <div
@@ -261,6 +272,9 @@ bottom: 0;
 </div>
 
 <style>
+    @media (max-width: 460px) {
+      .vsBarText:nth-of-type(5){display: none !important}
+  }
   @keyframes move {
     50%,
     100% {

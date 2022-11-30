@@ -190,7 +190,7 @@ button {
 .menuItem {
     justify-content: space-evenly;
     display: grid;
-    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-columns: 70px 80px 80px 70px;
     grid-template-rows: 80px auto 80px;
     column-gap: 10px;
     row-gap: 15px;
@@ -221,12 +221,21 @@ button {
 }
 
 .exploreIcon {
-    display: inline-block;
-}
+    width: 75%;
 
+    /* min-width: fit-content; */
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+.exploreIcon:nth-of-type(1):hover {
+    background-color: lightblue;
+}
 .exploreIcon:hover {
     background-color: lightblue;
 }
+
 
 .remBox {
     margin-top: 80px;
@@ -328,7 +337,7 @@ button {
     margin-left: 2px;
 }
 .filetext {
-    transform: translate(-2px,-18px);
+    transform: translateY(-12px);
     margin-bottom: -3px;
 }
 

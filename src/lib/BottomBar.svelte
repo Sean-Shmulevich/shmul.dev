@@ -180,7 +180,7 @@
         left: calc(-1 * var(--borderWidth) + 3px);
         height: calc(82% + var(--borderWidth) * 2);
         width: calc(96% + var(--borderWidth) * 2);
-        background: linear-gradient(60deg, #abffe5, #ffae9e, #ff7aa0, rgba(179, 143, 236, 0.87));
+        background: rgba(179, 143, 236, 0.87);
         z-index: -1;
         background-size: 300% 300%;
         animation: animatedgradient 2s ease alternate infinite;
