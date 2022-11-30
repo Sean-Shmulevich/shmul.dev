@@ -15,6 +15,7 @@
     let FILESYS = null;
     let JSPAINT= null;
     let CODEMIRROR= null;
+    import {PortableText} from '@portabletext/svelte'
 
     import {count} from './stores/zIndex.js';
     import {writableArray} from './stores/minimized.js';
@@ -23,7 +24,13 @@
     import SvelteMarkdown from 'svelte-markdown'
     import source from './assets/markdown/test.md?raw';
     // import CodeMirror from './lib/CodeMirror.svelte'
+    import { get } from './sanity.js';
     
+    let getData = async() => {
+        let data  = await (await get()).body["textArr"][0].FileContent;
+        console.log(data);
+        return data;
+    }
 
     import { onMount } from 'svelte';
 
@@ -54,7 +61,7 @@
     ];
     let store;
     let startPositionX = 180, startPositionY = 100;
-
+    let contentList;
 
     onMount(() => {
         startPositionX = window.innerWidth/4;
@@ -190,6 +197,7 @@
 
         //locic for launching apps from filesystem.
         if($appLaunch.length === 1){
+            console.log(contentList);
             let a = async () => {
                 //dynamically load the js for these components.
                 if(VSCODE === null){
@@ -216,6 +224,14 @@
 <svelte:window on:click|capture={unsetBlue}/>
 
 <main>
+    <!-- svelte-ignore empty-block -->
+    <!-- {#await getData()}
+        <p>...waiting</p>
+    {:then backendContent}
+    <PortableText
+    value={backendContent}
+    />
+    {/await} -->
 
     <TopBar/>
     <div style="background: url('https://crustmag.slimecars.com/images/swissMountains.png') 0 50% repeat-x" class="mountainDiv">
