@@ -42,6 +42,7 @@
     "@codemirror/view": "^6.4.0",
     "@portabletext/svelte": "^1.0.1",
     "@sanity/client": "^3.4.1",
+    "@sanity/image-url": "^1.0.1",
     "@uiw/codemirror-themes": "^4.12.4",
     "codemirror": "^6.0.1",
     "svelte-device-info": "^1.0.0",

@@ -1,5 +1,6 @@
 <script lang="ts">
     import type {CustomBlockComponentProps} from '@portabletext/svelte'
+    import {urlFor} from "../stores/sanity.js"
 
     interface asset {
         _ref: string
@@ -10,7 +11,21 @@
 </script>
 
 <figure>
-    <img src={"https://picsum.photos/200"} />
-    <span>{portableText.value.asset._ref}</span>
-    <!-- <figcaption>{value.caption}</figcaption> -->
+    <img width="200" src={urlFor(portableText.value.asset._ref).width(200).url()} />
+    <figcaption>{portableText.value.asset._ref}</figcaption>
 </figure>
+
+
+<style>
+    figure {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    img {
+        margin-inline: auto;
+    }
+    figcaption {
+        text-align: center;
+    }
+</style>

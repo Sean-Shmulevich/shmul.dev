@@ -27,7 +27,7 @@
 //   import SvelteMarkdown from "svelte-markdown";
 //   import source from "./assets/markdown/test.md?raw";
   // import CodeMirror from './lib/CodeMirror.svelte'
-  import { get } from "./sanity.js";
+    import { get } from "./stores/sanity.js";
 
   let getData = async () => {
     let data = await (await get()).body["textArr"][0].FileContent;
@@ -329,7 +329,7 @@
           <!-- svelte-ignore empty-block -->
         {#await getData()}
         <div style="margin: 25% auto auto 40%">
-            <BarLoader size="60" color="#FF3E00" unit="px" />
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
         </div>
         {:then backendContent}
         <svelte:component

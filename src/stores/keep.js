@@ -1,4 +1,3 @@
-import { RangeSetBuilder } from '@codemirror/state';
 import { writable } from 'svelte/store';
 
 function storeIframe() {

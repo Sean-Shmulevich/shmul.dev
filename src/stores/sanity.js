@@ -1,4 +1,5 @@
 import sanityClient from "@sanity/client"
+import imageUrlBuilder from '@sanity/image-url'
 
 const client = sanityClient({
     projectId: 'drlnuwv8',
@@ -7,9 +8,14 @@ const client = sanityClient({
     useCdn: false
 });
 
+const builder = imageUrlBuilder(client)
+
+export function urlFor(source) {
+  return builder.image(source)
+}
+
 export async function get() {
     const data = await client.fetch(`*[_type == "MDContent"]`);
-  
     if (data) {
       return {
         status: 200,
