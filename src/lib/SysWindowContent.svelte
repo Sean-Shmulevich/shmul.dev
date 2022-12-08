@@ -74,8 +74,8 @@
     import '../css/98.css';
     import '../css/myStyle.css';
     import {appLaunch} from '../stores/appLaunch.js';
-    import VsCode from './VsCode.svelte';
-    import { tap } from 'svelte-gestures';
+    // import VsCode from './VsCode.svelte';
+    // import { tap } from 'svelte-gestures';
     //grid view should be able to be controlled by the parent, use bind value very easy
     //export let gridViewOn = false;
 
@@ -169,13 +169,13 @@
 
     <div class="centerText">
         {#each foldersList as folder}
-            <div class="exploreIcon" on:dblclick={() => goDeeper(folder)}>
+            <div class="exploreIcon" on:dblclick|preventDefault|capture={goDeeper(folder)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/directory_closed-5.png"/>
                 <p class="filetext">{folder.substring(1)}</p>
             </div>
         {/each}
         {#each filesList as file}
-            <div class="exploreIcon" on:dblclick|capture={() => openItem(file)}>
+            <div class="exploreIcon" on:dblclick={openItem(file)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>
