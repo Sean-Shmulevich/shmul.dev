@@ -146,14 +146,16 @@
         foldersList = Object.keys((currObj.folders));
     }
     function openItem(file){
+        console.log("here")
         if ($appLaunch[0] !== file){
             //match VS code. 
             if(file == "vsCode.app"){
+                console.log("VS Code");
                 $appLaunch.push("VS Code");
             }
             //match a file ending in .md
             else if(/^.+\.md$/.test(file)){
-                // console.log("MD file");
+                console.log("MD file");
                 //push to store and remove the .md at the end of the file.
                 $appLaunch.push(file.substring(0, file.length-3));
             }
@@ -161,6 +163,7 @@
                 //default case. 
                 $appLaunch.push(file);
             }
+            $appLaunch = $appLaunch;
         }
     }
 
@@ -175,7 +178,7 @@
             </div>
         {/each}
         {#each filesList as file}
-            <div class="exploreIcon" on:dblclick={openItem(file)}>
+            <div class="exploreIcon" on:dblclick|capture|preventDefault={openItem(file)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>

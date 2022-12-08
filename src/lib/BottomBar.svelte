@@ -87,7 +87,6 @@
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="hello alt"
             style="width:20px;margin-right:10px;margin-top: 2px;margin-left:-2px;padding-left:10px">
 
-
         <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px;color:white;font-family: 'Apple Garamond Bold'"></b>
     </div>
 
@@ -180,7 +179,7 @@
         left: calc(-1 * var(--borderWidth) + 3px);
         height: calc(82% + var(--borderWidth) * 2);
         width: calc(96% + var(--borderWidth) * 2);
-        background: rgba(179, 143, 236, 0.87);
+        background: rgb(197 197 255 / 72%);
         z-index: -1;
         background-size: 300% 300%;
         animation: animatedgradient 2s ease alternate infinite;

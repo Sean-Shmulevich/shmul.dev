@@ -50,13 +50,13 @@
     if (window.innerWidth <= 600) {
       minWidth = window.innerWidth - 80;
       currWidth = window.innerWidth;
-      //only create if the device has a touchscreen.
-      if(touchDevice){
+    }
+    //only create if the device has a touchscreen.
+    if(touchDevice){
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
         document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e,minFunc)});
       }
-    }
   });
   //remove tap listeners.
   onDestroy(() => {
