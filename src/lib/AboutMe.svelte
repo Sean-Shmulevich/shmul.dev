@@ -163,24 +163,28 @@
                                 <h2>Tech I've Built With</h2>
                                 <div style="font-family: 'Apple Garamond';font-size:1rem">
                                         python (django, selnium, scrapy, pandas, Flask, SqlAlchemy), Java, Javascript (Node.js, React, Svelte), C, Rust, SCSS, Tailwind Css, Bash, Git, ZSH, regular expressions.
-                                    </div>
+                                </div>
                             </div>
                             {:else if value === "Contact"}
                                 <h2 class="contactText" style="margin-top:-40px;margin-left:15%">{value} Me</h2>
-                                <div class="field-row-stacked" style="width: 330px;margin-top:-40px;margin-left:-32px">
-                                    <label class="messageText" for="text20" style="margin-inline: auto;">Message</label>
-                                    <textarea id="text20" rows="8" style="resize:none;background: white;color: black;min-width:330px;max-width: 330px;"></textarea>
-                                  </div>
-                                <div class="spacerDiv" style="height:40px"></div>
-                                <div class="field-row" style="margin-left:-30px">
-                                    <label for="text17">Email</label>
-                                    <input id="text17" type="text" style="color:black;width:100%" />
-                                </div>
-                                <div class="field-row" style="margin-left:-32px">
-                                    <label for="text17">Name</label>
-                                    <input id="text17" type="text" style="color:black;width:100%" />
-                                </div>
-                                <button class="formSubmit">Submit Form</button>
+                                <form action="https://api.web3forms.com/submit" method="post">        
+                                    <input type="hidden" name="access_key" value="fc0096dc-43af-400b-b33a-034020091036">                        
+                                    <div class="field-row-stacked" style="width: 330px;margin-top:-40px;margin-left:-32px">
+                                        <label class="messageText" for="text20" style="margin-inline: auto;">Message</label>
+                                        <textarea name="message" id="text20" rows="8" style="resize:none;background: white;color: black;min-width:330px;max-width: 330px;" required></textarea>
+                                      </div>
+                                    <div class="spacerDiv" style="height:40px"></div>
+                                    <div class="field-row" style="margin-left:-30px">
+                                        <label for="text17">Email</label>
+                                        <input name="email" id="text17" type="text" style="color:black;width:100%" required/>
+                                    </div>
+                                    <div class="field-row" style="margin-left:-32px">
+                                        <label for="text17">Name</label>
+                                        <input name="name" id="text17" type="text" style="color:black;width:100%" required/>
+                                    </div>
+                                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                                    <button type="submit" class="formSubmit">Submit Form</button>
+                                </form>
                             {:else if value === "Mobile"}
                             <div class="aboutContent">
                                 <h2>{value} </h2>
