@@ -155,8 +155,6 @@
     const dispatch = createEventDispatcher();
 
     function forward(event) {
-        glowWindow.reset();
-        $glowWindow = $glowWindow;
         dispatch('close', event.detail);
     }
     function newWindow(event) {
