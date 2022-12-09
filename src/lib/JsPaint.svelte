@@ -34,8 +34,8 @@
         }
         minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, "Js Paint", "#minButtJsPaint", "#JSremBoxMobile");}
         if(touchDevice){
-            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
-            document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
+            // document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchstart", swipeStart);
+            // document.querySelector(`.remBoxMobile * div.myWindow`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
             document.getElementById("jsBar").addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e, minFunc)});
         }
 
@@ -43,8 +43,8 @@
 	});
     onDestroy(() => {
         if(touchDevice){
-            document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
-            document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", mobileSwipe);
+            // document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
+            // document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", mobileSwipe);
             document.getElementById("jsBar").removeEventListener("touchstart", mobileDblTap);
         }
 	});
