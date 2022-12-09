@@ -64,7 +64,7 @@
         let menuX = (buttonMidPt - (left + width/2))-20;
         let menuY = bottom + height;
 
-        elem.addEventListener("animationend", function() {glowWindow.reset();}, false);
+        elem.addEventListener("animationend",  () => glowWindow.reset(), false);
         return [true, menuX, menuY]; 
     }
 </script>
@@ -156,6 +156,7 @@
 
     function forward(event) {
         glowWindow.reset();
+        $glowWindow = $glowWindow;
         dispatch('close', event.detail);
     }
     function newWindow(event) {

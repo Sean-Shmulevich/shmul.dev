@@ -252,14 +252,15 @@
             .aboutContent{margin-top:-65px !important;}
             /* .field-row{width:105% !important} */
             /* .spacerDiv{height: 10px !important;}
-                        .formSubmit{margin-left:28% !important;}*/
+                        .formSubmit{margin-top:-10px !important;}*/
             /* #text20{min-width: 250px !important;max-width: 70% !important;margin-left:5px} */
             .contactText{margin-left: 4% !important;} 
-            .messageText{margin-left: 37% !important;}
+            .messageText{margin-left: 39% !important;}
+            .formSubmit{margin-top:9px !important;}
             #submitMessage{
                 transform: scale(0.9) translate(-22px, -15px);
             }
-            #text20{min-width: 87% !important;max-width: 87% !important;margin-left:5px}
+            #text20{min-width: 87% !important;max-width: 87% !important;margin-left:0px}
         }
 
         @media (min-width: 460px) {

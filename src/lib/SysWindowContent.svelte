@@ -163,6 +163,9 @@
             else if(file == "Overview.app"){
                 $appLaunch.push("Overview");
             }
+            else if(file == "JsPaint.app"){
+                $appLaunch.push("Js Paint");
+            }
             //match a file ending in .md
             else if(/^.+\.(.*)$/.test(file)){
                 console.log(file);

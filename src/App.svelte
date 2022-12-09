@@ -210,6 +210,9 @@
         if(PORTABLETEXT === null) {
             PORTABLETEXT =  (await import("@portabletext/svelte")).PortableText;
         }
+        if (JSPAINT === null) {
+          JSPAINT = (await import("./lib/JsPaint.svelte")).default;
+        }
       };
       a();
       let currApp = $appLaunch[0];
