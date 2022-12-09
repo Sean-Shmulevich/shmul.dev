@@ -243,7 +243,7 @@
             .field-row{width:105% !important}
             .spacerDiv{height: 10px !important;}
             .formSubmit{margin-left:28% !important;}
-            #text20{min-width: 255px !important;max-width: 200px !important;}
+            #text20{min-width: 250px !important;max-width: 70% !important;margin-left:5px}
             .messageText{margin-left: 35% !important;}
             .contactText{margin-left: 7% !important;}
         }

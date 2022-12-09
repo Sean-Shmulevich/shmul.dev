@@ -324,10 +324,10 @@
       on:close={() => removeWindow("resume")}
     >
       <div
-        style="color:white;font-family:Apple Garamond bold;padding:20px;margin-top:-30px"
+        style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
       >
           <!-- svelte-ignore empty-block -->
-        {#await getData()}
+        <!-- {#await getData()}
         <div style="margin: 25% auto auto 40%">
             <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
         </div>
@@ -344,7 +344,8 @@
         }}
         >
         </svelte:component>
-        {/await}
+        {/await} -->
+        <img src="https://crustmag.slimecars.com/images/SeanResume.png" style="width:100%" alt="">
       </div>
     </svelte:component>
   {/if}

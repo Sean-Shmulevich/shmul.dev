@@ -36,6 +36,7 @@
   const dispatch = createEventDispatcher();
 
   function forward(event) {
+    // glowWindow.reset();
     dispatch("close", event.detail);
   }
 
