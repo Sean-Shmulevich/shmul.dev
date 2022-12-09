@@ -133,17 +133,17 @@
                         <input type=radio bind:group={value}  name="scoops" value={"Skills"}>
                         <span class="menuText">Skills</span>
                     </label>
-                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Social"} style="display: unset">
-                        <input type=radio bind:group={value} name="scoops" value={"Social"}>
-                        <span class="menuText">Social</span>
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Contact"} style="display: unset">
+                        <input type=radio bind:group={value} name="scoops" value={"Contact"}>
+                        <span class="menuText">Contact</span>
                     </label>
-                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Credits"} style="display: unset">
+                    <!-- <label class="SubMenuTab radioTab" class:selectedTab={value === "Credits"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Credits"}>
                         <span class="menuText">Credits</span>
-                    </label>
-                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Statue"} style="display: unset">
-                        <input type=radio bind:group={value} name="scoops" value={"Statue"}>
-                        <span class="menuText">Statue</span>
+                    </label> -->
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "Mobile"} style="display: unset">
+                        <input type=radio bind:group={value} name="scoops" value={"Mobile"}>
+                        <span class="menuText">Mobile</span>
                     </label>
                 </div>
 
@@ -152,34 +152,44 @@
                     <div style="display: flex;flex-direction: row;">
                         <div style="width: 100%;padding: 20px;line-height: 1.5;">
                             {#if value == "Hello"}
-                            <h2>Tech I've Built With</h2>
-                            <div style="font-family: 'Apple Garamond bold';font-size:0.9rem">
-                                    python (django, selnium, scrapy, pandas, Flask), Java, Typescript, Javascript (Node.js, React, Svelte), C, Rust, SCSS, Tailwind Css, Bash, Git, ZSH, regular expressions.
-                                </div>
+                            <div style="display:flex">
+                                <img class="aboutImage" src="https://avatars.githubusercontent.com/u/33522108?v=4" width="150"  style="margin-top:-20px;min-width:70%;border-radius:50%;margin-left:-30px" alt="picture of me"/>
+                                <h4 class="introName">Sean Shmulevich</h4>
+                            </div>
+                            <p class="helloDev">Software Developer</p>
+                            <p class="helloPitt">Pittsburgh, PA</p>
                             {:else if value === "Skills"}
-                                <h2>{value} </h2>
-                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                                <div style="font-family: 'Apple Garamond bold'">
-                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                            <div class="aboutContent" style="margin-top:-20px">
+                                <h2>Tech I've Built With</h2>
+                                <div style="font-family: 'Apple Garamond';font-size:1rem">
+                                        python (django, selnium, scrapy, pandas, Flask, SqlAlchemy), Java, Javascript (Node.js, React, Svelte), C, Rust, SCSS, Tailwind Css, Bash, Git, ZSH, regular expressions.
+                                    </div>
+                            </div>
+                            {:else if value === "Contact"}
+                                <h2 class="contactText" style="margin-top:-40px;margin-left:15%">{value} Me</h2>
+                                <div class="field-row-stacked" style="width: 330px;margin-top:-40px;margin-left:-32px">
+                                    <label class="messageText" for="text20" style="margin-inline: auto;">Message</label>
+                                    <textarea id="text20" rows="8" style="resize:none;background: white;color: black;min-width:330px;max-width: 330px;"></textarea>
+                                  </div>
+                                <div class="spacerDiv" style="height:40px"></div>
+                                <div class="field-row" style="margin-left:-30px">
+                                    <label for="text17">Email</label>
+                                    <input id="text17" type="text" style="color:black;width:100%" />
                                 </div>
-                            {:else if value === "Social"}
-                                <h2>{value} </h2>
-                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                                <div style="font-family: 'Apple Garamond bold'">
-                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                <div class="field-row" style="margin-left:-32px">
+                                    <label for="text17">Name</label>
+                                    <input id="text17" type="text" style="color:black;width:100%" />
                                 </div>
-                            {:else if value === "Credits"}
+                                <button class="formSubmit">Submit Form</button>
+                            {:else if value === "Mobile"}
+                            <div class="aboutContent">
                                 <h2>{value} </h2>
-                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                                <div style="font-family: 'Apple Garamond bold'">
-                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
+                                <div style="font-family: 'Apple Garamond';font-size:1rem">
+                                    This website has been optimized for mobile! try swiping down on the windows or double tapping the app bar to minimize the window.
+                                    <br/><br/>
+                                    Also try dragging in the corner of 'VSCode' to resize.
                                 </div>
-                            {:else if value === "Statue"}
-                                <h2>{value} </h2>
-                                django, selnium, scrapy), Java, ReactJS, C, Rust, SCSS, HTML5, Bash, Git, ZSH.
-                                <div style="font-family: 'Apple Garamond bold'">
-                                    {value} Javascript, Typescript, ReactJS, Browser Extensions, Python (pandas, flask,
-                                </div>
+                            </div>
                             {/if}
                         </div>
                     </div>
@@ -193,11 +203,45 @@
 
     </div>
     <style>
+        .formSubmit{
+            margin-top: 20px;
+            color: black;
+            background: transparent;
+            margin-left: 33%;
+        }
+        .helloDev{
+            font-family: 'Apple Garamond';font-size:1.5rem;text-align:center
+        }
+        .helloPitt {
+            font-family: 'Apple Garamond';margin-top:-25px;font-size:1rem;text-align:center
+        }
+        .aboutContent{
+            margin-top:-20px;
+        }
+
+        .introName{
+            margin-left: 10px;
+            font-size: 1.8rem;
+            line-height: 30px;
+            margin-top: 43px;
+            font-family: "Apple Garamond bold", sans-serif;
+        }
         @media (max-width: 460px) {
             .SubMenuTabs{transform: scale(.86) translateX(-22px);}
             .SubMenuBody{height: 255px !important;}
             .SystemMenuWrapper{height: 383px !important;width:300px !important}
             .SubMenuBody > div > div > h2{margin-top: -16px;}
+            .aboutImage{width:120px !important; min-width:120px !important; height:120px}
+            .introName{margin-top: 10px;}
+            .helloDev{font-size:1.2rem}
+            .helloPitt, .helloDev{margin-left:-13% !important;}
+            .aboutContent{margin-top:-65px !important;}
+            .field-row{width:105% !important}
+            .spacerDiv{height: 10px !important;}
+            .formSubmit{margin-left:28% !important;}
+            #text20{min-width: 255px !important;max-width: 200px !important;}
+            .messageText{margin-left: 35% !important;}
+            .contactText{margin-left: 7% !important;}
         }
         @media (min-width: 460px) {
             .SystemMenuWrapper{width:375px !important}
