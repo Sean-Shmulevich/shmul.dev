@@ -2,11 +2,11 @@
     //each file page has a list of programs and or files and other stuff
     const fileSystem = {
         "/Home": {
-            files: ["resume.md",/*"terminal.app",*/"vsCode.app"],
+            files: ["resume.md",/*"terminal.app",*/"vsCode.app", /*"virtual.app"*/],
             up: "root",
             folders: {
                 "/Desktop": {
-                    files: ["Overview.app", "vsCode.app", "virtual.app"],
+                    files: ["Overview.app", "vsCode.app", "JsPaint.app" ],
                     up: '',
                     folders: {
                         // "/Games": {
@@ -153,16 +153,19 @@
         foldersList = Object.keys((currObj.folders));
     }
     function openItem(file){
-        console.log("here")
+        // console.log("here")
         if ($appLaunch[0] !== file){
             //match VS code. 
             if(file == "vsCode.app"){
-                console.log("VS Code");
+                // console.log("VS Code");
                 $appLaunch.push("VS Code");
             }
+            else if(file == "Overview.app"){
+                $appLaunch.push("Overview");
+            }
             //match a file ending in .md
-            else if(/^.+\.md$/.test(file)){
-                console.log("MD file");
+            else if(/^.+\.(.*)$/.test(file)){
+                console.log(file);
                 //push to store and remove the .md at the end of the file.
                 $appLaunch.push(file.substring(0, file.length-3));
             }

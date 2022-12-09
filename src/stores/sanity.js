@@ -14,8 +14,8 @@ export function urlFor(source) {
   return builder.image(source)
 }
 
-export async function get() {
-    const data = await client.fetch(`*[_type == "MDContent"]`);
+export async function get(fileName) {
+    const data = await client.fetch(`*[name == "${fileName}"]`);
     if (data) {
       return {
         status: 200,

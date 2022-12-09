@@ -167,7 +167,7 @@
                             </div>
                             {:else if value === "Contact"}
                                 <h2 class="contactText" style="margin-top:-40px;margin-left:15%">{value} Me</h2>
-                                <form action="https://api.web3forms.com/submit" method="post">        
+                                <form id="submitMessage" action="https://api.web3forms.com/submit" method="post">        
                                     <input type="hidden" name="access_key" value="fc0096dc-43af-400b-b33a-034020091036">                        
                                     <div class="field-row-stacked" style="width: 330px;margin-top:-40px;margin-left:-32px">
                                         <label class="messageText" for="text20" style="margin-inline: auto;">Message</label>
@@ -178,7 +178,7 @@
                                         <label for="text17">Email</label>
                                         <input name="email" id="text17" type="text" style="color:black;width:100%" required/>
                                     </div>
-                                    <div class="field-row" style="margin-left:-32px">
+                                    <div class="field-row" style="margin-left:-30px">
                                         <label for="text17">Name</label>
                                         <input name="name" id="text17" type="text" style="color:black;width:100%" required/>
                                     </div>
@@ -219,6 +219,10 @@
         .helloPitt {
             font-family: 'Apple Garamond';margin-top:-25px;font-size:1rem;text-align:center
         }
+        label{
+            font-family: 'Apple Garamond bold';
+            font-size: .9rem;
+        }
         .aboutContent{
             margin-top:-20px;
         }
@@ -230,6 +234,12 @@
             margin-top: 43px;
             font-family: "Apple Garamond bold", sans-serif;
         }
+
+        input:-webkit-autofill{
+            color:black;
+            -webkit-box-shadow: 0 0 0 30px white inset;
+            -webkit-text-fill-color: black !important;
+        }
         @media (max-width: 460px) {
             .SubMenuTabs{transform: scale(.86) translateX(-22px);}
             .SubMenuBody{height: 255px !important;}
@@ -237,16 +247,21 @@
             .SubMenuBody > div > div > h2{margin-top: -16px;}
             .aboutImage{width:120px !important; min-width:120px !important; height:120px}
             .introName{margin-top: 10px;}
-            .helloDev{font-size:1.2rem}
-            .helloPitt, .helloDev{margin-left:-13% !important;}
+            /* .helloDev{font-size:1.2rem} */
+            /* .helloPitt, .helloDev{margin-left:-13% !important;} */
             .aboutContent{margin-top:-65px !important;}
-            .field-row{width:105% !important}
-            .spacerDiv{height: 10px !important;}
-            .formSubmit{margin-left:28% !important;}
-            #text20{min-width: 250px !important;max-width: 70% !important;margin-left:5px}
-            .messageText{margin-left: 35% !important;}
-            .contactText{margin-left: 7% !important;}
+            /* .field-row{width:105% !important} */
+            /* .spacerDiv{height: 10px !important;}
+                        .formSubmit{margin-left:28% !important;}*/
+            /* #text20{min-width: 250px !important;max-width: 70% !important;margin-left:5px} */
+            .contactText{margin-left: 4% !important;} 
+            .messageText{margin-left: 37% !important;}
+            #submitMessage{
+                transform: scale(0.9) translate(-22px, -15px);
+            }
+            #text20{min-width: 87% !important;max-width: 87% !important;margin-left:5px}
         }
+
         @media (min-width: 460px) {
             .SystemMenuWrapper{width:375px !important}
         }

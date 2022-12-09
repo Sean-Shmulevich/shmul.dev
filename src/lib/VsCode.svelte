@@ -166,7 +166,7 @@ right: 0;
 bottom: 0;
 "
     on:mousedown={initResize}
-    on:touchstart={initResize}
+    on:touchstart|preventDefault|capture={initResize}
   />
 
   <div

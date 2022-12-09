@@ -19,9 +19,9 @@
   -webkit-text-size-adjust: 100%;
 }
 /* I can write my styles for the text window here. */
-.vscode h4{
+/* .vscode h4{
   color: red
-}
+} */
 @media (max-width: 800px) {
   .startWords{display: none !important;}
   .menuBarStart{width: 38px !important}
