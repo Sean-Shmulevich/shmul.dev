@@ -2,53 +2,60 @@
     //each file page has a list of programs and or files and other stuff
     const fileSystem = {
         "/Home": {
-            files: ["resume.md","terminal.app","vsCode.app"],
+            files: ["resume.md",/*"terminal.app",*/"vsCode.app"],
             up: "root",
             folders: {
                 "/Desktop": {
-                    files: ["Overview.app", "VScode.app", "virtual.app"],
+                    files: ["Overview.app", "vsCode.app", "virtual.app"],
                     up: '',
                     folders: {
-                        "/Games": {
-                            files: ["MS-Paint", "Snake"], up: "", folders: {
-                                "/Skiing": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}},
-                                "/Skiing0": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}}
-                            }
-                        },
-                        "/myPgrms": {
-                            files: ["MS-Paint", "Snake"], up: "", folders: {
-                                "/Skiing": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}},
-                                "/Skiing0": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}}
-                            }
-                        },
+                        // "/Games": {
+                        //     files: ["Snake"], up: "", folders: {}/*folders: {
+                        //         "/Skiing": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}},
+                        //         "/Skiing0": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}}
+                        //     }*/
+                        // },
+                        // "/myPgrms": {
+                        //     files: ["MS-Paint", "Snake"], up: "", folders: {
+                        //         "/Skiing": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}},
+                        //         "/Skiing0": {files: ["ski.md", "ski.md", "ski.md"], up: "", folders: {}}
+                        //     }
+                        // },
                     }
                 },
-                "/Seanshmulevich": {
+                "/SeanShmulevich": {
                     //these files names are bad in terms of content
                     files: ["passions.md", "hobbies.md", "goals.md", "ideas.md"],
                     up: "",
                     folders: {}
                 },
-                "/MyProjects": {
-                    files: ["projectIdeas.md","Algs.app", "scrape.app", "solana.app", "Algs.md", "solana.md", "scrape.md"],
+                "/Games": {
+                    //these files names are bad in terms of content
+                    files: ["snake"],
                     up: "",
-                    folders: {
-                        "/school": {
-                            files: ["a.txt"],
-                            up: "",
-                            folders: {
-                                "/randomFolder": {files: ["ran.md", "affy.md", "hello.md"], up: "", folders: {}},
-                                "/randomFolderz": {files: ["ran.md", "affy.md", "hello.md"], up: "", folders: {}}
-                            }
-                        },
-                        "/personal": {
-                            files: ["a.txt"],
-                            up: "",
-                            folders: {}
-                        },
-
-                    }
+                    folders: {}
                 },
+                
+                // "/MyProjects": {
+                //     files: ["projectIdeas.md","Algs.app", "scrape.app", "solana.app", "Algs.md", "solana.md", "scrape.md"],
+                //     up: "",
+                //     folders: {
+                //         "/school": {
+                //             files: ["a.txt"],
+                //             up: "",
+                //             folders: {
+                //                 "/randomFolder": {files: ["ran.md", "affy.md", "hello.md"], up: "", folders: {}},
+                //                 "/randomFolderz": {files: ["ran.md", "affy.md", "hello.md"], up: "", folders: {}}
+                //             }
+                //         },
+                //         "/personal": {
+                //             files: ["a.txt"],
+                //             up: "",
+                //             folders: {}
+                //         },
+
+                //     }
+                // },
 
             }
         },
@@ -172,13 +179,13 @@
 
     <div class="centerText">
         {#each foldersList as folder}
-            <div class="exploreIcon" on:dblclick|preventDefault|capture={goDeeper(folder)}>
+            <div class="exploreIcon" on:dblclick|preventDefault={goDeeper(folder)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/directory_closed-5.png"/>
                 <p class="filetext">{folder.substring(1)}</p>
             </div>
         {/each}
         {#each filesList as file}
-            <div class="exploreIcon" on:dblclick|capture|preventDefault={openItem(file)}>
+            <div class="exploreIcon" on:dblclick|preventDefault={openItem(file)}>
                 <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>

@@ -200,8 +200,8 @@
                 </div>
             </div>
 
-            <button class="CloseButton submit">Cancel</button>
-            <button class="CloseButton submit">OK</button>
+            <button class="CloseButton submit" on:mousedown={forward}>Cancel</button>
+            <button class="CloseButton submit" on:mousedown={minFunc}>OK</button>
         </div>
 
 
