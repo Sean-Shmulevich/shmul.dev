@@ -11,7 +11,7 @@
 </script>
 
 <figure>
-    <img width="200" src={urlFor(portableText.value.asset._ref).width(200).url()} />
+    <img width="200" alt="sean shmulevich blog" src={urlFor(portableText.value.asset._ref).width(200).url()} />
     <figcaption>{portableText.value.asset._ref}</figcaption>
 </figure>
 

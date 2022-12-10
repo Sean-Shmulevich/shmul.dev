@@ -208,29 +208,34 @@
             <fieldset class="fileMenuTop" style="margin-bottom: 0px;display: flex;align-items: center">
                 <button class="backButton" style="margin-left:1px;width:fit-content" on:click={thisWindow.goUp}>
                     <img src="https://win98icons.alexmeub.com/icons/png/unplug_storage-0.png" class="pathIcon"
+                    alt="go back filesystem"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:-2px"/>
                     <span class="moveText" style="margin-right: 0px">Back</span>
                 </button>
 
 
                 <button class="backButton" style="margin-right: 0px;width:fit-content" on:click={thisWindow.goUp}>
+                    
                     <img src="https://win98icons.alexmeub.com/icons/png/tree-0.png" class="pathIcon"
+                    alt="other button filesystem"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:0px"/>
                     <span class="moveText" style="margin-right: 6px">Other</span>
                 </button>
 
                 <button class="backButton" style=";margin-right: 0px;width:fit-content" on:click={thisWindow.goHome}>
                     <img src="https://win98icons.alexmeub.com/icons/png/address_book_home.png" class="pathIcon"
+                    alt="go home filesystem"
                          style="width:20px;height:20px;margin-bottom:6px;margin-left:0px"/>
                     <span class="moveText" style="margin-right: 6px">Home</span>
                 </button>
                 <button class="backButton" style="margin-right: 0px;width:fit-content;flex: 0 0 auto;" on:click|preventDefault|capture={newWindow}>
                     <img src="https://win98icons.alexmeub.com/icons/png/web_file_set-0.png" class="pathIcon"
+                        alt="make new filesystem window"
                          style="width:20px;max-height:20px;min-height:20px;margin-bottom:6px;margin-left:-2px;margin-right:-4px"/>
                     <span class="moveText" style="margin-right: 6px">New Window</span>
                 </button>
                 <button class="backButton" style="margin-right:1px;min-width: 60px">
-                    <img src="https://win98icons.alexmeub.com/icons/png/file_lines-1.png" alt="small file icon"
+                    <img src="https://win98icons.alexmeub.com/icons/png/file_lines-1.png" alt="window 98 small file icon"
                          class="pathIcon" style="width:20px;height:20px;margin-bottom:6px;margin-left:-6px"/>
                     <span class="moveText">List view</span>
                 </button>
@@ -252,7 +257,7 @@
                     <div class="status-bar">
                         <span class="status-bar-field"><span style="position:absolute;transform: translateY(-5px);">
                             <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-2.png"
-                                 alt="small file icon" class="pathIcon"/>
+                                 alt="windows 98 small file icon" class="pathIcon"/>
                             {currentPath}
                         </span></span>
                     </div>

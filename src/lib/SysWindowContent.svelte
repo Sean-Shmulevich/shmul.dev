@@ -186,13 +186,13 @@
     <div class="centerText">
         {#each foldersList as folder}
             <div class="exploreIcon" on:dblclick|preventDefault={goDeeper(folder)}>
-                <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/directory_closed-5.png"/>
+                <img class="menuFileIcon" alt="windows 98 filesystem file button goes to {folder}" src="https://win98icons.alexmeub.com/icons/png/directory_closed-5.png"/>
                 <p class="filetext">{folder.substring(1)}</p>
             </div>
         {/each}
         {#each filesList as file}
             <div class="exploreIcon" on:dblclick|preventDefault={openItem(file)}>
-                <img class="menuFileIcon" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
+                <img class="menuFileIcon" alt="windows 98 filesystem file icon goes to {file}" src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png"/>
                 <p class="filetext">{file}</p>
             </div>
         {/each}

@@ -237,18 +237,19 @@
 
   <TopBar />
   <div
-    style="background: url('https://crustmag.slimecars.com/images/swissMountains.png') 0 50% repeat-x"
+    style="background: url('https://crustmag.slimecars.com/images/swissMountains.webp') 0 50% repeat-x"
     class="mountainDiv"
   />
   {#each icons as { left, src, text }, i}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="homeIcon"
-      style="top:{i * 105 + 65}px; left:{left}px"
+      style="top:{i * 105 + 65}px; left:{left}px;image-rendering: pixelated"
       class:blue={current === text}
       on:click={() => (current = text)}
       on:dblclick={updateWindows}
     >
-      <img {src} alt="folder icon Windows 95" style="width:55px" />
+      <img {src} alt="window 98 home screen {text} button" style="width:55px" />
       <p class="homeIconText">{text}</p>
     </div>
   {/each}
@@ -329,7 +330,7 @@
       <div
         style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
       >
-        <img src="https://crustmag.slimecars.com/images/SeanResume.png" style="width:125%" alt="">
+        <img src="https://crustmag.slimecars.com/images/SeanResume.webp" style="width:125%" alt="Sean Shmulevich's Resume">
       </div>
     </svelte:component>
   {/if}
@@ -538,20 +539,20 @@
     background-repeat: repeat-x;
     background-size: 350px 300px;
   }
-  .swissMountains {
+  /* .swissMountains {
     width: 100%;
     max-height: 700px;
     max-width: 1000px;
     background-repeat: repeat-x;
-  }
-  .swissMountainsRepeat {
+  } */
+  /* .swissMountainsRepeat {
     width: 100%;
     position: fixed;
     bottom: -80px;
     left: 0px;
     max-height: 700px;
     max-width: 1000px;
-  }
+  } */
   /*<AboutMe zIdx={-1}/>*/
   .homeIconText {
     margin-top: -11px;

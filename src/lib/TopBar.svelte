@@ -20,18 +20,18 @@
     <div class="rightBox">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png" alt="hello alt" class="rightmost" style="margin-right: 4mm;">-->
         <span class="dateText">{dayOfWeek} {monthStr} {dayOfMonth}</span>
-        <a href="https://github.com/Sean-Shmulevich"  target="_blank" rel="noopener noreferrer"><img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="hello alt" class="rightmost" style="margin-left:-3px"></a>
-        <a href="https://www.linkedin.com/in/sean-shmulevich-237190185/" target="_blank" rel="noopener noreferrer"><img src={linkedIn} alt="hello alt" class="rightmost"></a>
-        <a href="https://www.instagram.com/theshmulconspiracy/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="hello alt" class="rightmost"></a>
+        <a href="https://github.com/Sean-Shmulevich"  target="_blank" rel="noopener noreferrer"><img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="Sean shmulevich github link" class="rightmost" style="margin-left:-3px"></a>
+        <a href="https://www.linkedin.com/in/sean-shmulevich-237190185/" target="_blank" rel="noopener noreferrer"><img src={linkedIn} alt="Sean Shmulevich LinkedIn link" class="rightmost"></a>
+        <a href="https://www.instagram.com/theshmulconspiracy/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="Sean Shmulevich instagram link" class="rightmost"></a>
     </div>
 </div>
 <style>
-    .leftIcon {
+    /* .leftIcon {
         width: 54px;
         max-height: 45px;
         margin-top: -10px;
         vertical-align: middle;
-    }
+    } */
     a:focus{
         outline: unset;
     }

@@ -153,7 +153,7 @@
                         <div style="width: 100%;padding: 20px;line-height: 1.5;">
                             {#if value == "Hello"}
                             <div style="display:flex">
-                                <img class="aboutImage" src="https://avatars.githubusercontent.com/u/33522108?v=4" width="150"  style="margin-top:-20px;min-width:70%;border-radius:50%;margin-left:-30px" alt="picture of me"/>
+                                <img class="aboutImage" src="https://avatars.githubusercontent.com/u/33522108?v=4" width="150"  style="margin-top:-20px;min-width:70%;border-radius:50%;margin-left:-30px" alt="Sean Shmulevich profile"/>
                                 <h4 class="introName">Sean Shmulevich</h4>
                             </div>
                             <p class="helloDev">Software Developer</p>

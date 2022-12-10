@@ -11,7 +11,7 @@
     import {javascript} from "@codemirror/lang-javascript";
     const dispatch = createEventDispatcher()
     let classes = ''
-    export { classes as class }
+    // export { classes as class }
 
     let dom
 
