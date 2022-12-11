@@ -351,21 +351,21 @@
     </div>
   </svelte:component>
 {/if}
-  {#if $writableArray.indexOf("passions") !== -1}
+  {#if $writableArray.indexOf("My_Philosophy") !== -1}
   <svelte:component
     this={VSCODE}
     BoxX={(startPositionX += 30)}
     BoxY={(startPositionY += 30)}
-    windowName="passions"
-    bind:hide={isMinimized["passions"]}
-    bind:zIdx={zMap["passions"]}
-    on:close={() => removeWindow("passions")}
+    windowName="My_Philosophy"
+    bind:hide={isMinimized["My_Philosophy"]}
+    bind:zIdx={zMap["My_Philosophy"]}
+    on:close={() => removeWindow("My_Philosophy")}
   >
     <div
       style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
     >
         <!-- svelte-ignore empty-block -->
-      {#await getData("Passions")}
+      {#await getData("My_Philosophy")}
       <div style="margin: 25% auto auto 40%">
           <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
       </div>
@@ -471,6 +471,41 @@
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("Ideas")}
+      <div style="margin: 25% auto auto 40%">
+          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+      </div>
+      {:then backendContent}
+      <svelte:component
+      this={PORTABLETEXT}
+      value={backendContent}
+      components={{
+      types: {
+          // block-level components
+          image: Image,
+          // inline-level components
+      }
+      }}
+      >
+      </svelte:component>
+      {/await}
+    </div>
+  </svelte:component>
+  {/if}
+  {#if $writableArray.indexOf("About_Website") !== -1}
+  <svelte:component
+    this={VSCODE}
+    BoxX={(startPositionX += 30)}
+    BoxY={(startPositionY += 30)}
+    windowName="About_Website"
+    bind:hide={isMinimized["About_Website"]}
+    bind:zIdx={zMap["About_Website"]}
+    on:close={() => removeWindow("About_Website")}
+  >
+    <div
+      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    >
+        <!-- svelte-ignore empty-block -->
+      {#await getData("About_Website")}
       <div style="margin: 25% auto auto 40%">
           <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
       </div>

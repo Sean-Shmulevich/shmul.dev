@@ -2,7 +2,7 @@
     //each file page has a list of programs and or files and other stuff
     const fileSystem = {
         "/Home": {
-            files: ["resume.md","About_Shmul.dev","vsCode.app", /*"virtual.app"*/],
+            files: ["resume.md","About_Website","vsCode.app", /*"virtual.app"*/],
             up: "root",
             folders: {
                 "/Desktop": {
@@ -25,7 +25,7 @@
                 },
                 "/SeanShmulevich": {
                     //these files names are bad in terms of content
-                    files: ["passions.md", "hobbies.md", "goals.md", "ideas.md"],
+                    files: ["My_Philosophy", "hobbies.md", "goals.md", "ideas.md"],
                     up: "",
                     folders: {}
                 },

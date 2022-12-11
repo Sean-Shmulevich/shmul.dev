@@ -44,7 +44,7 @@
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
     <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon"
-             style="width:27px;vertical-align: middle;margin-right:-2px;">
+             style="width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated">
         <span class="startWords">Start</span>
     </button>
     {#if currentWindows.length > 0}
@@ -55,7 +55,7 @@
         {#each currentWindows as window}
                 <button id={"minButt"+window.replace(/\s/g, '')} on:click|capture|preventDefault={(event) => forward(event,window)} class:classes={window === $glowWindow}  class="appMinimized">
                     <img src="{findIcon(iconMap, window)}" alt="{window} bottom bar icon"
-                    style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);">
+                    style="padding-top:0px;width:22px;vertical-align: middle;margin-right: 0px;padding-left:10px;padding-right:4px;transform: skew(20deg);image-rendering:pixelated">
                     <span class="minItemText">{window}</span>
                 </button>
         {/each}
@@ -85,7 +85,7 @@
     <div class="timeBox" style="margin-right: -6px;white-space: nowrap;display: flex;background: linear-gradient( 90deg, rgb(26 26 101), rgb(154 143 233) );">
         <!--<img src="https://win98icons.alexmeub.com/icons/png/gears_tweakui_a-1.png" alt="hello alt" class="gears">-->
         <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays_green-0.png" alt="windows 98 sound icon"
-            style="width:27px;height:27px;margin-top: 2px;margin-left:-2px;padding-left:10px">
+            style="width:27px;height:27px;margin-top: 2px;margin-left:-2px;padding-left:10px;image-rendering:pixelated">
 
         <b id="time" class="timeText" style="margin-bottom:10px;display:block;margin-top:4px;color:white;font-family: 'Apple Garamond Bold'"></b>
     </div>
