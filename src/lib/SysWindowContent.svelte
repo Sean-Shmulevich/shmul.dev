@@ -2,7 +2,7 @@
     //each file page has a list of programs and or files and other stuff
     const fileSystem = {
         "/Home": {
-            files: ["resume.md",/*"terminal.app",*/"vsCode.app", /*"virtual.app"*/],
+            files: ["resume.md","About_Shmul.dev","vsCode.app", /*"virtual.app"*/],
             up: "root",
             folders: {
                 "/Desktop": {

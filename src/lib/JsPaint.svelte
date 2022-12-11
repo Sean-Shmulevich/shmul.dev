@@ -4,7 +4,7 @@
 
     import {count} from '../stores/zIndex.js';
     import {glowWindow} from '../stores/keep.js';
-    import {handleMinimize, incrementCount, swipeStart, swipeEnd, tapHandler, touchDevice} from "./SysWindow.svelte"
+    import {handleMinimize, incrementCount, tapHandler, touchDevice} from "./SysWindow.svelte"
     import {onMount, onDestroy} from 'svelte';
     import {writableArray} from "../stores/minimized.js";
 
@@ -102,7 +102,7 @@
              use:asDraggable={{relativeTo:document.body, onDragStart, onDragMove, onDragEnd, minX:0,minY:0}}>
             <div class="title-bar-text"
                  style="text-align:right;float:left;font-size: 10px;margin-left: 10px;margin-top: 4px;">
-                <span class="filesBarText">File Explorer</span>
+                <span class="filesBarText" style="display: block;transform: translateY(-4px);">JS Paint</span>
             </div>
             <div class="title-bar-controls" style="position: relative;float: right;margin-right: 5px;padding-top: 5px;">
                 <button class="minimize" style="min-width: 15px;" aria-label="Minimize"
