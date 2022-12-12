@@ -26,7 +26,23 @@
   .startWords{display: none !important;}
   .menuBarStart{width: 38px !important}
 }
-
+/* reading view styles. */
+.vsText > div > p, .vsText > div > ul{
+  font-family: 'Apple Garamond', serif;
+  font-size:1.1rem;
+}
+.vsText > .article{
+line-height: 1.8rem;
+}
+.vsText > div > ul{
+  margin-left:-20px;
+}
+.vsText > div > h1, .vsText > div > h2, .vsText > div > h3, .vsText > div > h4{
+  text-align: center;
+} 
+.vsText > div > ul{
+  line-height: 1.8rem;
+  }
 @media (max-width: 580px) {
   .minItemText{display: none !important;}
   .startWords{display: none !important;}

@@ -39,6 +39,21 @@
         }
         return map[win];
     }
+    // function removeText(){
+    //     if($writableArray.length > 5){
+    //         let client = document.querySelector(".minItemText").getBoundingClientRect();
+    //         if (client.width < 90){
+    //             document.querySelectorAll(".minItemText").forEach((ele, i) => {
+    //               ele.style.display = "none";
+    //               // ele.querySelector("* img");
+    //               (document.querySelectorAll(".minimizedItems * img")[i]).style.marginLeft = "-10px";
+    //             });
+    //             return true;
+    //         }
+    //         return false;
+    //     }
+    //     return false;
+    // }
 
 </script>
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
@@ -114,7 +129,8 @@
         margin-left: 8px;
         margin-bottom: -7px;
     } */
-
+    .none{display: none;}
+    .shift{margin-right:-20px;}
     .timeText {
         font-size: 1.25rem;
         margin-right: 2px;

@@ -327,8 +327,7 @@
       bind:zIdx={zMap["resume"]}
       on:close={() => removeWindow("resume")}
     >
-      <div
-        style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+      <div class="article"
       >
         <img src="https://crustmag.slimecars.com/images/SeanResume.webp" style="width:125%" alt="Sean Shmulevich's Resume">
       </div>
@@ -344,8 +343,7 @@
     bind:zIdx={zMap["snake"]}
     on:close={() => removeWindow("snake")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px;padding-top:0px"
+    <div class="article"
     >
       <h2 style="line-height:2rem">No snake game yet but the idea is to make a snake game where the windows on this page are obstacles for the snake.</h2>
     </div>
@@ -361,8 +359,7 @@
     bind:zIdx={zMap["My_Philosophy"]}
     on:close={() => removeWindow("My_Philosophy")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    <div class="article"
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("My_Philosophy")}
@@ -396,8 +393,7 @@
     bind:zIdx={zMap["hobbies"]}
     on:close={() => removeWindow("hobbies")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    <div class="article"
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("Hobbies")}
@@ -431,8 +427,7 @@
     bind:zIdx={zMap["goals"]}
     on:close={() => removeWindow("goals")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    <div class="article"
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("Goals")}
@@ -466,8 +461,7 @@
     bind:zIdx={zMap["ideas"]}
     on:close={() => removeWindow("ideas")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    <div class="article"
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("Ideas")}
@@ -501,8 +495,7 @@
     bind:zIdx={zMap["About_Website"]}
     on:close={() => removeWindow("About_Website")}
   >
-    <div
-      style="color:white;font-family:Apple Garamond bold;padding:10px;margin-top:0px"
+    <div class="article"
     >
         <!-- svelte-ignore empty-block -->
       {#await getData("About_Website")}
@@ -532,6 +525,9 @@
 
 <style>
   /* markdown styles */
+  .article{
+    color:white;font-family:Apple Garamond bold;padding:0px 15px 10px 15px;margin-top:-10px;
+  }
   .scan-lines {
     z-index: 99999;
     opacity: 0.7;
