@@ -23,9 +23,10 @@
   float: right;
   min-width: 38px;
   width:10px;
+  opacity: 1 !important;
   box-shadow: unset;
   background: transparent;
-  transform: translateY(-25px);
+  transform: translateY(3px);
 }
 #code-editor{
   border: unset;

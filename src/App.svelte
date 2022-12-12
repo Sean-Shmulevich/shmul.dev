@@ -10,8 +10,8 @@
   // import SysWindow from "./lib/SysWindow.svelte";
   // import {touchDevice} from './lib/SysWindow.svelte';
   import TopBar from "./lib/TopBar.svelte";
-  import Image from './lib/Image.svelte'
-  import { BarLoader } from 'svelte-loading-spinners';
+  import Image from "./lib/Image.svelte";
+  import { BarLoader } from "svelte-loading-spinners";
   // import VsCode from './lib/VsCode.svelte'
   let VSCODE = null;
   let FILESYS = null;
@@ -19,15 +19,14 @@
   let CODEMIRROR = null;
   let PORTABLETEXT = null;
 
-
   import { count } from "./stores/zIndex.js";
   import { writableArray } from "./stores/minimized.js";
   import { appLaunch } from "./stores/appLaunch.js";
 
-//   import SvelteMarkdown from "svelte-markdown";
-//   import source from "./assets/markdown/test.md?raw";
+  //   import SvelteMarkdown from "svelte-markdown";
+  //   import source from "./assets/markdown/test.md?raw";
   // import CodeMirror from './lib/CodeMirror.svelte'
-    import { get } from "./stores/sanity.js";
+  import { get } from "./stores/sanity.js";
 
   let getData = async (fileName) => {
     let data = await (await get(fileName)).body["textArr"][0].FileContent;
@@ -207,8 +206,8 @@
           VSCODE = (await import("./lib/VsCode.svelte")).default;
           CODEMIRROR = (await import("./lib/CodeMirror.svelte")).default;
         }
-        if(PORTABLETEXT === null) {
-            PORTABLETEXT =  (await import("@portabletext/svelte")).PortableText;
+        if (PORTABLETEXT === null) {
+          PORTABLETEXT = (await import("@portabletext/svelte")).PortableText;
         }
         if (JSPAINT === null) {
           JSPAINT = (await import("./lib/JsPaint.svelte")).default;
@@ -233,8 +232,6 @@
 <svelte:window on:click|capture={unsetBlue} />
 
 <main>
-
-
   <TopBar />
   <div
     style="background: url('https://crustmag.slimecars.com/images/swissMountains.webp') 0 50% repeat-x"
@@ -312,7 +309,6 @@
         this={CODEMIRROR}
         doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
       >
-        bind:docStore={store}>
       </svelte:component>
     </svelte:component>
   {/if}
@@ -327,204 +323,191 @@
       bind:zIdx={zMap["resume"]}
       on:close={() => removeWindow("resume")}
     >
-      <div class="article"
-      >
-        <img src="https://crustmag.slimecars.com/images/SeanResume.webp" style="width:125%" alt="Sean Shmulevich's Resume">
+      <div class="article">
+        <img
+          src="https://crustmag.slimecars.com/images/SeanResume.webp"
+          style="width:125%"
+          alt="Sean Shmulevich's Resume"
+        />
       </div>
     </svelte:component>
   {/if}
   {#if $writableArray.indexOf("snake") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="snake"
-    bind:hide={isMinimized["snake"]}
-    bind:zIdx={zMap["snake"]}
-    on:close={() => removeWindow("snake")}
-  >
-  <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
-  <!-- <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-<section class="pyscript" style="color:white">
-<br>
-<div style="margin-inline: 15px;">
-<py-repl id="my-repl" auto-generate="true"> </py-repl>
-</div> -->
-    <div class="article"
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="snake"
+      bind:hide={isMinimized["snake"]}
+      bind:zIdx={zMap["snake"]}
+      on:close={() => removeWindow("snake")}
+    >
+        <div class="article"
     >
       <h2 style="line-height:2rem">No snake game yet but the idea is to make a snake game where the windows on this page are obstacles for the snake.</h2>
     </div>
-  </svelte:component>
-{/if}
-  {#if $writableArray.indexOf("My_Philosophy") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="My_Philosophy"
-    bind:hide={isMinimized["My_Philosophy"]}
-    bind:zIdx={zMap["My_Philosophy"]}
-    on:close={() => removeWindow("My_Philosophy")}
-  >
-    <div class="article"
+    </svelte:component
     >
+  {/if}
+  {#if $writableArray.indexOf("My_Philosophy") !== -1}
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="My_Philosophy"
+      bind:hide={isMinimized["My_Philosophy"]}
+      bind:zIdx={zMap["My_Philosophy"]}
+      on:close={() => removeWindow("My_Philosophy")}
+    >
+      <div class="article">
         <!-- svelte-ignore empty-block -->
-      {#await getData("My_Philosophy")}
-      <div style="margin: 25% auto auto 40%">
-          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+        {#await getData("My_Philosophy")}
+          <div style="margin: 25% auto auto 40%">
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+          </div>
+        {:then backendContent}
+          <svelte:component
+            this={PORTABLETEXT}
+            value={backendContent}
+            components={{
+              types: {
+                // block-level components
+                image: Image,
+                // inline-level components
+              },
+            }}
+          />
+        {/await}
       </div>
-      {:then backendContent}
-      <svelte:component
-      this={PORTABLETEXT}
-      value={backendContent}
-      components={{
-      types: {
-          // block-level components
-          image: Image,
-          // inline-level components
-      }
-      }}
-      >
-      </svelte:component>
-      {/await}
-    </div>
-  </svelte:component>
+    </svelte:component>
   {/if}
   {#if $writableArray.indexOf("hobbies") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="hobbies"
-    bind:hide={isMinimized["hobbies"]}
-    bind:zIdx={zMap["hobbies"]}
-    on:close={() => removeWindow("hobbies")}
-  >
-    <div class="article"
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="hobbies"
+      bind:hide={isMinimized["hobbies"]}
+      bind:zIdx={zMap["hobbies"]}
+      on:close={() => removeWindow("hobbies")}
     >
+      <div class="article">
         <!-- svelte-ignore empty-block -->
-      {#await getData("Hobbies")}
-      <div style="margin: 25% auto auto 40%">
-          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+        {#await getData("Hobbies")}
+          <div style="margin: 25% auto auto 40%">
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+          </div>
+        {:then backendContent}
+          <svelte:component
+            this={PORTABLETEXT}
+            value={backendContent}
+            components={{
+              types: {
+                // block-level components
+                image: Image,
+                // inline-level components
+              },
+            }}
+          />
+        {/await}
       </div>
-      {:then backendContent}
-      <svelte:component
-      this={PORTABLETEXT}
-      value={backendContent}
-      components={{
-      types: {
-          // block-level components
-          image: Image,
-          // inline-level components
-      }
-      }}
-      >
-      </svelte:component>
-      {/await}
-    </div>
-  </svelte:component>
+    </svelte:component>
   {/if}
   {#if $writableArray.indexOf("goals") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="goals"
-    bind:hide={isMinimized["goals"]}
-    bind:zIdx={zMap["goals"]}
-    on:close={() => removeWindow("goals")}
-  >
-    <div class="article"
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="goals"
+      bind:hide={isMinimized["goals"]}
+      bind:zIdx={zMap["goals"]}
+      on:close={() => removeWindow("goals")}
     >
+      <div class="article">
         <!-- svelte-ignore empty-block -->
-      {#await getData("Goals")}
-      <div style="margin: 25% auto auto 40%">
-          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+        {#await getData("Goals")}
+          <div style="margin: 25% auto auto 40%">
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+          </div>
+        {:then backendContent}
+          <svelte:component
+            this={PORTABLETEXT}
+            value={backendContent}
+            components={{
+              types: {
+                // block-level components
+                image: Image,
+                // inline-level components
+              },
+            }}
+          />
+        {/await}
       </div>
-      {:then backendContent}
-      <svelte:component
-      this={PORTABLETEXT}
-      value={backendContent}
-      components={{
-      types: {
-          // block-level components
-          image: Image,
-          // inline-level components
-      }
-      }}
-      >
-      </svelte:component>
-      {/await}
-    </div>
-  </svelte:component>
+    </svelte:component>
   {/if}
   {#if $writableArray.indexOf("ideas") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="ideas"
-    bind:hide={isMinimized["ideas"]}
-    bind:zIdx={zMap["ideas"]}
-    on:close={() => removeWindow("ideas")}
-  >
-    <div class="article"
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="ideas"
+      bind:hide={isMinimized["ideas"]}
+      bind:zIdx={zMap["ideas"]}
+      on:close={() => removeWindow("ideas")}
     >
+      <div class="article">
         <!-- svelte-ignore empty-block -->
-      {#await getData("Ideas")}
-      <div style="margin: 25% auto auto 40%">
-          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+        {#await getData("Ideas")}
+          <div style="margin: 25% auto auto 40%">
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+          </div>
+        {:then backendContent}
+          <svelte:component
+            this={PORTABLETEXT}
+            value={backendContent}
+            components={{
+              types: {
+                // block-level components
+                image: Image,
+                // inline-level components
+              },
+            }}
+          />
+        {/await}
       </div>
-      {:then backendContent}
-      <svelte:component
-      this={PORTABLETEXT}
-      value={backendContent}
-      components={{
-      types: {
-          // block-level components
-          image: Image,
-          // inline-level components
-      }
-      }}
-      >
-      </svelte:component>
-      {/await}
-    </div>
-  </svelte:component>
+    </svelte:component>
   {/if}
   {#if $writableArray.indexOf("About_Website") !== -1}
-  <svelte:component
-    this={VSCODE}
-    BoxX={(startPositionX += 30)}
-    BoxY={(startPositionY += 30)}
-    windowName="About_Website"
-    bind:hide={isMinimized["About_Website"]}
-    bind:zIdx={zMap["About_Website"]}
-    on:close={() => removeWindow("About_Website")}
-  >
-    <div class="article"
+    <svelte:component
+      this={VSCODE}
+      BoxX={(startPositionX += 30)}
+      BoxY={(startPositionY += 30)}
+      windowName="About_Website"
+      bind:hide={isMinimized["About_Website"]}
+      bind:zIdx={zMap["About_Website"]}
+      on:close={() => removeWindow("About_Website")}
     >
+      <div class="article">
         <!-- svelte-ignore empty-block -->
-      {#await getData("About_Website")}
-      <div style="margin: 25% auto auto 40%">
-          <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+        {#await getData("About_Website")}
+          <div style="margin: 25% auto auto 40%">
+            <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
+          </div>
+        {:then backendContent}
+          <svelte:component
+            this={PORTABLETEXT}
+            value={backendContent}
+            components={{
+              types: {
+                // block-level components
+                image: Image,
+                // inline-level components
+              },
+            }}
+          />
+        {/await}
       </div>
-      {:then backendContent}
-      <svelte:component
-      this={PORTABLETEXT}
-      value={backendContent}
-      components={{
-      types: {
-          // block-level components
-          image: Image,
-          // inline-level components
-      }
-      }}
-      >
-      </svelte:component>
-      {/await}
-    </div>
-  </svelte:component>
+    </svelte:component>
   {/if}
   <BottomBar on:min={handleMessage} />
   <div class="scan-lines" />
@@ -532,8 +515,11 @@
 
 <style>
   /* markdown styles */
-  .article{
-    color:white;font-family:Apple Garamond bold;padding:0px 15px 10px 15px;margin-top:-10px;
+  .article {
+    color: white;
+    font-family: Apple Garamond bold;
+    padding: 0px 15px 10px 15px;
+    margin-top: -10px;
   }
   .scan-lines {
     z-index: 99999;
