@@ -319,11 +319,17 @@ bottom: 0;
   :global(.cm-gutter) {
     background-color: rgb(43, 43, 74) !important;
   }
+  :global(.cm-content) {
+    caret-color: yellow !important;
+  }
+  :global(.ͼ4, .cm-line) {
+    caret-color: yellow !important;
+  }
   :global(.cm-lineNumbers) {
     background-color: rgb(43, 43, 74) !important;
   }
   :global(.cm-activeLine) {
-    background-color: rgb(31 32 63);
+    background-color: rgb(31 32 63) !important;
   }
   :global(.cm-scroller) {
     background-color: rgb(43, 43, 74) !important;
@@ -346,10 +352,13 @@ bottom: 0;
   :global(.ͼb) {
     color: rgb(242, 160, 57);
   }
+  :global(.ͼa) {
+    color: rgb(250, 176, 234);
+  }
   :global(.ͼg) {
     color: rgb(273, 154, 247);
   }
-  :global(.ͼe) {
+  :global(.ͼc) {
     color: rgb(185, 251, 154);
   }
   :global(.ͼl) {

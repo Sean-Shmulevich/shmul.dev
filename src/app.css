@@ -18,6 +18,18 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+#btnRun {
+  display: inline-block;
+  float: right;
+  min-width: 38px;
+  width:10px;
+  box-shadow: unset;
+  background: transparent;
+  transform: translateY(-25px);
+}
+#code-editor{
+  border: unset;
+}
 /* I can write my styles for the text window here. */
 /* .vscode h4{
   color: red

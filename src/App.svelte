@@ -343,6 +343,13 @@
     bind:zIdx={zMap["snake"]}
     on:close={() => removeWindow("snake")}
   >
+  <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
+  <!-- <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+<section class="pyscript" style="color:white">
+<br>
+<div style="margin-inline: 15px;">
+<py-repl id="my-repl" auto-generate="true"> </py-repl>
+</div> -->
     <div class="article"
     >
       <h2 style="line-height:2rem">No snake game yet but the idea is to make a snake game where the windows on this page are obstacles for the snake.</h2>
