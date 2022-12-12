@@ -137,10 +137,10 @@
                         <input type=radio bind:group={value} name="scoops" value={"Contact"}>
                         <span class="menuText">Contact</span>
                     </label>
-                    <!-- <label class="SubMenuTab radioTab" class:selectedTab={value === "Credits"} style="display: unset">
-                        <input type=radio bind:group={value} name="scoops" value={"Credits"}>
-                        <span class="menuText">Credits</span>
-                    </label> -->
+                    <label class="SubMenuTab radioTab" class:selectedTab={value === "My Sites"} style="display: unset">
+                        <input type=radio bind:group={value} name="scoops" value={"My Sites"}>
+                        <span class="menuText">My Apps</span>
+                    </label>
                     <label class="SubMenuTab radioTab" class:selectedTab={value === "Mobile"} style="display: unset">
                         <input type=radio bind:group={value} name="scoops" value={"Mobile"}>
                         <span class="menuText">Mobile</span>
@@ -172,7 +172,7 @@
                                     <div class="field-row-stacked" style="width: 330px;margin-top:-40px;margin-left:-32px">
                                         <label class="messageText" for="text20" style="margin-inline: auto;">Message</label>
                                         <textarea name="message" id="text20" rows="8" style="resize:none;background: white;color: black;min-width:330px;max-width: 330px;" required></textarea>
-                                      </div>
+                                    </div>
                                     <div class="spacerDiv" style="height:40px"></div>
                                     <div class="field-row" style="margin-left:-30px">
                                         <label for="text17">Email</label>
@@ -185,6 +185,18 @@
                                     <input type="hidden" name="redirect" value="https://web3forms.com/success">
                                     <button type="submit" class="formSubmit">Submit Form</button>
                                 </form>
+                            {:else if value === "My Sites"}
+                            <div class="aboutContent">
+                                <h2>{value} </h2>
+                                <div style="font-family: 'Apple Garamond';font-size:1rem">
+                                    Here are some websites I've built:
+                                    <br/><br/>
+                                    <ul style="margin-left:-20px;margin-top:-10px">
+                                        <li><a href="http://sherlock-gender.obdurodon.org/"><span style="font-family: 'Apple Garamond Bold Italic';">Sherlock Gender </span></a>Vanilla HTML+CSS+JS</li>
+                                        <li><a href="https://delicausa.com"><span style="font-family: 'Apple Garamond Bold Italic';">DelicaUSA </span></a>Wordpress + Woocommerce</li>
+                                    </ul>
+                                </div>
+                            </div>    
                             {:else if value === "Mobile"}
                             <div class="aboutContent">
                                 <h2>{value} </h2>
@@ -207,6 +219,10 @@
 
     </div>
     <style>
+        .CloseButton{
+            z-index: 9;
+            position: relative;
+        }
         .formSubmit{
             margin-top: 20px;
             color: black;
@@ -257,6 +273,7 @@
             .contactText{margin-left: 4% !important;} 
             .messageText{margin-left: 39% !important;}
             .formSubmit{margin-top:9px !important;}
+            .radioTab{padding: 3px 10px 0px !important;}
             #submitMessage{
                 transform: scale(0.9) translate(-22px, -15px);
             }
@@ -320,6 +337,7 @@
             font-family: 'Apple Garamond bold';
             font-size: 0.88rem;
             display: block;
+            white-space: nowrap;
             margin-top: -29px;
             margin-left: 2px;
             margin-right: 2px;
