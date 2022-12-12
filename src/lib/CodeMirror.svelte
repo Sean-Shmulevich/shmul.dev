@@ -28,6 +28,7 @@
     height: auto !important;
     background-color: rgb(43, 43, 74);
     border: 5px solid white !important;
+    caret-color: white !important;
   }
   :global(.cm-gutters) {
     background-color: rgb(43, 43, 74) !important;
@@ -80,6 +81,8 @@
   }
   :global(.ͼ4 .cm-line) {
     caret-color: yellow !important;
+    background-color: rgb(43, 43, 74) !important;
 }
+
 
 </style>

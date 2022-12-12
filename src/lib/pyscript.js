@@ -4161,7 +4161,7 @@
             super();
         }
         connectedCallback() {
-            this.innerHTML = `<div id="pyscript_loading_splash" class="py-overlay">
+            this.innerHTML = `<div id="pyscript_loading_splash" class="py-overlay" style="z-index:10000">
         <div class="py-pop-up">
         <div class="smooth spinner"></div>
         <div id="pyscript-loading-label" class="label">
