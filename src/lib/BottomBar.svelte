@@ -39,6 +39,13 @@
         }
         return map[win];
     }
+    let showMenu = false;
+    const toggleMenu = () => {
+        showMenu = true;
+    }
+    const toggleMenuOff = () => {
+        showMenu = false;
+    }
     // function removeText(){
     //     if($writableArray.length > 5){
     //         let client = document.querySelector(".minItemText").getBoundingClientRect();
@@ -56,8 +63,56 @@
     // }
 
 </script>
+
+{#if showMenu}
+<!-- on:mouseleave={showMenu = false} -->
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div class="startMenu" on:click={toggleMenuOff} on:mouseleave={toggleMenuOff} style="">
+    <div style="height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );">
+        <div style="
+        color:white;
+        position:absolute;
+        bottom: 32px;
+        left: -27px;
+        font-size:.9rem;
+        transform: rotate(-90deg);">
+            <span style="font-weight:bold">Shmul</span>.dev
+        </div>
+    </div>
+    <p>
+        <img src="{vsLogo}" class="startMenuIcon" width="20px" height="20px" alt="{window} bottom bar icon"/>
+        About My Site
+    </p>
+    <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        My Hobbies&ensp;
+    </p>
+    <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        &ensp;&ensp;Resume&ensp;&ensp;
+    </p>
+    <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        &ensp;My Ideas&ensp;&ensp;
+    </p>
+    <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        &ensp;About Me&ensp;&ensp;
+    </p>
+    <!-- <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        Menu item 6
+    </p>
+    <p>
+        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        Menu item 7
+    </p> -->
+</div>
+{/if}
+
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
+    <button class="menuBarStart" on:mouseenter={toggleMenu} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon"
              style="width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated">
         <span class="startWords">Start</span>
@@ -107,6 +162,28 @@
 
 </div>
 <style>
+    /* make start button with svelte if you hover on it it will reveal a menu above it if you click on it it wont go away until you click somewhere else
+     */
+     .startMenuIcon{
+        margin-left:-6px;margin-right:6px;transform:translateY(5px);
+     }
+     .startMenu{
+        background-color:#eae3fa;position:absolute;width: 150px;bottom: 35px;text-align: center;box-shadow: inset -1px -1px #0a0a0a,
+inset 1px 1px #ffffff, inset -2px -2px #808080,
+inset 2px 2px #dfdfdf;
+     }
+     .startMenu > p:hover{
+        background-color: rebeccapurple;
+        color:white;
+     }
+     .startMenu > p{
+        font-size:1rem;
+        margin-left:25px;
+        margin-right:4px;
+        margin-top:5px;
+        margin-bottom:5px;
+        font-family: Apple Garamond italic;
+     }
     .minItemText {
         font-size:1rem;padding-right:12px;transform: skew(20deg);white-space: nowrap;
     }
