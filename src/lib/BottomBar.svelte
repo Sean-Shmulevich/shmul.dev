@@ -81,6 +81,7 @@
 
 </script>
 
+<svelte:window on:touchstart|capture={toggleMenuOff} />
 {#if showMenu}
 <!-- on:mouseleave={showMenu = false} -->
 
@@ -98,11 +99,11 @@
         </div>
     </div>
     <div style="height:100%; width:20px;position:absolute;left:34px;bottom:-3px;background: transparent;">
-        <img src="{iconMap['Default']}" class="startMenuIcon" width="20px" height="20px" alt="{window} bottom bar icon"/>
-        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
     </div>
     <p style="margin-left:40px">
         About My Site
@@ -131,7 +132,7 @@
 {/if}
 
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" on:mouseenter={toggleMenu} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
+    <button class="menuBarStart" on:touchstart={toggleMenu} on:mouseenter={toggleMenu} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon"
              style="width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated">
         <span class="startWords">Start</span>
