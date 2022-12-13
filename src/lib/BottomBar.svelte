@@ -85,6 +85,7 @@
         else if(e.target.nodeName === "BUTTON" || e.target.classList.contains("startMenuSidebar") || e.target.classList.contains("startMenuSidebarText")  || e.target.classList.contains("startMenuSidebarSpan") || e.target.classList.contains("menuBarStart") || e.target.classList.contains("startIconImg")){
             return;
         }
+        if(e.target.classList.nodeName !== "P")  return;
         let clickedName = (clickedEle.lastChild.textContent).replace(/\s/g, '');
         // console.log(map[clickedName], clickedName)
         $appLaunch.push(map[clickedName]);
