@@ -1,15 +1,16 @@
 <script>
     import { onMount } from 'svelte';
     import { BarLoader } from "svelte-loading-spinners";
-// onMount(async () => {
-//   await import('./pyscript.js');
-// });
+    let PYSCRIPT;
+onMount(async () => {
+  PYSCRIPT = await import('./pyscript.js');
+});
   export let doc;
   console.log("hello world");
 </script>
 <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 
-{#await import('./pyscript.js')}
+{#await PYSCRIPT}
 <BarLoader size="60" color="rgb(150 150 255)" unit="px" />
 {:then}
     <section class="pyscript" style="color:white;caret-color:yellow !important">
@@ -34,9 +35,6 @@
     background-color: rgb(43, 43, 74) !important;
     border-right: 1px solid rgb(46, 45, 80) !important;
   }
-  :global(.cm-gutter) {
-    background-color: rgb(43, 43, 74) !important;
-  }
   :global(.cm-lineNumbers) {
     background-color: rgb(43, 43, 74) !important;
   }
@@ -48,7 +46,7 @@
     margin-top:10px;
   }
   :global(.cm-activeLine) {
-    background-color: rgb(31 32 63) !important;
+    /* background-color: rgb(31 32 63) !important; */
   }
   :global(.cm-scroller) {
     background-color: rgb(43, 43, 74) !important;
@@ -79,7 +77,7 @@
   :global(.ͼl){
     color: #9776ff;
   }
-  :global(.ͼ4 .cm-line) {
+  :global(.cm-line) {
     caret-color: yellow !important;
     background-color: rgb(43, 43, 74) !important;
 }
