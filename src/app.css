@@ -18,6 +18,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+.ͼ2 .cm-content {
+  caret-color: white !important;
+}
 #btnRun {
   display: inline-block;
   float: right;
@@ -26,7 +29,7 @@
   opacity: 1 !important;
   box-shadow: unset;
   background: transparent;
-  transform: translateY(3px);
+  transform: translateY(-24px);
 }
 #code-editor{
   border: unset;
@@ -38,6 +41,9 @@
 @media (max-width: 800px) {
   .startWords{display: none !important;}
   .menuBarStart{width: 38px !important}
+}
+.ͼ4{
+  caret-color: yellow !important;
 }
 /* reading view styles. */
 .vsText > div > p, .vsText > div > ul{
@@ -96,20 +102,4 @@ line-height: 1.8rem;
   font-style: normal;
   font-weight: normal;
   src: local('Apple Garamond Bold Italic'), url('./assets/fonts/AppleGaramond-BoldItalic.woff') format('woff');
-}
-
-
-@font-face {
-  font-family: 'Apple Garamond Light';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Apple Garamond Light'), url('./assets/fonts/AppleGaramond-Light.woff') format('woff');
-}
-
-
-@font-face {
-  font-family: 'Apple Garamond Light Italic';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Apple Garamond Light Italic'), url('./assets/fonts/AppleGaramond-LightItalic.woff') format('woff');
 }
