@@ -63,7 +63,8 @@
     //     return false;
     // }
     function sendThing(e){
-        console.log(e.target.lastChild);
+        showMenu = false;
+        // console.log(e.target.lastChild);
         let map = {
             "AboutMySite": "About_Website", 
             "MyHobbies": "hobbies",
@@ -73,7 +74,7 @@
 
         }
         let clickedName = (e.target.lastChild.textContent).replace(/\s/g, '');;
-        console.log(map[clickedName], clickedName)
+        // console.log(map[clickedName], clickedName)
         $appLaunch.push(map[clickedName]);
         $appLaunch = $appLaunch;
     }
@@ -84,7 +85,7 @@
 <!-- on:mouseleave={showMenu = false} -->
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="startMenu" on:click={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
+<div class="startMenu" on:click={(e) => sendThing(e)} on:touchstart={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
     <div style="height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );">
         <div style="
         color:white;
@@ -186,6 +187,7 @@
         margin-left:-6px;margin-right:6px;transform:translateY(5px);
      }
      .startMenu{
+        z-index: 1000;
         background-color:#eae3fa;position:absolute;width: 150px;bottom: 35px;text-align: center;box-shadow: inset -1px -1px #0a0a0a,
 inset 1px 1px #ffffff, inset -2px -2px #808080,
 inset 2px 2px #dfdfdf;
