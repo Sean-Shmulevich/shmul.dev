@@ -86,7 +86,7 @@
 <!-- on:mouseleave={showMenu = false} -->
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="startMenu" on:click|capture={(e) => sendThing(e)} on:touchstart={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
+<div class="startMenu" on:click={(e) => sendThing(e)} on:touchstart={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
     <div style="height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );">
         <div style="
         color:white;
