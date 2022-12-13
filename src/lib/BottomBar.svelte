@@ -63,7 +63,7 @@
     //     return false;
     // }
     function sendThing(e){
-        showMenu = false;
+        showMenu = !showMenu;
         // console.log(e.target.lastChild);
         let map = {
             "AboutMySite": "About_Website", 
@@ -73,16 +73,16 @@
             "AboutMe": "goals"
 
         }
-        console.log(e.target.nodeName);
+        // console.log(e.target.nodeName);
         let clickedEle = e.target;
-        if (e.target.nodeName === "IMG"){
+        if (e.target.nodeName === "IMG" && e.target.classList.contains("startIconImg") === false){
             const clickedNodeIndex = [].indexOf.call(clickedEle.parentNode.children, clickedEle);
             // get the parent of the clicked node if its an image and get the index of the image and translate that to the index of the p tag next to that image.
             clickedEle = clickedEle.parentNode.parentNode.children[clickedNodeIndex +2];
-            console.log(clickedEle);
+            // console.log(clickedEle);
 
         }
-        else if(e.target.classList.contains("startMenuSidebar") || e.target.classList.contains("startMenuSidebarText")  || e.target.classList.contains("startMenuSidebarSpan")){
+        else if(e.target.nodeName === "BUTTON" || e.target.classList.contains("startMenuSidebar") || e.target.classList.contains("startMenuSidebarText")  || e.target.classList.contains("startMenuSidebarSpan") || e.target.classList.contains("menuBarStart") || e.target.classList.contains("startIconImg")){
             return;
         }
         let clickedName = (clickedEle.lastChild.textContent).replace(/\s/g, '');
@@ -137,9 +137,8 @@
 {/if}
 
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" on:touchstart={toggleMenu} on:mouseenter={toggleMenu} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
-        <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon"
-             style="width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated">
+    <button class="menuBarStart" on:touchstart|capture|preventDefault={sendThing} on:mouseenter={(e) => sendThing(e)} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
+        <img class="startIconImg" src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon">
         <span class="startWords">Start</span>
     </button>
     {#if currentWindows.length > 0}
@@ -189,6 +188,9 @@
 <style>
     /* make start button with svelte if you hover on it it will reveal a menu above it if you click on it it wont go away until you click somewhere else
      */
+    .startIconImg{
+        width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated;
+    }
      .startMenuSidebarText{
         color:white;
         position:absolute;
