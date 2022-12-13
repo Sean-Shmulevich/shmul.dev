@@ -82,6 +82,9 @@
             console.log(clickedEle);
 
         }
+        else if(e.target.classList.contains("startMenuSidebar") || e.target.classList.contains("startMenuSidebarText")  || e.target.classList.contains("startMenuSidebarSpan")){
+            return;
+        }
         let clickedName = (clickedEle.lastChild.textContent).replace(/\s/g, '');
         // console.log(map[clickedName], clickedName)
         $appLaunch.push(map[clickedName]);
@@ -95,15 +98,9 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="startMenu" on:click={(e) => sendThing(e)} on:touchstart={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
-    <div style="height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );">
-        <div style="
-        color:white;
-        position:absolute;
-        bottom: 32px;
-        left: -27px;
-        font-size:.9rem;
-        transform: rotate(-90deg);">
-            <span style="font-weight:bold">Shmul</span>.dev
+    <div class="startMenuSidebar" style="">
+        <div class="startMenuSidebarText">
+            <span class="startMenuSidebarSpan" style="font-weight:bold">Shmul</span>.dev
         </div>
     </div>
     <div style="height:100%; width:20px;position:absolute;left:34px;bottom:-3px;background: transparent;">
@@ -192,6 +189,17 @@
 <style>
     /* make start button with svelte if you hover on it it will reveal a menu above it if you click on it it wont go away until you click somewhere else
      */
+     .startMenuSidebarText{
+        color:white;
+        position:absolute;
+        bottom: 32px;
+        left: -27px;
+        font-size:.9rem;
+        transform: rotate(-90deg);
+     }
+     .startMenuSidebar{
+        height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );
+     }
      .startMenuIcon{
         margin-left:-6px;margin-right:6px;transform:translateY(5px);
      }
