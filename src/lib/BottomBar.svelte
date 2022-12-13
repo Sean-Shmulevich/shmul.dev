@@ -81,7 +81,6 @@
 
 </script>
 
-<svelte:window on:touchend={toggleMenuOff} />
 {#if showMenu}
 <!-- on:mouseleave={showMenu = false} -->
 
