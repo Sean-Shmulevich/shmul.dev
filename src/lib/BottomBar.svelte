@@ -73,7 +73,16 @@
             "AboutMe": "goals"
 
         }
-        let clickedName = (e.target.lastChild.textContent).replace(/\s/g, '');;
+        console.log(e.target.nodeName);
+        let clickedEle = e.target;
+        if (e.target.nodeName === "IMG"){
+            const clickedNodeIndex = [].indexOf.call(clickedEle.parentNode.children, clickedEle);
+            // get the parent of the clicked node if its an image and get the index of the image and translate that to the index of the p tag next to that image.
+            clickedEle = clickedEle.parentNode.parentNode.children[clickedNodeIndex +2];
+            console.log(clickedEle);
+
+        }
+        let clickedName = (clickedEle.lastChild.textContent).replace(/\s/g, '');
         // console.log(map[clickedName], clickedName)
         $appLaunch.push(map[clickedName]);
         $appLaunch = $appLaunch;
