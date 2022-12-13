@@ -10,9 +10,7 @@ onMount(async () => {
 </script>
 <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 
-{#await PYSCRIPT}
-<BarLoader size="60" color="rgb(150 150 255)" unit="px" />
-{:then}
+
     <section class="pyscript" style="color:white;caret-color:yellow !important">
     <br />
     <div style="margin-inline: 15px;">
@@ -20,7 +18,6 @@ onMount(async () => {
         <py-repl id="my-repl" auto-generate="true" />
     </div>
     </section>
-{/await}
 
 <style>
       :global(.Codemirror) {

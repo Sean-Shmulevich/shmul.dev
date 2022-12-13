@@ -3,6 +3,7 @@
     import '../css/myStyle.css';
     import {writableArray} from '../stores/minimized.js';
     import {glowWindow} from '../stores/keep.js';
+    import {appLaunch} from '../stores/appLaunch.js';
 
     import vsLogo from '../assets/windowicons/vb-bas.ico';
     import fileLogo from '../assets/windowicons/aim_fldr.ico';
@@ -61,6 +62,21 @@
     //     }
     //     return false;
     // }
+    function sendThing(e){
+        console.log(e.target.lastChild);
+        let map = {
+            "AboutMySite": "About_Website", 
+            "MyHobbies": "hobbies",
+            "Resume": "resume", 
+            "MyIdeas": "ideas",
+            "AboutMe": "goals"
+
+        }
+        let clickedName = (e.target.lastChild.textContent).replace(/\s/g, '');;
+        console.log(map[clickedName], clickedName)
+        $appLaunch.push(map[clickedName]);
+        $appLaunch = $appLaunch;
+    }
 
 </script>
 
@@ -68,7 +84,7 @@
 <!-- on:mouseleave={showMenu = false} -->
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="startMenu" on:click={toggleMenuOff} on:mouseleave={toggleMenuOff} style="">
+<div class="startMenu" on:click={(e) => sendThing(e)} on:mouseleave={toggleMenuOff} style="">
     <div style="height:100%; width:20px;position:absolute;left:3px;bottom:-1px;background: linear-gradient( 90deg, rgb(154 143 233), rgb(26 26 101) );">
         <div style="
         color:white;
@@ -80,25 +96,27 @@
             <span style="font-weight:bold">Shmul</span>.dev
         </div>
     </div>
-    <p>
-        <img src="{vsLogo}" class="startMenuIcon" width="20px" height="20px" alt="{window} bottom bar icon"/>
+    <div style="height:100%; width:20px;position:absolute;left:34px;bottom:-3px;background: transparent;">
+        <img src="{iconMap['Default']}" class="startMenuIcon" width="20px" height="20px" alt="{window} bottom bar icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
+    </div>
+    <p style="margin-left:40px">
         About My Site
     </p>
     <p>
-        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        My Hobbies&ensp;
+        My Hobbies
     </p>
     <p>
-        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        &ensp;&ensp;Resume&ensp;&ensp;
+        Resume
     </p>
     <p>
-        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        &ensp;My Ideas&ensp;&ensp;
+        My Ideas
     </p>
     <p>
-        <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
-        &ensp;About Me&ensp;&ensp;
+        About Me
     </p>
     <!-- <p>
         <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
