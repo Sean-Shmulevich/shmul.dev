@@ -47,9 +47,6 @@
     const toggleMenuOff = () => {
         showMenu = false;
     }
-    const toggleMenuT = () => {
-        showMenu = !showMenu;
-    }
     // function removeText(){
     //     if($writableArray.length > 5){
     //         let client = document.querySelector(".minItemText").getBoundingClientRect();
@@ -143,7 +140,7 @@
 {/if}
 
 <div class="notAButton notMyButtonStyles" style="width: calc(100% + 3px);margin-right:-1px;position: fixed">
-    <button class="menuBarStart" on:touchstart={toggleMenu} on:mouseenter={toggleMenuT} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
+    <button class="menuBarStart" on:touchstart={toggleMenu} on:mouseenter={toggleMenu} style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;">
         <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-2.png" alt="windows 98 style start icon"
              style="width:27px;vertical-align: middle;margin-right:-2px;image-rendering:pixelated">
         <span class="startWords">Start</span>
