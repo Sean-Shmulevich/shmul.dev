@@ -6,6 +6,6 @@ import autoPreprocess from 'svelte-preprocess';
 export default defineConfig({
   // base: "/personalWebsiteSvelte/",
   plugins: [svelte({
-      preprocess: autoPreprocess()
-    })]
+    preprocess: autoPreprocess()
+  })]
 })
