@@ -234,7 +234,7 @@
 <main>
   <TopBar />
   <div
-    style="background: url('https://crustmag.slimecars.com/images/swissMountains.webp') 0 50% repeat-x"
+    style="background: url('https://slimecars.com/assets/swissMountains.webp') 0 50% repeat-x"
     class="mountainDiv"
   />
   {#each icons as { left, src, text }, i}
@@ -308,8 +308,7 @@
       <svelte:component
         this={CODEMIRROR}
         doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
-      >
-      </svelte:component>
+      />
     </svelte:component>
   {/if}
   <!-- i could also show all the md files but hide them by default -->
@@ -325,7 +324,7 @@
     >
       <div class="article">
         <img
-          src="https://crustmag.slimecars.com/images/SeanResume.webp"
+          src="https://slimecars.com/assets/SeanResume.webp"
           style="width:125%"
           alt="Sean Shmulevich's Resume"
         />
@@ -342,12 +341,13 @@
       bind:zIdx={zMap["snake"]}
       on:close={() => removeWindow("snake")}
     >
-        <div class="article"
-    >
-      <h2 style="line-height:2rem">No snake game yet but the idea is to make a snake game where the windows on this page are obstacles for the snake.</h2>
-    </div>
-    </svelte:component
-    >
+      <div class="article">
+        <h2 style="line-height:2rem">
+          No snake game yet but the idea is to make a snake game where the
+          windows on this page are obstacles for the snake.
+        </h2>
+      </div>
+    </svelte:component>
   {/if}
   {#if $writableArray.indexOf("My_Philosophy") !== -1}
     <svelte:component
