@@ -12,7 +12,7 @@
   import TopBar from "./lib/TopBar.svelte";
   import Image from "./lib/Image.svelte";
   import { BarLoader } from "svelte-loading-spinners";
-  // import VsCode from './lib/VsCode.svelte'
+  // import VsCode from './lib/V/var/folders/_t/7nklclld0qzcsm5gd1svn4x00000gn/T/iTerm2.rzFrH8.scheduleSpring.png sCode.svelte'
   let VSCODE = null;
   let FILESYS = null;
   let JSPAINT = null;
@@ -234,7 +234,7 @@
 <main>
   <TopBar />
   <div
-    style="background: url('https://slimecars.com/assets/swissMountains.webp') 0 50% repeat-x"
+    style="background: url('/assets/swissMountains.webp') 0 50% repeat-x"
     class="mountainDiv"
   />
   {#each icons as { left, src, text }, i}
@@ -324,7 +324,7 @@
     >
       <div class="article">
         <img
-          src="https://slimecars.com/assets/SeanResume.webp"
+          src="assets/SeanResume.webp"
           style="width:125%"
           alt="Sean Shmulevich's Resume"
         />
