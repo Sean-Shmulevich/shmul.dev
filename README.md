@@ -1,48 +1,23 @@
-# Svelte + Vite
+# Sean Shmulevich Windows98 personal website
+This repository contains my personal website. I took on this project as a way to learn about frontend development and frontend frameworks. I spent over 400 hours on this project and I am very proud of the result. This project taught me about the importance and benefits of a component driven frontend design. I feel inspired by the possibilities that come from combining classic retro design principals with the convince and abstraction provided by today's frontend frameworks.I first started this project as an assignment in my programming for the humanities course, the initial version of the site was rejected as a submission for the project cause it was way too cool and the teacher couldn't handle it.
 
-This template should help get you started developing with Svelte in Vite.
+## Why svelte?
+I chose svelte as my first frontend framework because of its ease of use and parallels with traditional html/css/js web development. I am also motivated by building lightweight web application that are fast/efficient/accessible and responsive. Svelte is a great choice for this because it compiles to vanilla js and has a much smaller footprint compared to other frontend frameworks. This also makes it very easy to deploy anywhere. I love the svelte approach to state, any keyword that is defined with the "let" keyword is a piece of reactive state. React has a big learning curve because of the fine grained control that the user has over state and re-rendering, this can be beneficial but can also lead to costly logic errors especially for less experienced programmers. 
 
-## Recommended IDE Setup
+## Why are some 'windows' on the site, modern mac OS windows
+- In order to practice my CSS skills, I wanted to recreate my instance of VS code within the browser, in a pixel perfect format. I have since switched to VIM. but this "VS code" window recreation likely the most in depth piece of CSS code i have ever written. 
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## CMS integration
+- In order to make the site more maintainable and add self written content about myself. I decided to integrate a headless CMS. I chose sanity.io because of its ease of use and flexibility. I am very happy with the result.
 
-## Need an official Svelte framework?
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
-
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-  `vite dev` and `vite build` wouldn't work in a SvelteKit environment, for example.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
+## What I learned
+- Svelte SPA
+- Lazy loading javascript to reduce package size
+- Integrating with headless CMS
+- CSS keyframes: Over 30 hours spent on the minimize animation.
+- Svelte global stores.
+- Svelte transitions
+- Keeping a site simple and using api's to avoid security concerns.
+- Pixel perfect eye for detail
+- Impenetrable intolerance for bugs.
