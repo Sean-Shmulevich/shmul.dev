@@ -360,10 +360,10 @@
             {:else if value === "My Sites"}
               <div class="aboutContent">
                 <h2>{value}</h2>
-                <div style="font-family: 'Apple Garamond';font-size:1rem">
+                <div style="font-family: 'Apple Garamond';font-size:1rem;margin-top:-20px">
                   Here are some websites I've built:
                   <br /><br />
-                  <ul style="margin-left:-20px;margin-top:-10px">
+                  <ul style="margin-left:-20px;margin-top:-20px">
                     <li>
                       <a href="https://www.dapup.co"
                         ><span
@@ -387,6 +387,30 @@
                           >DelicaUSA
                         </span></a
                       >Wordpress + Woocommerce
+                    </li>
+                    <li>
+                      <a href="https://collabartspgh.org/"
+                        ><span
+                          style="font-family: 'Apple Garamond Bold Italic';"
+                          >CollabArtsPgh
+                        </span></a
+                      >HTML + TailwindCSS
+                    </li>
+                    <li>
+                      <a href="https://sean-shmulevich.github.io/interactiveFilm/index.html"
+                        ><span
+                          style="font-family: 'Apple Garamond Bold Italic';"
+                          >Distortion creative coding project.
+                        </span></a
+                      >P5.js
+                    </li>
+                    <li>
+                      <a href="https://sean-shmulevich.github.io/VimGuide/index.html"
+                        ><span
+                          style="font-family: 'Apple Garamond Bold Italic';"
+                          >Vim beginner's guide.
+                        </span></a
+                      >
                     </li>
                   </ul>
                 </div>
