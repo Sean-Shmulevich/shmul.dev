@@ -10,14 +10,24 @@ I chose svelte as my first frontend framework because of its ease of use and par
 ## CMS integration
 - In order to make the site more maintainable and add self written content about myself. I decided to integrate a headless CMS. I chose sanity.io because of its ease of use and flexibility. I am very happy with the result.
 
+## Why
+- I wanted to create a personal website that was unique and reflected my personality. 
+- The Swiss mountains represent my love for winter sports and my family, who live in Switzerland. 
+- The purple color scheme is my favorite color and the usages of the color purple I think are very cohesive.
 
 ## What I learned
 - Svelte SPA
-- Lazy loading javascript to reduce package size
+- Lazy loading JavaScript to reduce package size
 - Integrating with headless CMS
-- CSS keyframes: Over 30 hours spent on the minimize animation.
+- CSS key-frames: Over 30 hours spent on the minimize animation.
 - Svelte global stores.
 - Svelte transitions
 - Keeping a site simple and using api's to avoid security concerns.
 - Pixel perfect eye for detail
 - Impenetrable intolerance for bugs.
+- Adapting a non traditional website interface to be work perfectly on mobile devices.
+- Combining aspects of design that inspires me, colors and images which I love.
+- Figuring out how to do all of the graphic design needed.
+
+## What I would do differently
+- Planning: I would have spent more time planning the site before starting to code. I would have created a wireframe and a design system to follow. While i was creating version one of the website I was able to write down many grand ideas for the site. I also spent a lot of time exploring websites with a similar "desktop" user interface. This research gave me tons of ideas for my Website. At this point in between version one and version two I should have stuck to a design plan and not deviated from it until after some minimum functionality was achieved. The minimize animation in particular was very difficult to implement and had many many bugs, this caused quite the headache, a more concise plan and component structure would have mitigated all of this time spent debugging the animation.
