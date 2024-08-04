@@ -245,7 +245,7 @@
         <label
           class="SubMenuTab radioTab"
           class:selectedTab={value === "My Sites"}
-          style="display: unset"
+          style="display: unset;"
         >
           <input
             type="radio"
@@ -359,7 +359,7 @@
               </form>
             {:else if value === "My Sites"}
               <div class="aboutContent">
-                <h2>{value}</h2>
+                  <h2 style="margin-top:20px;margin-bottom:8px">{value}</h2>
                 <div style="font-family: 'Apple Garamond';font-size:1rem;margin-top:-20px">
                   Here are some websites I've built:
                   <br /><br />
@@ -400,7 +400,7 @@
                       <a href="https://sean-shmulevich.github.io/interactiveFilm/index.html"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
-                          >Distortion creative coding project.
+                          >Creative coding.
                         </span></a
                       >P5.js
                     </li>
