@@ -365,7 +365,7 @@
                   <br /><br />
                   <ul style="margin-left:-20px;margin-top:-20px">
                     <li>
-                      <a href="https://www.dapup.co"
+                      <a href="https://shmul.dev"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >DapUp
@@ -409,6 +409,22 @@
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >Vim beginner's guide.
+                        </span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://shmul.dev/blog/webdevEssay.html"
+                        ><span
+                          style="font-family: 'Apple Garamond Bold Italic';"
+                          >Web Development Ebook Draft
+                        </span></a
+                      >
+                    </li>
+                    <li>
+                      <a href="https://shmul.dev/logicap"
+                        ><span
+                          style="font-family: 'Apple Garamond Bold Italic';"
+                          >Circuit Simulator in Typescript
                         </span></a
                       >
                     </li>

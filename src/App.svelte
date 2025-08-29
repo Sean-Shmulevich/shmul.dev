@@ -234,7 +234,7 @@
 <main>
   <TopBar />
   <div
-    style="background: url('/assets/swissMountains.webp') 0 50% repeat-x"
+    style="background: url('https://shmul.dev/assets/swissMountains.webp') 0 50% repeat-x"
     class="mountainDiv"
   />
   {#each icons as { left, src, text }, i}
