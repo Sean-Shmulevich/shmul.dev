@@ -389,7 +389,7 @@
                       >Wordpress + Woocommerce
                     </li>
                     <li>
-                      <a href="https://collabartspgh.org/"
+                      <a href="https://shmul.dev/collabarts"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >CollabArtsPgh
