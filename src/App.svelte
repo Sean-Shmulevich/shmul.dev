@@ -2,7 +2,7 @@
   import svelteLogo from "./assets/windowicons/aim_fldr.ico";
   import vsLogo from "./assets/windowicons/vb-bas.ico";
   import shmulSys from "./assets/myIcon_1.png";
-  // import swissMountains from './assets/swissMountains.png';
+  import swissMountains from './assets/swissMountains.webp';
 
   import AboutMe from "./lib/AboutMe.svelte";
   import BottomBar from "./lib/BottomBar.svelte";
@@ -278,7 +278,7 @@
 <main>
   <TopBar />
   <div
-    style="background: url('https://shmul.dev/assets/swissMountains.webp') 0 50% repeat-x"
+    style="background: url('{swissMountains}') 0 50% repeat-x"
     class="mountainDiv"
   />
   {#each icons as { left, src, text }, i}
