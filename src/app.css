@@ -62,7 +62,8 @@ line-height: 1.8rem;
   .appMinimized {padding:0 !important;margin-top:6.5px !important}
   .dateText {display: none !important;}
   .rightBox{margin-right:-20px !important;}
-  .nameBorder{margin-left: -5px !important}
+  .nameBorder{margin-left: -5px !important; width: 200px !important;}
+  .street{font-size: 28px !important; -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35) !important; margin-top: 1px !important;}
   .appMinimized img {transform: translateX(-4px) skew(20deg) !important;}
   .minmizedItems{margin-top:10px;}
 }
