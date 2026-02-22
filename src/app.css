@@ -71,6 +71,7 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond'), url('./assets/fonts/AppleGaramond.woff') format('woff');
 }
 
@@ -79,6 +80,7 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond Italic';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond Italic'), url('./assets/fonts/AppleGaramond-Italic.woff') format('woff');
 }
 
@@ -87,6 +89,7 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond Bold';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond Bold'), url('./assets/fonts/AppleGaramond-Bold.woff') format('woff');
 }
 
@@ -95,6 +98,7 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond Bold Italic';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond Bold Italic'), url('./assets/fonts/AppleGaramond-BoldItalic.woff') format('woff');
 }
 
@@ -103,6 +107,7 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond Light';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond Light'), url('./assets/fonts/AppleGaramond-Light.woff') format('woff');
 }
 
@@ -111,5 +116,6 @@ line-height: 1.8rem;
   font-family: 'Apple Garamond Light Italic';
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: local('Apple Garamond Light Italic'), url('./assets/fonts/AppleGaramond-LightItalic.woff') format('woff');
 }

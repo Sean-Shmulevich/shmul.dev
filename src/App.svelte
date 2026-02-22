@@ -17,6 +17,9 @@
   let JSPAINT = null;
   let CODEMIRROR = null;
   let PORTABLETEXT = null;
+  let SNAKEGAME = null;
+
+  let snakeGameActive = false;
 
   import { count } from "./stores/zIndex.js";
   import { writableArray } from "./stores/minimized.js";
@@ -54,7 +57,7 @@
       desktop: { order: 2, left: 25, src: vsLogo },
     },
     { id: "resume", kind: "vsCode", content: "resume" },
-    { id: "snake", kind: "vsCode", content: "snake" },
+    { id: "snake", kind: "snakeGame" },
     { id: "My_Philosophy", kind: "content", docName: "My_Philosophy" },
     { id: "hobbies", kind: "content", docName: "Hobbies" },
     { id: "goals", kind: "content", docName: "Goals" },
@@ -187,6 +190,9 @@
     if (name === "Js Paint" && JSPAINT === null) {
       JSPAINT = (await import("./lib/JsPaint.svelte")).default;
     }
+    if (name === "snake" && SNAKEGAME === null) {
+      SNAKEGAME = (await import("./lib/SnakeGame.svelte")).default;
+    }
   }
 
   //this is run when opening a window from the 'desktop'
@@ -259,16 +265,24 @@
     //locic for launching apps from filesystem.
     if ($appLaunch.length === 1) {
       let currApp = $appLaunch[0];
-      (async () => {
-        await ensureComponents(currApp);
-        openWindow(currApp);
-        //if its already in the menu bar just increment the z index;
-        isMinimized[currApp] = false; //unset double click when the desktop icon is pressed
-        zMap[currApp] = $count["zIdx"] + 1; //set z index to highest when the desktop icon is pressed
-        let newCount = zMap[currApp]; //var to set new count
-        count.set({ zIdx: newCount, name: currApp });
-        $appLaunch.splice(0, 1); //remove the only element in the array.
-      })();
+      if (currApp === "snake") {
+        (async () => {
+          await ensureComponents(currApp);
+          snakeGameActive = true;
+          $appLaunch.splice(0, 1);
+        })();
+      } else {
+        (async () => {
+          await ensureComponents(currApp);
+          openWindow(currApp);
+          //if its already in the menu bar just increment the z index;
+          isMinimized[currApp] = false; //unset double click when the desktop icon is pressed
+          zMap[currApp] = $count["zIdx"] + 1; //set z index to highest when the desktop icon is pressed
+          let newCount = zMap[currApp]; //var to set new count
+          count.set({ zIdx: newCount, name: currApp });
+          $appLaunch.splice(0, 1); //remove the only element in the array.
+        })();
+      }
     }
   }
 </script>
@@ -354,13 +368,6 @@
                   alt="Sean Shmulevich's Resume"
                 />
               </div>
-            {:else if win.content === "snake"}
-              <div class="article">
-                <h2 style="line-height:2rem">
-                  No snake game yet but the idea is to make a snake game where the
-                  windows on this page are obstacles for the snake.
-                </h2>
-              </div>
             {/if}
           </svelte:component>
         {/if}
@@ -400,6 +407,13 @@
       />
     {/if}
   {/each}
+  {#if snakeGameActive && SNAKEGAME}
+    <svelte:component
+      this={SNAKEGAME}
+      active={snakeGameActive}
+      on:close={() => { snakeGameActive = false; }}
+    />
+  {/if}
   <BottomBar on:min={handleMessage} />
   <div class="scan-lines" />
 </main>

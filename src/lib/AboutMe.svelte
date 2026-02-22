@@ -56,15 +56,14 @@
     };
     //basically a media query
     if (window.innerWidth < 460) {
-      BoxY = 50;
-      width = 300;
-      //generate 100 away from the right side of the screen this turns out to be right after the menu screen icons
-      BoxX = 102;
-      height = 420;
+      width = Math.min(350, window.innerWidth - 16);
+      height = Math.min(420, window.innerHeight - 80);
+      // Loosely top-right, but clamped to viewport
+      BoxX = Math.max(5, window.innerWidth - width - 15);
+      BoxY = 45;
     } else {
       width = 375;
       height = 430;
-      //wait for the window to load and then add an event listener
     }
     if (touchDevice) {
       document
@@ -358,12 +357,12 @@
                 <button type="submit" class="formSubmit">Submit Form</button>
               </form>
             {:else if value === "My Sites"}
-              <div class="aboutContent">
+              <div class="aboutContent myAppsContent">
                   <h2 style="margin-top:20px;margin-bottom:8px">{value}</h2>
                 <div style="font-family: 'Apple Garamond';font-size:1rem;margin-top:-20px">
                   Here are some websites I've built:
                   <br /><br />
-                  <ul style="margin-left:-20px;margin-top:-20px">
+                  <ul style="margin-left:0px;margin-top:-20px;padding-left:18px">
                     <li>
                       <a href="https://shmul.dev"
                         ><span
@@ -491,6 +490,7 @@
     margin-top: -20px;
   }
 
+
   .introName {
     margin-left: 10px;
     font-size: 1.8rem;
@@ -506,14 +506,14 @@
   }
   @media (max-width: 460px) {
     .SubMenuTabs {
-      transform: scale(0.86) translateX(-22px);
+      transform: scale(0.92) translateX(-12px);
     }
     .SubMenuBody {
-      height: 255px !important;
+      height: 280px !important;
     }
     .SystemMenuWrapper {
-      height: 383px !important;
-      width: 300px !important;
+      height: 410px !important;
+      width: 350px !important;
     }
     .SubMenuBody > div > div > h2 {
       margin-top: -16px;
@@ -526,17 +526,35 @@
     .introName {
       margin-top: 10px;
     }
-    /* .helloDev{font-size:1.2rem} */
-    /* .helloPitt, .helloDev{margin-left:-13% !important;} */
+    .helloDev, .helloPitt {
+      transform: translateY(30px);
+    }
     .aboutContent {
       margin-top: -65px !important;
+    }
+    .myAppsContent {
+      overflow: hidden;
+    }
+    .myAppsContent ul {
+      padding-left: 16px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .myAppsContent li {
+      margin-bottom: 3px;
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+    .myAppsContent h2 {
+      margin-top: 28px !important;
     }
     /* .field-row{width:105% !important} */
     /* .spacerDiv{height: 10px !important;}
                         .formSubmit{margin-top:-10px !important;}*/
     /* #text20{min-width: 250px !important;max-width: 70% !important;margin-left:5px} */
     .contactText {
-      margin-left: 4% !important;
+      margin-left: 0 !important;
+      text-align: center;
     }
     .messageText {
       margin-left: 39% !important;
@@ -548,11 +566,19 @@
       padding: 3px 10px 0px !important;
     }
     #submitMessage {
-      transform: scale(0.9) translate(-22px, -15px);
+      transform: scale(1) translate(-6px, 0px);
+    }
+    #submitMessage .field-row-stacked {
+      margin-left: -12px !important;
+      margin-right: -24px !important;
+      width: calc(100% + 40px) !important;
+      padding: 0 2px;
+      box-sizing: border-box;
     }
     #text20 {
-      min-width: 87% !important;
-      max-width: 87% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box;
       margin-left: 0px;
     }
   }

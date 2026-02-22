@@ -66,12 +66,12 @@
         showMenu = !showMenu;
         // console.log(e.target.lastChild);
         let map = {
-            "AboutMySite": "About_Website", 
+            "AboutMySite": "About_Website",
             "MyHobbies": "hobbies",
-            "Resume": "resume", 
+            "Resume": "resume",
             "MyIdeas": "ideas",
-            "AboutMe": "goals"
-
+            "AboutMe": "goals",
+            "Snake": "snake"
         }
         // console.log(e.target.nodeName);
         let clickedEle = e.target;
@@ -110,6 +110,7 @@
         <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
         <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
         <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
+        <img src="{iconMap['Default']}" width="20px" height="20px" class="startMenuIcon" alt="{window} start menu icon"/>
     </div>
     <p style="margin-left:40px">
         About My Site
@@ -125,6 +126,9 @@
     </p>
     <p>
         About Me
+    </p>
+    <p>
+        Snake
     </p>
     <!-- <p>
         <img src="{vsLogo}" width="20px" height="20px" class="startMenuIcon" alt="{window} bottom bar icon"/>
