@@ -4,6 +4,7 @@
 
     import linkedIn from '../assets/linkedin_pixel_logo_icon_181925.png';
     import instaLogo from '../assets/instagram_pixel_logo_icon_181922.png';
+    import xLogo from '../assets/x_pixel_logo.png';
     
 
     var today = new Date();
@@ -22,7 +23,8 @@
         <span class="dateText">{dayOfWeek} {monthStr} {dayOfMonth}</span>
         <a href="https://github.com/Sean-Shmulevich"  target="_blank" rel="noopener noreferrer"><img src="https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/d7e4e1e509c728d.png" alt="Sean shmulevich github link" class="rightmost" style="margin-left:-3px"></a>
         <a href="https://www.linkedin.com/in/sean-shmulevich-237190185/" target="_blank" rel="noopener noreferrer"><img src={linkedIn} alt="Sean Shmulevich LinkedIn link" class="rightmost"></a>
-        <a href="https://www.instagram.com/theshmulconspiracy/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="Sean Shmulevich instagram link" class="rightmost"></a>
+        <a href="https://www.instagram.com/c0nspiraskis/" target="_blank" rel="noopener noreferrer"><img src={instaLogo} alt="Sean Shmulevich instagram link" class="rightmost"></a>
+        <a href="https://x.com/ShmulevichZ" target="_blank" rel="noopener noreferrer"><img src={xLogo} alt="Sean Shmulevich X account link" class="rightmost" style="margin-right:18px;image-rendering:pixelated;width:23px;max-height:24px"></a>
     </div>
 </div>
 <style>

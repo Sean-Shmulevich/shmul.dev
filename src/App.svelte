@@ -3,6 +3,7 @@
   import vsLogo from "./assets/windowicons/vb-bas.ico";
   import shmulSys from "./assets/myIcon_1.png";
   import swissMountains from './assets/swissMountains.webp';
+  import resumeImg from './assets/SeanResume.webp';
 
   import AboutMe from "./lib/AboutMe.svelte";
   import BottomBar from "./lib/BottomBar.svelte";
@@ -363,7 +364,7 @@
             {:else if win.content === "resume"}
               <div class="article">
                 <img
-                  src="assets/SeanResume.webp"
+                  src={resumeImg}
                   style="width:125%"
                   alt="Sean Shmulevich's Resume"
                 />

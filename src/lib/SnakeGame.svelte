@@ -324,11 +324,11 @@
       ctx.fillRect(seg.col * CELL, seg.row * CELL, CELL, CELL);
     });
 
-    // Game over card
+    // Game over card — size adapts to canvas
     const cx = canvasWidth / 2;
     const cy = canvasHeight / 2;
-    const cardW = 320;
-    const cardH = 120;
+    const cardW = Math.min(420, canvasWidth - 40);
+    const cardH = 130;
     const cardX = cx - cardW / 2;
     const cardY = cy - cardH / 2;
 
@@ -350,16 +350,21 @@
       ctx.fillRect(cardX, y, cardW, 1);
     }
 
-    // Text
+    // Text — scale font to card width
+    const titleSize = Math.min(24, cardW / 14);
+    const scoreSize = Math.min(18, cardW / 18);
+    const hintSize = Math.min(14, cardW / 24);
+
     ctx.fillStyle = "#00ff00";
     ctx.textAlign = "center";
-    ctx.font = "bold 22px monospace";
-    ctx.fillText("GAME OVER", cx, cy - 18);
-    ctx.font = "16px monospace";
+    ctx.font = `bold ${titleSize}px monospace`;
+    ctx.fillText("GAME OVER", cx, cy - 20);
+    ctx.font = `${scoreSize}px monospace`;
     ctx.fillText(`Score: ${score}`, cx, cy + 8);
     ctx.fillStyle = "rgba(0, 255, 0, 0.6)";
-    ctx.font = "13px monospace";
-    ctx.fillText("ENTER or tap to restart  |  ESC or X to quit", cx, cy + 38);
+    ctx.font = `${hintSize}px monospace`;
+    ctx.fillText("ENTER or tap to restart", cx, cy + 34);
+    ctx.fillText("ESC or X to quit", cx, cy + 52);
   }
 
   function endGame() {
