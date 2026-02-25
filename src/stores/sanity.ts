@@ -10,11 +10,12 @@ const client = sanityClient({
 
 const builder = imageUrlBuilder(client);
 
-export function urlFor(source) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function urlFor(source: any) {
   return builder.image(source);
 }
 
-export async function get(fileName) {
+export async function get(fileName: string) {
   const data = await client.fetch(`*[name == "${fileName}"]`);
   if (data) {
     return {

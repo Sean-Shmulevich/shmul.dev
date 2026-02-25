@@ -15,7 +15,7 @@
     tapHandler,
     touchDevice,
     handleMinimize,
-  } from "./SysWindow.svelte";
+  } from "./windowUtils";
   import { glowWindow } from "../stores/keep.ts";
   import { writableArray } from "../stores/minimized.ts";
   import { osStore } from "../stores/osStore.ts";
@@ -124,8 +124,8 @@
 </script>
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
-<!-- svelte-ignore missing-declaration -->
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   id="OverviewWindow"
   class="SystemMenuWrapper"
@@ -180,19 +180,19 @@
         aria-label="Minimize"
         on:mousedown|capture={minFunc}
         on:touchstart={minFunc}
-      />
+      ></button>
       <button
         class="full"
         style="min-width: 15px;margin-left: 2px;"
         aria-label="Maximize"
-      />
+      ></button>
       <button
         class="close"
         style="min-width: 15px;"
         aria-label="Close"
         on:mousedown={forward}
         on:touchstart={forward}
-      />
+      ></button>
     </div>
   </div>
 
@@ -326,9 +326,9 @@
                     rows="8"
                     style="resize:none;background: white;color: black;min-width:330px;max-width: 330px;"
                     required
-                  />
+                  ></textarea>
                 </div>
-                <div class="spacerDiv" style="height:40px" />
+                <div class="spacerDiv" style="height:40px"></div>
                 <div class="field-row" style="margin-left:-30px">
                   <label for="text17">Email</label>
                   <input

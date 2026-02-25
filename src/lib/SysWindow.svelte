@@ -1,87 +1,16 @@
-<script context="module">
-  export function incrementCount(zIdx, currMaxZ, currStore, name) {
-    if (zIdx > currMaxZ["zIdx"]) {
-    } else if (zIdx == currMaxZ["zIdx"]) {
-      //make it higher then anything
-      zIdx += 2;
-    } else {
-      zIdx = currMaxZ["zIdx"] + 1;
-    }
-    currStore.set({ zIdx, name });
-    return zIdx;
-  }
-
-  export let fileWinOffset = 0;
-
-  var tapedTwice = false;
-  export function tapHandler(event, handleMinimize) {
-    if (!tapedTwice) {
-      tapedTwice = true;
-      setTimeout(function () {
-        tapedTwice = false;
-      }, 300);
-      return false;
-    }
-    event.preventDefault();
-    handleMinimize();
-  }
-  function isTouchDevice() {
-    return (
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      // @ts-ignore
-      navigator.msMaxTouchPoints > 0
-    );
-  }
-  //true if the device has a touch screen.
-  export let touchDevice = isTouchDevice();
-  let touchstartX = 0;
-  let touchendX = 200;
-  export function swipeStart(e) {
-    touchstartX = e.changedTouches[0].screenY;
-  }
-  export function swipeEnd(e, handleMinimize) {
-    touchendX = e.changedTouches[0].screenY;
-    if (Math.abs(touchstartX - touchendX) > 100) {
-      if (touchendX > touchstartX) handleMinimize();
-    }
-  }
-
-  export function handleMinimize(
-    writableArray,
-    glowWindow,
-    windowName,
-    menuButtonSelector,
-    elementSelector,
-  ) {
-    let currMenuPos = writableArray.indexOf(windowName);
-    // console.log(currMenuPos);
-    glowWindow.set(windowName);
-    // $glowWindow = $glowWindow;
-    if (currMenuPos === -1) return [false, 0, 0];
-    let domButtonPos = document
-      .querySelector(menuButtonSelector)
-      .getBoundingClientRect();
-
-    let buttonMidPt = domButtonPos.left + domButtonPos.width / 3;
-    let elem = document.querySelector(elementSelector);
-    let styles = getComputedStyle(elem);
-    let left = parseInt(styles.left);
-    let bottom = parseInt(styles.bottom);
-    let height = parseInt(styles.height);
-    let width = parseInt(styles.width);
-    let menuX = buttonMidPt - (left + width / 2) - 20;
-    let menuY = bottom + height;
-
-    elem.addEventListener("animationend", () => glowWindow.reset(), false);
-    return [true, menuX, menuY];
-  }
-</script>
-
 <script>
   import "../css/98.css";
   import "../css/myStyle.css";
   import SysWindowContent from "./SysWindowContent.svelte";
+  import {
+    incrementCount,
+    windowOffsets,
+    tapHandler,
+    touchDevice,
+    swipeStart,
+    swipeEnd,
+    handleMinimize,
+  } from "./windowUtils";
   import { createEventDispatcher } from "svelte";
   import { asDraggable } from "svelte-drag-and-drop-actions";
   // import  DragDropTouch  from 'svelte-drag-drop-touch'
@@ -112,7 +41,7 @@
   let minFunc;
 
   onMount(() => {
-    fileWinOffset += 25;
+    windowOffsets.fileWinOffset += 25;
     BoxX = window.innerWidth / 4;
     //basically a media query
 
@@ -126,8 +55,8 @@
     if (window.innerWidth <= 414) {
       width = window.innerWidth - 20;
     }
-    BoxX += fileWinOffset;
-    BoxY += fileWinOffset;
+    BoxX += windowOffsets.fileWinOffset;
+    BoxY += windowOffsets.fileWinOffset;
 
     let bottomBarButtonSelector = `#minButtFileSystem`;
     let windowName = `File System`;
@@ -198,7 +127,6 @@
     dispatch("newWin", event.detail);
   }
 
-  //handle drag
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
@@ -221,6 +149,7 @@
 </script>
 
 <svelte:window />
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   id="fileSysWindow{windowIndex}"
   class="remBoxMobile File-System{windowIndex}"

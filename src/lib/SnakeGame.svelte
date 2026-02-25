@@ -10,7 +10,7 @@
   let audioCtx = null;
 
   function getAudioCtx() {
-    // @ts-ignore
+    // @ts-expect-error webkitAudioContext is a webkit proprietary property
     if (!audioCtx)
       audioCtx = new (window.AudioContext || window["webkitAudioContext"])();
     return audioCtx;
@@ -498,7 +498,8 @@
     on:touchend|preventDefault={handleTouchEnd}
     on:touchmove|preventDefault
   >
-    <canvas bind:this={canvas} width={canvasWidth} height={canvasHeight} />
+    <canvas bind:this={canvas} width={canvasWidth} height={canvasHeight}
+    ></canvas>
   </div>
   <div class="snake-hud">
     <span class="snake-score">Score: {score}</span>

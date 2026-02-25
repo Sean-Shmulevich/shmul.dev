@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 function storeIframe() {
-  const { subscribe, set, update } = writable<number>(0);
+  const { subscribe, set } = writable<number>(0);
   return {
     subscribe,
     reset: () => {

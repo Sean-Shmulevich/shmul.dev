@@ -1,16 +1,8 @@
 <script lang="ts">
-  import type { CustomBlockComponentProps } from "@portabletext/svelte";
-  import { urlFor } from "../stores/sanity.ts";
+  import { urlFor } from "../stores/sanity";
 
-  interface asset {
-    _ref: string;
-    _type: string;
-  }
-
-  export let portableText: CustomBlockComponentProps<{
-    _key?: string;
-    asset?: asset;
-  }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  export let portableText: any;
 </script>
 
 <figure>

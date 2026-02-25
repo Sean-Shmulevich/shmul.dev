@@ -256,7 +256,7 @@
   <div
     style="background: url('{swissMountains}') 0 50% repeat-x"
     class="mountainDiv"
-  />
+  ></div>
   <Desktop
     {icons}
     {current}
@@ -374,7 +374,7 @@
     />
   {/if}
   <BottomBar on:min={handleMessage} />
-  <div class="scan-lines" />
+  <div class="scan-lines"></div>
 </main>
 
 <style>

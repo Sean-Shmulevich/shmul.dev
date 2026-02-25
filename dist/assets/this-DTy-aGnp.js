@@ -1,0 +1,1 @@
+import{ah as h,ai as k,u as t,aj as b,ak as S}from"./index-DlMY_7EA.js";function u(r,a){return r===a||r?.[S]===a}function d(r={},a,f,T){return h(()=>{var i,s;return k(()=>{i=s,s=[],t(()=>{r!==f(...s)&&(a(r,...s),i&&u(f(...i),r)&&a(null,...i))})}),()=>{b(()=>{s&&u(f(...s),r)&&a(null,...s)})}}),r}export{d as b};

@@ -16,7 +16,7 @@
     >
       Try coding python!
     </p>
-    <py-repl id="my-repl" auto-generate="true" />
+    <py-repl id="my-repl" auto-generate="true"></py-repl>
   </div>
 </section>
 
@@ -45,6 +45,7 @@
   }
   :global(.cm-scroller) {
     background-color: rgb(43, 43, 74) !important;
+    overflow: auto !important;
   }
   :global(.cm-activeLineGutter) {
     background-color: rgb(43, 43, 74) !important;
@@ -69,19 +70,25 @@
     min-width: 0 !important;
   }
 
+  /* Fix Play Button Alignment */
   :global(.py-repl-run-button),
   :global(#code-editor > button) {
     position: static !important;
-    margin-left: 10px !important;
-    margin-top: 5px !important;
-    bottom: unset !important;
-    right: unset !important;
+    margin-left: -2px !important;
+    margin-top: -3px !important;
     flex-shrink: 0 !important;
+    align-self: flex-start !important;
   }
 
-  /* :global(.cm-focused) {
-    outline: unset !important;
-  } */
+  /* Fix Cursor Color */
+  :global(.cm-cursor) {
+    border-left-color: white !important;
+  }
+
+  :global(.cm-editor) {
+    margin-top: -2px !important;
+    height: 100% !important;
+  }
   :global(.ͼd) {
     color: #84ff84;
   }

@@ -9,7 +9,7 @@
     incrementCount,
     tapHandler,
     touchDevice,
-  } from "./SysWindow.svelte";
+  } from "./windowUtils";
   import { onMount, onDestroy } from "svelte";
   import { writableArray } from "../stores/minimized.ts";
 
@@ -94,6 +94,7 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div
   id="JSremBoxMobile"
   class="remBoxMobile"
@@ -113,6 +114,9 @@
         max-width: 833px;
         min-height: 250px;
     "
+  role="region"
+  aria-label="Paint Window"
+  tabindex="-1"
   on:mousedown={maybeDontIncrement}
   class:classname={hide}
 >

@@ -16,14 +16,14 @@ export interface DesktopIcon {
 export interface WindowConfig {
   id: string;
   kind:
-    | 'fileSystem'
-    | 'jsPaint'
-    | 'component'
-    | 'vsCode'
-    | 'snakeGame'
-    | 'content';
+  | 'fileSystem'
+  | 'jsPaint'
+  | 'component'
+  | 'vsCode'
+  | 'snakeGame'
+  | 'content';
   desktop?: DesktopIcon;
-  component?: any;
+  component?: unknown;
   content?: string;
   docName?: string;
 }

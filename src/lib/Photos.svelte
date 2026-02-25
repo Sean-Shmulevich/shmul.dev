@@ -1,6 +1,7 @@
 <script context="module">
   export function incrementCount(zIdx, currMaxZ, currStore, name) {
     if (zIdx > currMaxZ["zIdx"]) {
+      // do nothing
     } else if (zIdx == currMaxZ["zIdx"]) {
       //make it higher then anything
       zIdx += 2;
@@ -29,7 +30,7 @@
     return (
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
-      // @ts-ignore
+      // @ts-expect-error msMaxTouchPoints is a non-standard property
       navigator.msMaxTouchPoints > 0
     );
   }
@@ -200,7 +201,6 @@
     dispatch("close", event.detail);
   }
 
-  //handle drag
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
@@ -226,6 +226,7 @@
 </script>
 
 <svelte:window bind:innerWidth={maxX} />
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   id="fileSysWindow{windowIndex}"
   class="remBoxMobile File-System{windowIndex}"
@@ -277,19 +278,19 @@
         aria-label="Minimize"
         on:mousedown|capture|preventDefault={minFunc}
         on:touchstart|capture|preventDefault={minFunc}
-      />
+      ></button>
       <button
         class="full"
         style="min-width: 15px;margin-left: 2px;"
         aria-label="Maximize"
-      />
+      ></button>
       <button
         class="close"
         style="min-width: 15px;"
         aria-label="Close"
         on:mousedown|capture|preventDefault={forward}
         on:touchstart|capture|preventDefault={forward}
-      />
+      ></button>
     </div>
   </div>
 
@@ -300,6 +301,7 @@
       class="window myWindow"
       style="width: calc(100% - 14px);background: white;margin-left: 0px;border: 4px solid #c0c0c0!important;box-shadow: inset -1px -1px #000000, inset 1px 1px #0a0a0a, inset -2px -2px #808080, inset 2px 2px #dfdfdf;"
     >
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div class="window-body" style="" on:click={switchImage}>
         <img
@@ -310,7 +312,7 @@
       </div>
 
       <fieldset class="fileMenuBottom" style="transform: translateY(-2px);">
-        <div class="status-bar" />
+        <div class="status-bar"></div>
       </fieldset>
     </div>
   </div>

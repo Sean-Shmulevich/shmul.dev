@@ -109,6 +109,8 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     class="startMenu"
+    role="menu"
+    tabindex="0"
     on:click={(e) => sendThing(e)}
     on:touchstart={(e) => sendThing(e)}
     on:mouseleave={toggleMenuOff}
@@ -191,7 +193,7 @@
     class="menuBarStart"
     on:touchstart|capture|preventDefault={sendThing}
     on:mouseenter={(e) => sendThing(e)}
-    style="color:black;font-size:15px;margin-top: 4.5px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;"
+    style="color:black;font-size:15px;margin-left: -7px;margin-top: 5px;max-height: 29px;border: 1px solid black;min-width: 20px;"
   >
     <img
       class="startIconImg"

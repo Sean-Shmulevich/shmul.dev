@@ -28,7 +28,6 @@
   on:close
 >
   <div class="article">
-    <!-- svelte-ignore empty-block -->
     {#await getData(docName)}
       <div style="margin: 25% auto auto 40%">
         <BarLoader size="60" color="rgb(150 150 255)" unit="px" />

@@ -1,4 +1,4 @@
-import { writable, get } from 'svelte/store';
+import { writable } from 'svelte/store';
 
 // Central store for all OS windows.
 export interface WindowContext {
@@ -13,7 +13,7 @@ export interface WindowContext {
   isMinimized: boolean; // Is it hidden in the taskbar?
   isMaximized: boolean; // Is it taking up the full screen?
   isActive: boolean; // Is it the currently focused window?
-  [key: string]: any; // Allow overrides
+  [key: string]: unknown; // Allow overrides
 }
 
 export interface OsState {
@@ -23,7 +23,7 @@ export interface OsState {
 }
 
 function createOsStore() {
-  const { subscribe, set, update } = writable<OsState>({
+  const { subscribe, update } = writable<OsState>({
     windows: {},
     activeWindowId: null,
     maxZIndex: 1,

@@ -182,7 +182,12 @@
 >
   <div class="centerText">
     {#each foldersList as folder}
-      <div class="exploreIcon" on:dblclick|preventDefault={goDeeper(folder)}>
+      <div
+        class="exploreIcon"
+        role="button"
+        tabindex="0"
+        on:dblclick|preventDefault={goDeeper(folder)}
+      >
         <img
           class="menuFileIcon"
           alt="windows 98 filesystem file button goes to {folder}"
@@ -192,7 +197,12 @@
       </div>
     {/each}
     {#each filesList as file}
-      <div class="exploreIcon" on:dblclick|preventDefault={openItem(file)}>
+      <div
+        class="exploreIcon"
+        role="button"
+        tabindex="0"
+        on:dblclick|preventDefault={openItem(file)}
+      >
         <img
           class="menuFileIcon"
           alt="windows 98 filesystem file icon goes to {file}"

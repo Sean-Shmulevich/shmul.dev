@@ -21,7 +21,7 @@
     swipeStart,
     swipeEnd,
     handleMinimize,
-  } from "./SysWindow.svelte";
+  } from "./windowUtils";
 
   export let zIdx = 0;
   let minWidth = 502;
@@ -61,7 +61,7 @@
     };
     if (window.innerWidth < 700) {
       BoxX = 0;
-      // @ts-ignore
+      // @ts-expect-error Type mismatch constraint on VS Code window width.
     }
     if (window.innerWidth <= 600) {
       minWidth = window.innerWidth - 80;
@@ -150,6 +150,7 @@
     // console.log(currWidth);
     //the resize bar is 6 px
     //(e.clientX - BoxX) <= 833 && (e.clientX - BoxX) >= 502
+    // eslint-disable-next-line no-constant-condition
     if (true) {
       currWidth = e.clientX - BoxX;
       currHeight = e.clientY - BoxY;
@@ -168,6 +169,7 @@
 
 <svelte:window bind:innerWidth={maxX} bind:innerHeight={maxY} />
 <!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="container vscode {windowName.replace(/\s+/g, '-')}"
   style="
@@ -190,6 +192,7 @@
   on:mousedown={maybeDontIncrement}
   class:classname={hide}
 >
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     style="   
 position: absolute; 
@@ -203,7 +206,7 @@ bottom: 0;
 "
     on:mousedown={initResize}
     on:touchstart|preventDefault|capture={initResize}
-  />
+  ></div>
 
   <div
     class="vsAppBar"
@@ -222,21 +225,24 @@ bottom: 0;
     <div
       style="margin-top: 1px;width: 60px;display: flex;justify-content: space-evenly;"
     >
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         class="fakeButtons fakeClose vsControlButtons"
         on:mousedown={forward}
-      />
+      ></div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         class="fakeButtons fakeMinimize vsControlButtons"
         on:click|capture|preventDefault={() => minFunc()}
-      />
-      <div class="fakeButtons fakeZoom vsControlButtons" />
+      ></div>
+      <div class="fakeButtons fakeZoom vsControlButtons"></div>
     </div>
     <div class="barSearch" style="width:70%">
       <div style="display:flex;width: inherit;">
-        <div id="searchLeft" class="codicon codicon-arrow-left" />
-        <div id="searchRight" class="codicon codicon-arrow-right" />
-        <!-- <div id="searchInBox" class="codicon codicon-search" /> -->
+        <div id="searchLeft" class="codicon codicon-arrow-left"></div>
+        <div id="searchRight" class="codicon codicon-arrow-right"></div>
+        <!-- <div id="searchInBox" class="codicon codicon-search"></div> -->
         <input
           class="barSearchInput"
           id="text17"
@@ -249,31 +255,34 @@ bottom: 0;
       <div
         class="codicon codicon-layout vsSnapIcon"
         style="margin-left: 7px;"
-      />
+      ></div>
       <hr style="border-color: #898988;" />
-      <div class="codicon codicon-layout-sidebar-right-off vsSnapIcon" />
-      <div class="codicon codicon-layout-panel-off vsSnapIcon" />
-      <div class="codicon codicon-layout-sidebar-left-off vsSnapIcon" />
+      <div class="codicon codicon-layout-sidebar-right-off vsSnapIcon"></div>
+      <div class="codicon codicon-layout-panel-off vsSnapIcon"></div>
+      <div class="codicon codicon-layout-sidebar-left-off vsSnapIcon"></div>
     </div>
   </div>
   <div class="vsWindowContent" style="display:flex;">
     <div class="vsAppCol">
-      <div class="codicon codicon-files vsIcon" />
-      <div class="codicon codicon-search vsIcon" />
-      <div class="codicon codicon-debug-alt-small vsIcon" />
-      <div class="codicon codicon-extensions vsIcon" />
-      <div class="codicon codicon-symbol-namespace vsIcon" />
-      <div class="codicon codicon-folder-opened vsIcon" />
-      <div class="codicon codicon-account vsIconBottom" style="bottom: 34px;" />
+      <div class="codicon codicon-files vsIcon"></div>
+      <div class="codicon codicon-search vsIcon"></div>
+      <div class="codicon codicon-debug-alt-small vsIcon"></div>
+      <div class="codicon codicon-extensions vsIcon"></div>
+      <div class="codicon codicon-symbol-namespace vsIcon"></div>
+      <div class="codicon codicon-folder-opened vsIcon"></div>
+      <div
+        class="codicon codicon-account vsIconBottom"
+        style="bottom: 34px;"
+      ></div>
       <div
         class="codicon codicon-settings-gear vsIconBottom"
         style="bottom: 5px;"
-      />
+      ></div>
     </div>
 
     <div class="codeAndNumbers">
-      <div class="vsLineNumbers" style="display:none" />
-      <div class="vsCodeWindow" style="overflow-y:scroll;overflow: overlay;">
+      <div class="vsLineNumbers" style="display:none"></div>
+      <div class="vsCodeWindow" style="overflow-y:auto;overflow-x:hidden;">
         <div class="vsText">
           <slot />
         </div>
@@ -282,23 +291,23 @@ bottom: 0;
   </div>
   <div class="vsBottomBar">
     <div id="yellowCorner">
-      <div class="codicon codicon-remote" id="teeneyRemote" />
+      <div class="codicon codicon-remote" id="teeneyRemote"></div>
     </div>
-    <div class="codicon codicon-close-all" id="teenyClose" />
-    <div class="codicon codicon-warning" id="teenyClose" />
+    <div class="codicon codicon-close-all" id="teenyClose"></div>
+    <div class="codicon codicon-warning" id="teenyClose"></div>
     <div style="display:flex;margin-left: auto;flex-direction: row-reverse;">
       <div
         class="codicon codicon-bell"
         style="color: rgb(160,151,229);margin-left: auto;margin-right: 8px;transform: scale(0.9);margin-top:1px"
-      />
+      ></div>
       <div
         class="codicon codicon-squirrel"
         style="color: rgb(160,151,229);margin-left: auto;margin-right: 4px;transform: scale(0.9);margin-top:1px"
-      />
+      ></div>
       <div
         class="codicon codicon-terminal-powershell"
         style="color: rgb(160,151,229);margin-left: auto;margin-right: 6px;transform: scale(0.9);margin-top:1px"
-      />
+      ></div>
       <span class="vsBarText">HTML</span>
       <span class="vsBarText">LF</span>
       <span class="vsBarText">UTF-8</span>

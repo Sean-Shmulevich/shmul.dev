@@ -52,6 +52,7 @@
 
 <!-- Add a CSS wrapper that conditionally hides via transform scale (Window 98 style) or display:none based on state -->
 {#if windowState && !isMinimized}
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="window-frame {isActive ? 'active' : 'inactive'}"
     on:mousedown={handleFocus}

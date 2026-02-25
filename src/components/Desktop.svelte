@@ -10,6 +10,8 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     class="homeIcon"
+    role="button"
+    tabindex="0"
     style="top:{i * 105 + 65}px; left:{left}px;image-rendering: pixelated"
     class:blue={current === text}
     on:click={() => dispatch('select', text)}
