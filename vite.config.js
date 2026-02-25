@@ -9,7 +9,6 @@ export default defineConfig({
     svelte({
       preprocess: autoPreprocess(),
       onwarn(warning, defaultHandler) {
-        // Suppress warnings for legacy packages without svelte exports conditions
         if (warning.code === 'missing-exports-condition') {
           const allowedPackages = [
             '@portabletext/svelte',
@@ -22,6 +21,11 @@ export default defineConfig({
           if (allowedPackages.some((pkg) => warning.message.includes(pkg))) {
             return;
           }
+        }
+
+        // Suppress self-closing tag warnings from third-party compiled Svelte components like svelte-loading-spinners
+        if (warning.code === 'element_invalid_self_closing_tag' && warning.filename && warning.filename.includes('node_modules')) {
+          return;
         }
         // Handle all other warnings normally
         defaultHandler(warning);
