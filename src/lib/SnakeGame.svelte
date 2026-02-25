@@ -10,7 +10,9 @@
   let audioCtx = null;
 
   function getAudioCtx() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // @ts-ignore
+    if (!audioCtx)
+      audioCtx = new (window.AudioContext || window["webkitAudioContext"])();
     return audioCtx;
   }
 
@@ -51,7 +53,10 @@
       osc.type = "sawtooth";
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0.12, ctx.currentTime + i * 0.12);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.12);
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        ctx.currentTime + i * 0.12 + 0.12,
+      );
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(ctx.currentTime + i * 0.12);
@@ -67,7 +72,10 @@
       osc.type = "square";
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0.1, ctx.currentTime + i * 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.08 + 0.08);
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        ctx.currentTime + i * 0.08 + 0.08,
+      );
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(ctx.currentTime + i * 0.08);
@@ -140,8 +148,18 @@
     }
 
     // Add top and bottom bars to windowRects for green borders
-    windowRects.push({ startCol: 0, startRow: 0, endCol: cols, endRow: topBarRows });
-    windowRects.push({ startCol: 0, startRow: bottomBarStartRow, endCol: cols, endRow: rows });
+    windowRects.push({
+      startCol: 0,
+      startRow: 0,
+      endCol: cols,
+      endRow: topBarRows,
+    });
+    windowRects.push({
+      startCol: 0,
+      startRow: bottomBarStartRow,
+      endCol: cols,
+      endRow: rows,
+    });
   }
 
   function findClearPosition() {
@@ -288,22 +306,12 @@
 
     // Food
     ctx.fillStyle = "#ff0000";
-    ctx.fillRect(
-      food.col * CELL + 2,
-      food.row * CELL + 2,
-      CELL - 4,
-      CELL - 4
-    );
+    ctx.fillRect(food.col * CELL + 2, food.row * CELL + 2, CELL - 4, CELL - 4);
 
     // Snake
     snake.forEach((seg, i) => {
       ctx.fillStyle = i === 0 ? "#00ff00" : "#00cc00";
-      ctx.fillRect(
-        seg.col * CELL + 1,
-        seg.row * CELL + 1,
-        CELL - 2,
-        CELL - 2
-      );
+      ctx.fillRect(seg.col * CELL + 1, seg.row * CELL + 1, CELL - 2, CELL - 2);
     });
 
     // Border around playfield
@@ -407,7 +415,10 @@
 
     // Prevent reversing into self
     if (newDir.col !== -direction.col || newDir.row !== -direction.row) {
-      if (newDir.col !== nextDirection.col || newDir.row !== nextDirection.row) {
+      if (
+        newDir.col !== nextDirection.col ||
+        newDir.row !== nextDirection.row
+      ) {
         sfxTurn();
       }
       nextDirection = newDir;
@@ -442,7 +453,8 @@
     }
 
     // Determine swipe direction based on larger axis
-    if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) return;
+    if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD)
+      return;
 
     let newDir;
     if (Math.abs(dx) > Math.abs(dy)) {
@@ -452,7 +464,10 @@
     }
 
     if (newDir.col !== -direction.col || newDir.row !== -direction.row) {
-      if (newDir.col !== nextDirection.col || newDir.row !== nextDirection.row) {
+      if (
+        newDir.col !== nextDirection.col ||
+        newDir.row !== nextDirection.row
+      ) {
         sfxTurn();
       }
       nextDirection = newDir;
@@ -483,11 +498,7 @@
     on:touchend|preventDefault={handleTouchEnd}
     on:touchmove|preventDefault
   >
-    <canvas
-      bind:this={canvas}
-      width={canvasWidth}
-      height={canvasHeight}
-    />
+    <canvas bind:this={canvas} width={canvasWidth} height={canvasHeight} />
   </div>
   <div class="snake-hud">
     <span class="snake-score">Score: {score}</span>

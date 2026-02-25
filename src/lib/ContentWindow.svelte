@@ -1,7 +1,7 @@
 <script>
   import Image from "./Image.svelte";
   import { BarLoader } from "svelte-loading-spinners";
-  import { get } from "../stores/sanity.js";
+  import { get } from "../stores/sanity.ts";
 
   export let VSCODE;
   export let PortableText;

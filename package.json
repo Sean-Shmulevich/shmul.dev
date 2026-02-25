@@ -7,18 +7,26 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npx gh-pages -d dist"
+    "deploy": "npx gh-pages -d dist",
+    "format": "prettier --plugin prettier-plugin-svelte --write .",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.2",
-    "@tsconfig/svelte": "^3.0.0",
-    "gh-pages": "^4.0.0",
-    "svelte": "^3.49.0",
-    "svelte-check": "^2.10.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@tsconfig/svelte": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
+    "eslint-plugin-svelte": "^3.15.0",
+    "gh-pages": "^6.0.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-svelte": "^3.5.0",
+    "svelte": "^4.2.0",
+    "svelte-check": "^3.6.0",
     "svelte-loading-spinners": "^0.3.4",
-    "svelte-preprocess": "^4.10.7",
-    "typescript": "^4.9.3",
-    "vite": "^3.1.8"
+    "svelte-preprocess": "^5.1.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.3.0",

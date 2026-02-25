@@ -1,0 +1,189 @@
+
+====================================
+Loading svelte-check in workspace: /Users/shmul/Developer/shmul.dev
+Getting Svelte diagnostics...
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:104:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:114:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:126:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:11:5
+Hint: 'writableArray' is declared but its value is never read. (js)
+    import {count} from '../stores/zIndex.js';
+    import {writableArray} from "../stores/minimized.js";
+    import {fly} from "svelte/transition";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:27:31
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:27:35
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:32:30
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:32:34
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:87:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:92:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:96:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:100:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:108:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:113:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:117:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:121:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:129:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:134:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:138:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:142:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:11:5
+Hint: 'writableArray' is declared but its value is never read. (js)
+    import { count } from '../../stores/zIndex.js';
+    import { writableArray } from '../../stores/minimized.js';
+    import {fly} from "svelte/transition";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:24:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:24:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:25:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:25:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/terminal.svelte:2:5
+Hint: 'asDraggable' is declared but its value is never read. (js)
+<script>
+    import {asDraggable} from 'svelte-drag-and-drop-actions';
+</script>
+
+
+====================================
+svelte-check found 0 errors, 15 warnings, and 11 hints

@@ -8,14 +8,21 @@
   import { asDraggable } from "svelte-drag-and-drop-actions";
   import { onDestroy, onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
-  
-  //stores
-  import { count } from "../stores/zIndex.js";
-  import { glowWindow } from "../stores/keep.js";
-  import { writableArray } from "../stores/minimized.js";
 
-  import {incrementCount, tapHandler, touchDevice, swipeStart, swipeEnd, handleMinimize } from "./SysWindow.svelte";
-  
+  import { count } from "../stores/zIndex.ts";
+  import { glowWindow } from "../stores/keep.ts";
+  import { writableArray } from "../stores/minimized.ts";
+  import { osStore } from "../stores/osStore.ts";
+
+  import {
+    incrementCount,
+    tapHandler,
+    touchDevice,
+    swipeStart,
+    swipeEnd,
+    handleMinimize,
+  } from "./SysWindow.svelte";
+
   export let zIdx = 0;
   let minWidth = 502;
 
@@ -23,14 +30,15 @@
   let mobileDblTap;
   let mobileSwipe;
   let minFunc;
-  export let BoxX = 200,BoxY = 200; //starting coords
+  export let BoxX = 200,
+    BoxY = 200; //starting coords
   export let hide = false;
-  let vsPos;
   let menuX, menuY;
   let currWidth = 600;
   let currHeight = 400;
   export let windowName = "VS Code";
-  let maxX = 0,maxY = 0;
+  let maxX = 0,
+    maxY = 0;
 
   //dispatch the close event to the app.svelte.
   const dispatch = createEventDispatcher();
@@ -40,10 +48,17 @@
     dispatch("close", event.detail);
   }
 
-  
   onMount(() => {
     //basically a media query
-    minFunc = () => {[hide, menuX, menuY] = handleMinimize($writableArray, glowWindow, hide, windowName, `#minButt${windowName.replace(/\s+/g, "")}`, `.vscode.${windowName.replace(/\s+/g, "-")}`);}
+    minFunc = () => {
+      [hide, menuX, menuY] = handleMinimize(
+        $writableArray,
+        glowWindow,
+        windowName,
+        `#minButt${windowName.replace(/\s+/g, "")}`,
+        `.vscode.${windowName.replace(/\s+/g, "-")}`,
+      );
+    };
     if (window.innerWidth < 700) {
       BoxX = 0;
       // @ts-ignore
@@ -53,47 +68,70 @@
       currWidth = window.innerWidth;
     }
     //only create if the device has a touchscreen.
-    if(touchDevice){
-        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchstart", swipeStart);
-        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).addEventListener("touchend", mobileSwipe = (e) => {swipeEnd(e, minFunc)});
-        document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).addEventListener("touchstart", mobileDblTap = (e) => {tapHandler(e,minFunc)});
-      }
+    if (touchDevice) {
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
+        .addEventListener("touchstart", swipeStart);
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
+        .addEventListener(
+          "touchend",
+          (mobileSwipe = (e) => {
+            swipeEnd(e, minFunc);
+          }),
+        );
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} > .vsAppBar`)
+        .addEventListener(
+          "touchstart",
+          (mobileDblTap = (e) => {
+            tapHandler(e, minFunc);
+          }),
+        );
+    }
   });
   //remove tap listeners.
   onDestroy(() => {
-    if(touchDevice){
-      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchstart", swipeStart);
-      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} * .vsAppCol`).removeEventListener("touchend", mobileSwipe);
-      document.querySelector(`.vscode.${windowName.replace(/\s+/g, '-')} > .vsAppBar`).removeEventListener("touchstart", mobileDblTap);
+    if (touchDevice) {
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
+        .removeEventListener("touchstart", swipeStart);
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
+        .removeEventListener("touchend", mobileSwipe);
+      document
+        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} > .vsAppBar`)
+        .removeEventListener("touchstart", mobileDblTap);
     }
   });
-
 
   function onDragStart() {
     return { x: BoxX, y: BoxY };
   }
 
-  function onDragMove(x, y, dx, dy) {
+  function onDragMove(x, y) {
     BoxX = x;
     BoxY = y;
+    osStore.updatePosition(windowName, x, y);
   }
 
-  function onDragEnd(x, y, dx, dy) {
+  function onDragEnd(x, y) {
     BoxX = x;
     BoxY = y;
-  
+    osStore.updatePosition(windowName, x, y);
   }
 
   function maybeDontIncrement() {
     if (!hide) {
       zIdx = incrementCount(zIdx, $count, count, "VS Code");
+      osStore.focusWindow(windowName);
     } else {
       zIdx = zIdx;
     }
   }
 
   //Window funtion mousemove & mouseup
-  function initResize(e) {
+  function initResize() {
     // if(currWidth >= 833){
     //     currWidth = 833;
     // }
@@ -102,8 +140,7 @@
     // }
     window.addEventListener("mousemove", Resize, false);
     window.addEventListener("mouseup", stopResize, false);
-    if(touchDevice){
-      
+    if (touchDevice) {
       window.addEventListener("touchstart", Resize, false);
       window.addEventListener("touchend", stopResize, false);
     }
@@ -119,10 +156,10 @@
     }
   }
   //on mouseup remove windows functions mousemove & mouseup
-  function stopResize(e) {
+  function stopResize() {
     window.removeEventListener("mousemove", Resize, false);
     window.removeEventListener("mouseup", stopResize, false);
-    if(touchDevice){
+    if (touchDevice) {
       window.removeEventListener("touchstart", Resize, false);
       window.removeEventListener("touchend", stopResize, false);
     }
@@ -152,7 +189,6 @@
 "
   on:mousedown={maybeDontIncrement}
   class:classname={hide}
-  bind:this={vsPos}
 >
   <div
     style="   
@@ -273,8 +309,10 @@ bottom: 0;
 </div>
 
 <style>
-    @media (max-width: 460px) {
-      .vsBarText:nth-of-type(5){display: none !important}
+  @media (max-width: 460px) {
+    .vsBarText:nth-of-type(5) {
+      display: none !important;
+    }
   }
   @keyframes move {
     50%,
@@ -291,6 +329,11 @@ bottom: 0;
     }
   }
   .classname {
+    animation-name: move;
+    animation-duration: 850ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
     -webkit-animation-name: move;
     -webkit-animation-duration: 850ms;
     -webkit-animation-iteration-count: 1;

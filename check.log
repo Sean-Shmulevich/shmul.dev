@@ -1,0 +1,938 @@
+
+====================================
+Loading svelte-check in workspace: /Users/shmul/Developer/shmul.dev
+Getting Svelte diagnostics...
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:38:7
+Hint: 'store' is declared but its value is never read. (js)
+
+  let store;
+  let positions = {};
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:41:7
+Hint: 'contentList' is declared but its value is never read. (js)
+  let nextPosition = { x: 180, y: 100 };
+  let contentList;
+
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:85:34
+Hint: 'msg' is declared but its value is never read. (js)
+    let catchTouchErr = () => {
+      window.onerror = function (msg, url, line, col, error) {
+        return true;
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:85:39
+Hint: 'url' is declared but its value is never read. (js)
+    let catchTouchErr = () => {
+      window.onerror = function (msg, url, line, col, error) {
+        return true;
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:85:44
+Hint: 'line' is declared but its value is never read. (js)
+    let catchTouchErr = () => {
+      window.onerror = function (msg, url, line, col, error) {
+        return true;
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:85:50
+Hint: 'col' is declared but its value is never read. (js)
+    let catchTouchErr = () => {
+      window.onerror = function (msg, url, line, col, error) {
+        return true;
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:85:55
+Hint: 'error' is declared but its value is never read. (js)
+    let catchTouchErr = () => {
+      window.onerror = function (msg, url, line, col, error) {
+        return true;
+
+
+/Users/shmul/Developer/shmul.dev/src/App.svelte:108:33
+Hint: 'i' is declared but its value is never read. (js)
+  let numFileWin = 1;
+  function makeSubFileWin(name, i) {
+    //check if it not already in the writable array
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:504:5
+Warn: Also define the standard property 'box-shadow' for compatibility (css)
+    color: black;
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: black !important;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:611:5
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+  .classname {
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 850ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:612:5
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:613:5
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:614:5
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:615:5
+Warn: Also define the standard property 'animation-fill-mode' for compatibility (css)
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:8:3
+Hint: 'DragDropTouch' is declared but its value is never read. (js)
+  import { asDraggable } from "svelte-drag-and-drop-actions";
+  import DragDropTouch from "svelte-drag-drop-touch";
+  import { onMount, onDestroy } from "svelte";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:31:7
+Hint: 'aboutBox' is declared but its value is never read. (js)
+  let menuX, menuY;
+  let aboutBox;
+  export let BoxX = 200,
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:106:29
+Hint: 'dx' is declared but its value is never read. (js)
+
+  function onDragMove(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:106:33
+Hint: 'dy' is declared but its value is never read. (js)
+
+  function onDragMove(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:111:28
+Hint: 'dx' is declared but its value is never read. (js)
+
+  function onDragEnd(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/AboutMe.svelte:111:32
+Hint: 'dy' is declared but its value is never read. (js)
+
+  function onDragEnd(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:253:5
+Warn: Unused CSS selector ".none" (svelte)
+    } */
+    .none{display: none;}
+    .shift{margin-right:-20px;}
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:254:5
+Warn: Unused CSS selector ".shift" (svelte)
+    .none{display: none;}
+    .shift{margin-right:-20px;}
+    .timeText {
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:285:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classes{
+        -webkit-animation-name: glow, animatedgradient;
+        z-index: -1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:288:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        background-size: 300% 300%;
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:289:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:290:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:291:9
+Warn: Also define the standard property 'animation-direction' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:292:9
+Warn: Also define the standard property 'animation-delay' for compatibility (css)
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:11:5
+Hint: 'defaultLogo' is declared but its value is never read. (js)
+    import Overview from '../assets/myIcon_1.png';
+    import defaultLogo from '../assets/windowicons/aim_fldr.ico';
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:21:9
+Hint: 'text' is declared but its value is never read. (js)
+
+    let text;
+    let activeWindow = "";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:22:9
+Hint: 'activeWindow' is declared but its value is never read. (js)
+    let text;
+    let activeWindow = "";
+    function forward(event, text) {
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:23:22
+Hint: 'event' is declared but its value is never read. (js)
+    let activeWindow = "";
+    function forward(event, text) {
+        // console.log(text);
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/BottomBar.svelte:44:11
+Hint: 'toggleMenu' is declared but its value is never read. (js)
+    let showMenu = false;
+    const toggleMenu = () => {
+        showMenu = true;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/CodeMirror.svelte:8:14
+Warn: Component has unused export property 'doc'. If it is for external reference only, please consider using `export const doc` (svelte)
+});
+  export let doc;
+  console.log("hello world");
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/CodeMirror.svelte:45:3
+Warn: Do not use empty rulesets (css)
+  }
+  :global(.cm-activeLine) {
+    /* background-color: rgb(31 32 63) !important; */
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/CodeMirror.svelte:3:5
+Hint: 'BarLoader' is declared but its value is never read. (js)
+    import { onMount } from 'svelte';
+    import { BarLoader } from "svelte-loading-spinners";
+    let PYSCRIPT;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/CodeMirror.svelte:4:9
+Hint: 'PYSCRIPT' is declared but its value is never read. (js)
+    import { BarLoader } from "svelte-loading-spinners";
+    let PYSCRIPT;
+onMount(async () => {
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:149:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classname {
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 850ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:150:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 850ms;
+        -webkit-animation-iteration-count: 1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:151:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 850ms;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:152:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:153:9
+Warn: Also define the standard property 'animation-fill-mode' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:16:9
+Hint: 'remBox' is declared but its value is never read. (js)
+    export let hide = false;
+    let remBox;
+    let menuX, menuY;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:19:9
+Hint: 'mobileSwipe' is declared but its value is never read. (js)
+    let mobileDblTap;
+    let mobileSwipe;
+    let minFunc;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:56:31
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:56:35
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:61:30
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/JsPaint.svelte:61:34
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:383:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classes {
+        -webkit-animation-name: glow, animatedgradient;
+        z-index: -1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:386:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        background-size: 300% 300%;
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:387:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:388:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:389:9
+Warn: Also define the standard property 'animation-direction' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:390:9
+Warn: Also define the standard property 'animation-delay' for compatibility (css)
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:401:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classname {
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 840ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:402:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 840ms;
+        -webkit-animation-iteration-count: 1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:403:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 840ms;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:404:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:405:9
+Warn: Also define the standard property 'animation-fill-mode' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:17:9
+Hint: 'tappedThrice' is declared but its value is never read. (js)
+    var tapedTwice = false;
+    var tappedThrice = false;
+    export function tapHandler(event, handleMinimize) {
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:54:9
+Hint: 'hide' is declared but its value is never read. (js)
+        glowWindow,
+        hide,
+        windowName,
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:87:5
+Hint: 'SysWindowContent' is declared but its value is never read. (js)
+    import "../css/myStyle.css";
+    import SysWindowContent from "./SysWindowContent.svelte";
+    import { createEventDispatcher } from "svelte";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:94:5
+Hint: 'image1' is declared but its value is never read. (js)
+    // import image3 from "../assets/PhotoEssay/Image4.jpg";
+    import image1 from "../assets/PhotoEssay/Image5.jpg";
+    import image2 from "../assets/PhotoEssay/Image6.jpg";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:95:5
+Hint: 'image2' is declared but its value is never read. (js)
+    import image1 from "../assets/PhotoEssay/Image5.jpg";
+    import image2 from "../assets/PhotoEssay/Image6.jpg";
+    import image3 from "../assets/PhotoEssay/Image7.jpg";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:96:5
+Hint: 'image3' is declared but its value is never read. (js)
+    import image2 from "../assets/PhotoEssay/Image6.jpg";
+    import image3 from "../assets/PhotoEssay/Image7.jpg";
+    // import  DragDropTouch  from 'svelte-drag-drop-touch'
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:112:9
+Hint: 'currentPath' is declared but its value is never read. (js)
+
+    let currentPath; //currentPath
+    let thisWindow; //theCurrent window
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:113:9
+Hint: 'thisWindow' is declared but its value is never read. (js)
+    let currentPath; //currentPath
+    let thisWindow; //theCurrent window
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:116:9
+Hint: 'remPos' is declared but its value is never read. (js)
+    let menuX, menuY;
+    let remPos;
+    export let windowIndex = 0;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:125:5
+Hint: All variables are unused. (js)
+    let maxY = 0;
+    let w, h;
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:223:14
+Hint: 'newWindow' is declared but its value is never read. (js)
+    }
+    function newWindow(event) {
+        dispatch("newWin", event.detail);
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:231:31
+Hint: 'dx' is declared but its value is never read. (js)
+    }
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:231:35
+Hint: 'dy' is declared but its value is never read. (js)
+    }
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:235:30
+Hint: 'dx' is declared but its value is never read. (js)
+    }
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/Photos.svelte:235:34
+Hint: 'dy' is declared but its value is never read. (js)
+    }
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SnakeGame.svelte:13:66
+Hint: Property 'webkitAudioContext' may not exist on type 'Window & typeof globalThis'. Did you mean 'AudioContext'? (js)
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:299:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classes{
+        -webkit-animation-name: glow, animatedgradient;
+        z-index: -1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:302:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        background-size: 300% 300%;
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:303:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 180ms;
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:304:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 2;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:305:9
+Warn: Also define the standard property 'animation-direction' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:306:9
+Warn: Also define the standard property 'animation-delay' for compatibility (css)
+        -webkit-animation-direction: alternate;
+        -webkit-animation-delay: 35ms;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:317:9
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+    .classname {
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 840ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:318:9
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+        -webkit-animation-name: move;
+        -webkit-animation-duration: 840ms;
+        -webkit-animation-iteration-count: 1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:319:9
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+        -webkit-animation-duration: 840ms;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:320:9
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:321:9
+Warn: Also define the standard property 'animation-fill-mode' for compatibility (css)
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:18:9
+Hint: 'tappedThrice' is declared but its value is never read. (js)
+    var tapedTwice = false;
+    var tappedThrice = false;
+    export function tapHandler(event, handleMinimize)  {
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:48:62
+Hint: 'hide' is declared but its value is never read. (js)
+
+   export function handleMinimize(writableArray, glowWindow, hide, windowName, menuButtonSelector, elementSelector){
+        let currMenuPos = writableArray.indexOf(windowName);
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:95:9
+Hint: 'remPos' is declared but its value is never read. (js)
+    let menuX, menuY;
+    let remPos;
+    export let windowIndex = 0;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:104:5
+Hint: All variables are unused. (js)
+    let maxY = 0;
+    let w, h;
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:166:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:166:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:167:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/SysWindow.svelte:167:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/TopBar.svelte:62:9
+Warn: Also define the standard property 'background-clip' for compatibility (css)
+        background: -webkit-linear-gradient(60deg, rgb(154 143 233), rgb(26 26 101) );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:294:5
+Warn: Also define the standard property 'animation-name' for compatibility (css)
+  .classname {
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 850ms;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:295:5
+Warn: Also define the standard property 'animation-duration' for compatibility (css)
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:296:5
+Warn: Also define the standard property 'animation-iteration-count' for compatibility (css)
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:297:5
+Warn: Also define the standard property 'animation-timing-function' for compatibility (css)
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:298:5
+Warn: Also define the standard property 'animation-fill-mode' for compatibility (css)
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:28:7
+Hint: 'vsPos' is declared but its value is never read. (js)
+  export let hide = false;
+  let vsPos;
+  let menuX, menuY;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:76:29
+Hint: 'dx' is declared but its value is never read. (js)
+
+  function onDragMove(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:76:33
+Hint: 'dy' is declared but its value is never read. (js)
+
+  function onDragMove(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:81:28
+Hint: 'dx' is declared but its value is never read. (js)
+
+  function onDragEnd(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:81:32
+Hint: 'dy' is declared but its value is never read. (js)
+
+  function onDragEnd(x, y, dx, dy) {
+    BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:96:23
+Hint: 'e' is declared but its value is never read. (js)
+  //Window funtion mousemove & mouseup
+  function initResize(e) {
+    // if(currWidth >= 833){
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/VsCode.svelte:122:23
+Hint: 'e' is declared but its value is never read. (js)
+  //on mouseup remove windows functions mousemove & mouseup
+  function stopResize(e) {
+    window.removeEventListener("mousemove", Resize, false);
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:104:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:114:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:126:21
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                <div class="fileMenuItem">
+                    <img id="fileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:11:5
+Hint: 'writableArray' is declared but its value is never read. (js)
+    import {count} from '../stores/zIndex.js';
+    import {writableArray} from "../stores/minimized.js";
+    import {fly} from "svelte/transition";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:27:31
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:27:35
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragMove(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:32:30
+Hint: 'dx' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FileList.svelte:32:34
+Hint: 'dy' is declared but its value is never read. (js)
+
+    function onDragEnd(x, y, dx, dy) {
+        BoxX = x;
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:87:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:92:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:96:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:100:25
+Warn: A11y: <img> element should have an alt attribute (svelte)
+                      <div class="exploreIcon">
+                        <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+                        <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:108:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:113:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:117:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:121:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:129:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:134:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:138:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:142:13
+Warn: A11y: <img> element should have an alt attribute (svelte)
+          <div class="exploreIcon">
+            <img id="menuFileIcon" src="https://cdn-icons-png.flaticon.com/512/124/124837.png"/>
+            <p id="filetext">hello</p>
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:11:5
+Hint: 'writableArray' is declared but its value is never read. (js)
+    import { count } from '../../stores/zIndex.js';
+    import { writableArray } from '../../stores/minimized.js';
+    import {fly} from "svelte/transition";
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:24:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:24:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragStart () { return { x:BoxX,y:BoxY} }
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:25:31
+Hint: 'dx' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/FilePage.svelte:25:34
+Hint: 'dy' is declared but its value is never read. (js)
+    function onDragMove (x,y, dx,dy) { BoxX = x; BoxY = y }
+    function onDragEnd  (x,y, dx,dy) { BoxX = x; BoxY = y }
+
+
+
+/Users/shmul/Developer/shmul.dev/src/lib/notUsing/terminal.svelte:2:5
+Hint: 'asDraggable' is declared but its value is never read. (js)
+<script>
+    import {asDraggable} from 'svelte-drag-and-drop-actions';
+</script>
+
+
+====================================
+svelte-check found 0 errors, 64 warnings, and 69 hints

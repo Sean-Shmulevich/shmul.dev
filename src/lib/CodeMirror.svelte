@@ -1,26 +1,27 @@
 <script>
-    import { onMount } from 'svelte';
-    import { BarLoader } from "svelte-loading-spinners";
-    let PYSCRIPT;
-onMount(async () => {
-  PYSCRIPT = await import('./pyscript.js');
-});
-  export let doc;
+  import { onMount } from "svelte";
+  onMount(async () => {
+    await import("./pyscript.js");
+  });
   console.log("hello world");
 </script>
+
 <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 
-
-    <section class="pyscript" style="color:white;caret-color:yellow !important">
-    <br />
-    <div style="margin-inline: 15px;">
-        <p style="font-family:Apple Garamond;font-size:1rem;color:white;text-align:center;margin-top:-15px">Try coding python!</p>
-        <py-repl id="my-repl" auto-generate="true" />
-    </div>
-    </section>
+<section class="pyscript" style="color:white;caret-color:yellow !important">
+  <br />
+  <div style="margin-inline: 15px;">
+    <p
+      style="font-family:Apple Garamond;font-size:1rem;color:white;text-align:center;margin-top:-15px"
+    >
+      Try coding python!
+    </p>
+    <py-repl id="my-repl" auto-generate="true" />
+  </div>
+</section>
 
 <style>
-      :global(.Codemirror) {
+  :global(.Codemirror) {
     display: contents;
     color: white;
     height: auto !important;
@@ -38,12 +39,9 @@ onMount(async () => {
   :global(.output) {
     font-family: Apple Garamond;
     font-size: 1rem;
-    margin-left:6%;
-    margin-bottom:10px;
-    margin-top:10px;
-  }
-  :global(.cm-activeLine) {
-    /* background-color: rgb(31 32 63) !important; */
+    margin-left: 6%;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
   :global(.cm-scroller) {
     background-color: rgb(43, 43, 74) !important;
@@ -59,25 +57,45 @@ onMount(async () => {
     margin-top: -2px !important;
     height: 100% !important;
   }
+
+  :global(#code-editor) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+  }
+
+  :global(#code-editor > .cm-editor) {
+    flex-grow: 1 !important;
+    min-width: 0 !important;
+  }
+
+  :global(.py-repl-run-button),
+  :global(#code-editor > button) {
+    position: static !important;
+    margin-left: 10px !important;
+    margin-top: 5px !important;
+    bottom: unset !important;
+    right: unset !important;
+    flex-shrink: 0 !important;
+  }
+
   /* :global(.cm-focused) {
     outline: unset !important;
   } */
-  :global(.ͼd){
+  :global(.ͼd) {
     color: #84ff84;
   }
-  :global(.ͼa){
+  :global(.ͼa) {
     color: #f5aeff;
   }
-  :global(.ͼc){
+  :global(.ͼc) {
     color: #ffd300;
   }
-  :global(.ͼl){
+  :global(.ͼl) {
     color: #9776ff;
   }
   :global(.cm-line) {
     caret-color: yellow !important;
     background-color: rgb(43, 43, 74) !important;
-}
-
-
+  }
 </style>

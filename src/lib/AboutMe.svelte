@@ -2,10 +2,9 @@
   import "../css/98.css";
   import "../css/myStyle.css";
 
-  import { count } from "../stores/zIndex.js";
+  import { count } from "../stores/zIndex.ts";
   import { createEventDispatcher } from "svelte";
   import { asDraggable } from "svelte-drag-and-drop-actions";
-  import DragDropTouch from "svelte-drag-drop-touch";
   import { onMount, onDestroy } from "svelte";
 
   //getThe zIndex and animations functions used for all windows.
@@ -17,8 +16,9 @@
     touchDevice,
     handleMinimize,
   } from "./SysWindow.svelte";
-  import { glowWindow } from "../stores/keep.js";
-  import { writableArray } from "../stores/minimized.js";
+  import { glowWindow } from "../stores/keep.ts";
+  import { writableArray } from "../stores/minimized.ts";
+  import { osStore } from "../stores/osStore.ts";
 
   export let zIdx;
   let mobileDblTap;
@@ -28,7 +28,6 @@
   // let animation = {fn: fade};
 
   let menuX, menuY;
-  let aboutBox;
   export let BoxX = 200,
     BoxY = 120; //starting coords
   let value = "Hello";
@@ -48,10 +47,9 @@
       [hide, menuX, menuY] = handleMinimize(
         $writableArray,
         glowWindow,
-        hide,
         "Overview",
         "#minButtOverview",
-        "#OverviewWindow"
+        "#OverviewWindow",
       );
     };
     //basically a media query
@@ -73,13 +71,13 @@
         .querySelector(".SubMenu")
         .addEventListener(
           "touchend",
-          (mobileSwipe = (e) => swipeEnd(e, minFunc))
+          (mobileSwipe = (e) => swipeEnd(e, minFunc)),
         );
       document
         .getElementById("aboutBar")
         .addEventListener(
           "touchstart",
-          (mobileDblTap = (e) => tapHandler(e, minFunc, forward))
+          (mobileDblTap = (e) => tapHandler(e, minFunc, forward)),
         );
     }
   });
@@ -103,19 +101,22 @@
     return { x: BoxX, y: BoxY };
   }
 
-  function onDragMove(x, y, dx, dy) {
+  function onDragMove(x, y) {
     BoxX = x;
     BoxY = y;
+    osStore.updatePosition("Overview", x, y);
   }
 
-  function onDragEnd(x, y, dx, dy) {
+  function onDragEnd(x, y) {
     BoxX = x;
     BoxY = y;
+    osStore.updatePosition("Overview", x, y);
   }
 
   function maybeDontIncrement() {
     if (!hide) {
       zIdx = incrementCount(zIdx, $count, count, "Overview");
+      osStore.focusWindow("Overview");
     } else {
       zIdx = zIdx;
     }
@@ -146,7 +147,6 @@
   tabindex="0"
   on:mousedown={maybeDontIncrement}
   class:classname={hide}
-  bind:this={aboutBox}
 >
   <div
     id="aboutBar"
@@ -358,11 +358,15 @@
               </form>
             {:else if value === "My Sites"}
               <div class="aboutContent myAppsContent">
-                  <h2 style="margin-top:20px;margin-bottom:8px">{value}</h2>
-                <div style="font-family: 'Apple Garamond';font-size:1rem;margin-top:-20px">
+                <h2 style="margin-top:20px;margin-bottom:8px">{value}</h2>
+                <div
+                  style="font-family: 'Apple Garamond';font-size:1rem;margin-top:-20px"
+                >
                   Here are some websites I've built:
                   <br /><br />
-                  <ul style="margin-left:0px;margin-top:-20px;padding-left:18px">
+                  <ul
+                    style="margin-left:0px;margin-top:-20px;padding-left:18px"
+                  >
                     <li>
                       <a href="https://shmul.dev"
                         ><span
@@ -396,7 +400,8 @@
                       >HTML + TailwindCSS
                     </li>
                     <li>
-                      <a href="https://sean-shmulevich.github.io/interactiveFilm/index.html"
+                      <a
+                        href="https://sean-shmulevich.github.io/interactiveFilm/index.html"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >Creative coding.
@@ -404,7 +409,8 @@
                       >P5.js
                     </li>
                     <li>
-                      <a href="https://sean-shmulevich.github.io/VimGuide/index.html"
+                      <a
+                        href="https://sean-shmulevich.github.io/VimGuide/index.html"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >Vim beginner's guide.
@@ -490,7 +496,6 @@
     margin-top: -20px;
   }
 
-
   .introName {
     margin-left: 10px;
     font-size: 1.8rem;
@@ -501,6 +506,7 @@
 
   input:-webkit-autofill {
     color: black;
+    box-shadow: 0 0 0 30px white inset;
     -webkit-box-shadow: 0 0 0 30px white inset;
     -webkit-text-fill-color: black !important;
   }
@@ -526,7 +532,8 @@
     .introName {
       margin-top: 10px;
     }
-    .helloDev, .helloPitt {
+    .helloDev,
+    .helloPitt {
       transform: translateY(30px);
     }
     .aboutContent {
@@ -608,6 +615,11 @@
   }
 
   .classname {
+    animation-name: move;
+    animation-duration: 850ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
     -webkit-animation-name: move;
     -webkit-animation-duration: 850ms;
     -webkit-animation-iteration-count: 1;
