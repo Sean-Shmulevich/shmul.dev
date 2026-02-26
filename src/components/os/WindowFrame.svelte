@@ -133,6 +133,7 @@
   .title-bar {
     cursor: move;
     flex-shrink: 0;
+    touch-action: none; /* Prevent scroll on touch so pointer drag works */
   }
 
   .window-content-wrapper {
