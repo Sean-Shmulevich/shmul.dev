@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { asDraggable } from 'svelte-drag-and-drop-actions';
+  import { draggable } from '../../lib/windowUtils.ts';
   import { osStore } from '../../stores/osStore.ts';
 
   export let id; // The unique id of the window assigned by osStore
@@ -68,13 +68,10 @@
     <!-- Title Bar -->
     <div
       class="title-bar {isActive ? '' : 'inactive'}"
-      use:asDraggable={{
-        relativeTo: document.body,
+      use:draggable={{
         onDragStart,
         onDragMove,
         onDragEnd,
-        minX: 0,
-        minY: 0,
       }}
     >
       <div class="title-bar-text">
