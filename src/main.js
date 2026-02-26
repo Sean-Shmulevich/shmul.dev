@@ -1,5 +1,5 @@
 import './app.css';
-import 'svelte-drag-drop-touch';
+import 'dragdroptouch-bug-fixed';
 
 // @ts-expect-error
 import App from './App.svelte';
