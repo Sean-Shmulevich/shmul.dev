@@ -1,5 +1,7 @@
 import './app.css';
+import 'svelte-drag-drop-touch';
 
+// @ts-expect-error
 import App from './App.svelte';
 
 import { mount } from 'svelte';
