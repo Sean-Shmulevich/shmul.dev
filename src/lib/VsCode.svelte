@@ -133,38 +133,31 @@
 
   //Window funtion mousemove & mouseup
   function initResize() {
-    // if(currWidth >= 833){
-    //     currWidth = 833;
-    // }
-    // else if(currWidth <= 502){
-    //     currWidth = 502;
-    // }
     window.addEventListener("mousemove", Resize, false);
     window.addEventListener("mouseup", stopResize, false);
-    if (touchDevice) {
-      window.addEventListener("touchstart", Resize, false);
-      window.addEventListener("touchend", stopResize, false);
-    }
+    window.addEventListener("touchmove", Resize, { passive: false });
+    window.addEventListener("touchend", stopResize, false);
   }
   //resize the element
   function Resize(e) {
-    // console.log(currWidth);
-    //the resize bar is 6 px
-    //(e.clientX - BoxX) <= 833 && (e.clientX - BoxX) >= 502
-    // eslint-disable-next-line no-constant-condition
-    if (true) {
-      currWidth = e.clientX - BoxX;
-      currHeight = e.clientY - BoxY;
+    if (e.cancelable) e.preventDefault();
+    let clientX, clientY;
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
     }
+    currWidth = clientX - BoxX;
+    currHeight = clientY - BoxY;
   }
   //on mouseup remove windows functions mousemove & mouseup
   function stopResize() {
     window.removeEventListener("mousemove", Resize, false);
     window.removeEventListener("mouseup", stopResize, false);
-    if (touchDevice) {
-      window.removeEventListener("touchstart", Resize, false);
-      window.removeEventListener("touchend", stopResize, false);
-    }
+    window.removeEventListener("touchmove", Resize);
+    window.removeEventListener("touchend", stopResize, false);
   }
 </script>
 
@@ -207,6 +200,7 @@ bottom: 0;
 "
     on:mousedown={initResize}
     on:touchstart|preventDefault|capture={initResize}
+    on:pointerdown|stopPropagation
   ></div>
 
   <div
