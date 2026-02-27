@@ -177,15 +177,11 @@
   onDestroy(() => {
     fileWinOffset -= 25;
     if (touchDevice) {
-      document
-        .querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`)
-        .removeEventListener("touchstart", swipeStart);
-      document
-        .querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`)
-        .removeEventListener("touchend", mobileSwipe);
-      document
-        .querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`)
-        .removeEventListener("touchstart", mobileDblTap);
+      const win = document.querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`);
+      const bar = document.querySelector(`.remBoxMobile.File-System${windowIndex} > .fileGridBar`);
+      win?.removeEventListener("touchstart", swipeStart);
+      win?.removeEventListener("touchend", mobileSwipe);
+      bar?.removeEventListener("touchstart", mobileDblTap);
     }
   });
 

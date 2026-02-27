@@ -93,15 +93,11 @@
   //remove tap listeners.
   onDestroy(() => {
     if (touchDevice) {
-      document
-        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
-        .removeEventListener("touchstart", swipeStart);
-      document
-        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`)
-        .removeEventListener("touchend", mobileSwipe);
-      document
-        .querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} > .vsAppBar`)
-        .removeEventListener("touchstart", mobileDblTap);
+      const col = document.querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} * .vsAppCol`);
+      const bar = document.querySelector(`.vscode.${windowName.replace(/\s+/g, "-")} > .vsAppBar`);
+      col?.removeEventListener("touchstart", swipeStart);
+      col?.removeEventListener("touchend", mobileSwipe);
+      bar?.removeEventListener("touchstart", mobileDblTap);
     }
   });
 

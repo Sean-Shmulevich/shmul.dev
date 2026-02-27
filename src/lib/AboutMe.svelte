@@ -85,16 +85,11 @@
   onDestroy(() => {
     //remove the touch listeners
     if (touchDevice) {
-      document
-        .querySelector(".SubMenu")
-        .removeEventListener("touchstart", swipeStart);
-      document
-        .querySelector(".SubMenu")
-        .removeEventListener("touchend", mobileSwipe);
-      //double tap on bar.
-      document
-        .getElementById("aboutBar")
-        .removeEventListener("touchstart", mobileDblTap);
+      const sub = document.querySelector(".SubMenu");
+      const bar = document.getElementById("aboutBar");
+      sub?.removeEventListener("touchstart", swipeStart);
+      sub?.removeEventListener("touchend", mobileSwipe);
+      bar?.removeEventListener("touchstart", mobileDblTap);
     }
   });
   function onDragStart() {

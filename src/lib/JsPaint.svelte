@@ -57,11 +57,7 @@
   });
   onDestroy(() => {
     if (touchDevice) {
-      // document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchstart", swipeStart);
-      // document.querySelector(`.remBoxMobile * div.myWindow`).removeEventListener("touchend", mobileSwipe);
-      document
-        .getElementById("jsBar")
-        .removeEventListener("touchstart", mobileDblTap);
+      document.getElementById("jsBar")?.removeEventListener("touchstart", mobileDblTap);
     }
   });
 
