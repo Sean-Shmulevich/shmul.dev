@@ -86,6 +86,26 @@
   //grid view should be able to be controlled by the parent, use bind value very easy
   //export let gridViewOn = false;
 
+  // Double-tap detection for mobile (dblclick doesn't fire reliably on touch)
+  let lastTapTime = 0;
+  let lastTapTarget = null;
+
+  function doubleTap(callback) {
+    return (e) => {
+      const now = Date.now();
+      const target = e.currentTarget;
+      if (now - lastTapTime < 300 && lastTapTarget === target) {
+        e.preventDefault();
+        callback();
+        lastTapTime = 0;
+        lastTapTarget = null;
+      } else {
+        lastTapTime = now;
+        lastTapTarget = target;
+      }
+    };
+  }
+
   //init stuff
   export let path = "/Home";
   let filesList;
@@ -187,6 +207,7 @@
         role="button"
         tabindex="0"
         on:dblclick|preventDefault={goDeeper(folder)}
+        on:touchend={doubleTap(() => goDeeper(folder))}
       >
         <img
           class="menuFileIcon"
@@ -202,6 +223,7 @@
         role="button"
         tabindex="0"
         on:dblclick|preventDefault={openItem(file)}
+        on:touchend={doubleTap(() => openItem(file))}
       >
         <img
           class="menuFileIcon"
