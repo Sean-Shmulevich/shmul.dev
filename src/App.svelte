@@ -49,13 +49,14 @@
   }
 
   function allocatePosition(name) {
+    const small = window.innerWidth < 700;
     if (name === 'Overview') {
       nextPosition = { x: nextPosition.x, y: nextPosition.y + 30 };
       return { x: 200, y: nextPosition.y };
     }
     nextPosition = { x: nextPosition.x + 30, y: nextPosition.y + 30 };
-    if (window.innerWidth < 700) {
-      return { x: 10, y: nextPosition.y };
+    if (small) {
+      return { x: 10, y: Math.max(nextPosition.y - 30, 30) };
     }
     return { ...nextPosition };
   }
