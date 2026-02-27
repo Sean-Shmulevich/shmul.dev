@@ -225,12 +225,16 @@ bottom: 0;
       <div
         class="fakeButtons fakeClose vsControlButtons"
         on:mousedown={forward}
+        on:pointerdown|stopPropagation
+        on:touchstart|stopPropagation
       ></div>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         class="fakeButtons fakeMinimize vsControlButtons"
         on:click|capture|preventDefault={() => minFunc()}
+        on:pointerdown|stopPropagation
+        on:touchstart|stopPropagation
       ></div>
       <div class="fakeButtons fakeZoom vsControlButtons"></div>
     </div>
