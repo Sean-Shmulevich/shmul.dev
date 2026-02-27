@@ -12,8 +12,7 @@
     handleMinimize,
   } from "./windowUtils";
   import { createEventDispatcher } from "svelte";
-  import { asDraggable } from "svelte-drag-and-drop-actions";
-  // import  DragDropTouch  from 'svelte-drag-drop-touch'
+  import { draggable } from "./windowUtils";
   import { onMount, onDestroy } from "svelte";
 
   import { count } from "../stores/zIndex.ts";
@@ -98,7 +97,7 @@
   //dont let the offset get insane keep it proportional to the current number of windows.
   //!bug if you remove one in a stack (not the top one) the newest one will be on top of one that is on top of the stack directly overrlapping it.
   onDestroy(() => {
-    fileWinOffset -= 25;
+    windowOffsets.fileWinOffset -= 25;
     if (touchDevice) {
       document
         .querySelector(`.remBoxMobile.File-System${windowIndex} * div.window`)
@@ -128,6 +127,12 @@
   }
 
   function onDragStart() {
+    if (!hide) {
+      zIdx = incrementCount(zIdx, $count, count, "File System");
+      const wName =
+        windowIndex === 0 ? "File System" : "File System" + windowIndex;
+      osStore.focusWindow(wName);
+    }
     return { x: BoxX, y: BoxY };
   }
   function onDragMove(x, y) {
@@ -177,15 +182,10 @@
   <div
     class="title-bar fileGridBar windowBar"
     style="width: calc(100% - 2px);"
-    use:asDraggable={{
-      relativeTo: document.body,
+    use:draggable={{
       onDragStart,
       onDragMove,
       onDragEnd,
-      minX: 0,
-      minY: 26,
-      maxX: window.innerWidth - 20,
-      maxY: window.innerHeight - 70,
     }}
   >
     <div

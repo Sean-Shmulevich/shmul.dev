@@ -1,0 +1,1 @@
+import{ah as k,ai as t,u as S,aj as T,ak as c}from"./index-BAxU__1N.js";function h(r,i){return r===i||(r==null?void 0:r[c])===i}function x(r={},i,a,j){return k(()=>{var f,s;return t(()=>{f=s,s=[],S(()=>{r!==a(...s)&&(i(r,...s),f&&h(a(...f),r)&&i(null,...f))})}),()=>{T(()=>{s&&h(a(...s),r)&&i(null,...s)})}}),r}export{x as b};

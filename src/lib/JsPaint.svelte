@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { asDraggable } from "svelte-drag-and-drop-actions";
+  import { draggable } from "./windowUtils";
 
   import { count } from "../stores/zIndex.ts";
   import { glowWindow } from "../stores/keep.ts";
@@ -66,6 +66,7 @@
   });
 
   function onDragStart() {
+    maybeDontIncrement();
     return { x: BoxX, y: BoxY };
   }
 
@@ -124,13 +125,10 @@
     id="jsBar"
     class="title-bar fileGridBar windowBar"
     style="width:unset"
-    use:asDraggable={{
-      relativeTo: document.body,
+    use:draggable={{
       onDragStart,
       onDragMove,
       onDragEnd,
-      minX: 0,
-      minY: 0,
     }}
   >
     <div
@@ -217,6 +215,10 @@
     -webkit-animation-fill-mode: forwards;
   }
 
+  .windowBar {
+    touch-action: none;
+    user-select: none;
+  }
   /*.hideToMenuBar {*/
   /*    -webkit-animation-name: backOutDown;*/
   /*    animation-name: backOutDown;*/

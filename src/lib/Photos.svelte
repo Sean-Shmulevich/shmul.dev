@@ -84,7 +84,7 @@
   import "../css/98.css";
   import "../css/myStyle.css";
   import { createEventDispatcher } from "svelte";
-  import { asDraggable } from "svelte-drag-and-drop-actions";
+  import { draggable } from "./windowUtils";
 
   // import image1 from "../assets/PhotoEssay/Image2.jpg";
   // import image2 from "../assets/PhotoEssay/Image3.jpg";
@@ -202,6 +202,9 @@
   }
 
   function onDragStart() {
+    if (!hide) {
+      zIdx = incrementCount(zIdx, $count, count, "File System");
+    }
     return { x: BoxX, y: BoxY };
   }
   function onDragMove(x, y) {
@@ -251,15 +254,10 @@
   <div
     class="title-bar fileGridBar windowBar"
     style="width: calc(100% - 2px);"
-    use:asDraggable={{
-      relativeTo: document.body,
+    use:draggable={{
       onDragStart,
       onDragMove,
       onDragEnd,
-      minX: 0,
-      minY: 26,
-      maxX: window.innerWidth - 20,
-      maxY: window.innerHeight - 70,
     }}
   >
     <div

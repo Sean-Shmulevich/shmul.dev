@@ -1,26 +1,80 @@
 <script>
-  import { onMount } from "svelte";
-  onMount(async () => {
-    await import("./pyscript.js");
+  import { onMount, onDestroy } from "svelte";
+
+  let loading = true;
+  let observer;
+
+  onMount(() => {
+    import("./pyscript.js");
+
+    // The import resolves when the module is parsed, but the py-repl
+    // custom element initializes asynchronously after that.
+    // Watch for the CodeMirror editor to actually appear inside py-repl.
+    const repl = document.getElementById("my-repl");
+    if (repl) {
+      observer = new MutationObserver(() => {
+        if (repl.querySelector(".cm-editor")) {
+          loading = false;
+          observer.disconnect();
+        }
+      });
+      observer.observe(repl, { childList: true, subtree: true });
+    }
   });
-  console.log("hello world");
+
+  onDestroy(() => {
+    if (observer) observer.disconnect();
+  });
 </script>
 
 <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 
 <section class="pyscript" style="color:white;caret-color:yellow !important">
   <br />
-  <div style="margin-inline: 15px;">
+  <div style="margin-inline: 15px; position: relative;">
     <p
       style="font-family:Apple Garamond;font-size:1rem;color:white;text-align:center;margin-top:-15px"
     >
       Try coding python!
     </p>
+    {#if loading}
+      <div class="py-loading">
+        <div class="py-spinner"></div>
+        <p class="py-loading-text">Loading Python runtime...</p>
+      </div>
+    {/if}
     <py-repl id="my-repl" auto-generate="true"></py-repl>
   </div>
 </section>
 
 <style>
+  .py-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+  }
+
+  .py-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(160, 151, 229, 0.3);
+    border-top-color: rgb(160, 151, 229);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .py-loading-text {
+    font-family: "Apple Garamond";
+    font-size: 0.9rem;
+    color: rgb(160, 151, 229);
+    margin-top: 12px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
   :global(.Codemirror) {
     display: contents;
     color: white;

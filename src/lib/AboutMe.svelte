@@ -4,7 +4,7 @@
 
   import { count } from "../stores/zIndex.ts";
   import { createEventDispatcher } from "svelte";
-  import { asDraggable } from "svelte-drag-and-drop-actions";
+  import { draggable } from "./windowUtils";
   import { onMount, onDestroy } from "svelte";
 
   //getThe zIndex and animations functions used for all windows.
@@ -98,6 +98,7 @@
     }
   });
   function onDragStart() {
+    maybeDontIncrement();
     return { x: BoxX, y: BoxY };
   }
 
@@ -150,16 +151,10 @@
 >
   <div
     id="aboutBar"
-    use:asDraggable={{
-      onlyFrom: ".title-bar",
-      relativeTo: document.body,
+    use:draggable={{
       onDragStart,
       onDragMove,
       onDragEnd,
-      minX: 0,
-      minY: 29,
-      maxX: window.innerWidth,
-      maxY: window.innerHeight - 70,
     }}
     class="title-bar fileGridBar windowBar"
     style="width:auto"
@@ -643,13 +638,8 @@
     border-radius: 2px 2px 0px 0px;
   }
 
-  :global([draggable]) {
-    -webkit-touch-callout: none;
-    -ms-touch-action: none;
+  .windowBar {
     touch-action: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
     user-select: none;
   }
 

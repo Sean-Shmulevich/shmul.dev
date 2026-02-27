@@ -5,7 +5,7 @@
   import "../css/codicon.css";
   import "../css/terminal.css";
 
-  import { asDraggable } from "svelte-drag-and-drop-actions";
+  import { draggable } from "./windowUtils";
   import { onDestroy, onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
 
@@ -24,17 +24,17 @@
   } from "./windowUtils";
 
   export let zIdx = 0;
-  let minWidth = 502;
+  let minWidth = window.innerWidth <= 600 ? window.innerWidth - 80 : 502;
 
   //double tap function to relese on destroy.
   let mobileDblTap;
   let mobileSwipe;
   let minFunc;
-  export let BoxX = 200,
+  export let BoxX = window.innerWidth < 700 ? 0 : 200,
     BoxY = 200; //starting coords
   export let hide = false;
   let menuX, menuY;
-  let currWidth = 600;
+  let currWidth = window.innerWidth <= 600 ? window.innerWidth : 600;
   let currHeight = 400;
   export let windowName = "VS Code";
   let maxX = 0,
@@ -106,6 +106,7 @@
   });
 
   function onDragStart() {
+    maybeDontIncrement();
     return { x: BoxX, y: BoxY };
   }
 
@@ -211,15 +212,10 @@ bottom: 0;
   <div
     class="vsAppBar"
     style="position: relative;"
-    use:asDraggable={{
-      relativeTo: document.body,
+    use:draggable={{
       onDragStart,
       onDragMove,
       onDragEnd,
-      minX: 0,
-      minY: 26,
-      maxX: window.innerWidth,
-      maxY: window.innerHeight - 70,
     }}
   >
     <div
@@ -348,6 +344,10 @@ bottom: 0;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: linear;
     -webkit-animation-fill-mode: forwards;
+  }
+  .vsAppBar {
+    touch-action: none;
+    user-select: none;
   }
   ::-webkit-scrollbar-thumb {
     display: block !important;
