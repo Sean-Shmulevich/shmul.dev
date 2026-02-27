@@ -54,6 +54,9 @@
       return { x: 200, y: nextPosition.y };
     }
     nextPosition = { x: nextPosition.x + 30, y: nextPosition.y + 30 };
+    if (window.innerWidth < 700) {
+      return { x: 10, y: nextPosition.y };
+    }
     return { ...nextPosition };
   }
 
