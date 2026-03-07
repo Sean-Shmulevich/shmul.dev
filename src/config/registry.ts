@@ -16,16 +16,29 @@ export interface DesktopIcon {
 export interface WindowConfig {
   id: string;
   kind:
-  | 'fileSystem'
-  | 'jsPaint'
-  | 'component'
-  | 'vsCode'
-  | 'snakeGame'
-  | 'content';
+    | 'fileSystem'
+    | 'jsPaint'
+    | 'component'
+    | 'vsCode'
+    | 'snakeGame'
+    | 'content';
   desktop?: DesktopIcon;
   component?: unknown;
   content?: string;
   docName?: string;
+  shell?: WindowShellConfig;
+}
+
+export interface WindowShellConfig {
+  fitMode?: 'contain';
+  contentAspectRatio?: number;
+  initialScale?: number;
+  chromeWidth?: number;
+  chromeHeight?: number;
+  desktopViewportMargin?: number;
+  mobileViewportMargin?: number;
+  minWidth?: number;
+  minHeight?: number;
 }
 
 export const windowRegistry: WindowConfig[] = [
@@ -51,7 +64,22 @@ export const windowRegistry: WindowConfig[] = [
     content: 'codemirror',
     desktop: { order: 2, left: 25, src: vsLogo },
   },
-  { id: 'resume', kind: 'vsCode', content: 'resume' },
+  {
+    id: 'resume',
+    kind: 'vsCode',
+    content: 'resume',
+    shell: {
+      fitMode: 'contain',
+      contentAspectRatio: 1232 / 1602,
+      initialScale: 0.75,
+      chromeWidth: 31,
+      chromeHeight: 48,
+      desktopViewportMargin: 48,
+      mobileViewportMargin: 16,
+      minWidth: 360,
+      minHeight: 305,
+    },
+  },
   { id: 'snake', kind: 'snakeGame' },
   { id: 'My_Philosophy', kind: 'content', docName: 'My_Philosophy' },
   { id: 'hobbies', kind: 'content', docName: 'Hobbies' },

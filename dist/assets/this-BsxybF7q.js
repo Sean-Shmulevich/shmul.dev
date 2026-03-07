@@ -1,1 +1,0 @@
-import{ai as t,aj as h,u as S,ak as T,al as c}from"./index-dq-nAtHz.js";function k(r,i){return r===i||(r==null?void 0:r[c])===i}function x(r={},i,a,j){return t(()=>{var f,s;return h(()=>{f=s,s=[],S(()=>{r!==a(...s)&&(i(r,...s),f&&k(a(...f),r)&&i(null,...f))})}),()=>{T(()=>{s&&k(a(...s),r)&&i(null,...s)})}}),r}export{x as b};

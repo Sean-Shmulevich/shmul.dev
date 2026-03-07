@@ -312,6 +312,7 @@
             BoxX={positions[win.id].x}
             BoxY={positions[win.id].y}
             windowName={win.id}
+            shellConfig={win.shell}
             bind:hide={isMinimized[win.id]}
             bind:zIdx={zMap[win.id]}
             on:close={() => removeWindow(win.id)}
@@ -322,10 +323,10 @@
                 doc={'//using codeMirror for syntax highlighting\n//CSS vsCode window styles from scratch\nlet a = 15;\n"let a = 15;"'}
               />
             {:else if win.content === 'resume'}
-              <div class="article">
+              <div class="resume-article">
                 <img
+                  class="resume-image"
                   src={resumeImg}
-                  style="width:125%"
                   alt="Sean Shmulevich's Resume"
                 />
               </div>
@@ -382,12 +383,25 @@
 </main>
 
 <style>
-  /* markdown styles */
-  .article {
-    color: white;
-    font-family: Apple Garamond bold;
-    padding: 0px 15px 10px 15px;
-    margin-top: -10px;
+  .resume-article {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 16px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .resume-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .resume-article {
+      padding: 10px 12px 14px;
+    }
   }
   .scan-lines {
     z-index: 99999;

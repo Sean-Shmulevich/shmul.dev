@@ -355,51 +355,64 @@
                   Here are some websites I've built:
                   <br /><br />
                   <ul
+                    class="myAppsList"
                     style="margin-left:0px;margin-top:-20px;padding-left:18px"
                   >
                     <li>
-                      <a href="https://shmul.dev"
+                      <a class="myAppsLink" href="https://dapup.co"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >DapUp
                         </span></a
-                      >Full stack Node.js
+                      ><span class="myAppsDescription">Full stack Node.js</span>
                     </li>
                     <li>
-                      <a href="http://sherlock-gender.obdurodon.org/"
+                      <a
+                        class="myAppsLink"
+                        href="http://sherlock-gender.obdurodon.org/"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >Sherlock Gender
                         </span></a
-                      >Vanilla HTML+CSS+JS
+                      ><span class="myAppsDescription"
+                        >Vanilla HTML+CSS+JS</span
+                      >
                     </li>
                     <li>
-                      <a href="https://delicausa.com"
+                      <a class="myAppsLink" href="https://delicausa.com"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >DelicaUSA
                         </span></a
-                      >Wordpress + Woocommerce
+                      ><span class="myAppsDescription"
+                        >Wordpress + Woocommerce</span
+                      >
                     </li>
                     <li>
-                      <a href="https://sean-shmulevich.github.io/CollabArts/"
+                      <a
+                        class="myAppsLink"
+                        href="https://sean-shmulevich.github.io/CollabArts/"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >CollabArtsPgh
                         </span></a
-                      >HTML + TailwindCSS
+                      ><span class="myAppsDescription"
+                        >HTML + TailwindCSS</span
+                      >
                     </li>
                     <li>
                       <a
+                        class="myAppsLink"
                         href="https://sean-shmulevich.github.io/interactiveFilm/index.html"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
                           >Creative coding.
                         </span></a
-                      >P5.js
+                      ><span class="myAppsDescription">P5.js</span>
                     </li>
                     <li>
                       <a
+                        class="myAppsLink"
                         href="https://sean-shmulevich.github.io/VimGuide/index.html"
                         ><span
                           style="font-family: 'Apple Garamond Bold Italic';"
@@ -651,6 +664,19 @@
 
   h2 {
     font-family: "Apple Garamond bold";
+  }
+
+  .myAppsList li {
+    margin-bottom: 0.15rem;
+  }
+
+  .myAppsLink {
+    display: inline-block;
+    margin-right: 0.45rem;
+  }
+
+  .myAppsDescription {
+    display: inline-block;
   }
 
   .SubMenuTab {
